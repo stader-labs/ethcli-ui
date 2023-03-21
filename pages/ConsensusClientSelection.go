@@ -80,7 +80,8 @@ func (p *ConsensusClientSelection) handleSelectedOption(option string) {
 		state.ConsensusClient.SelectionSelectedOption = option
 	} else {
 		state.ConsensusClient.SelectionSelectedOption = utils.GetRandomItem(
-			config.ConsensusClient.Stage.Selection.Options,
+			//config.ConsensusClient.Stage.Selection.Options,
+			[]string{"lighthouse", "nimbus", "prysm", "tekuq"},
 			option,
 		)
 	}

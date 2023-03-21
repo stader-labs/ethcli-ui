@@ -82,7 +82,8 @@ func (p *ExecutionClient) handleSelectedOption(option string) {
 		state.ExecutionClient.SelectedOption = option
 	} else {
 		state.ExecutionClient.SelectedOption = utils.GetRandomItem(
-			config.ExecutionClient.Options,
+			//config.ExecutionClient.Options,
+			[]string{"geth", "nethermind", "besu"},
 			option,
 		)
 	}
