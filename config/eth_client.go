@@ -11,8 +11,8 @@ var ETHClient = struct {
 	Descriptions map[string]string
 }{
 	Option: ETHClientOption{
-		ExternallyManaged: "Externally Managed",
-		LocallyManaged:    "Locally Managed",
+		ExternallyManaged: "external",
+		LocallyManaged:    "local",
 	},
 }
 
