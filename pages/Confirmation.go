@@ -46,14 +46,13 @@ func (n *Confirmation) onSumit(option string) {
 	} else if option == config.Confirmation.Option.SaveAndExit {
 		log.Info("Save and exit")
 		// saveSettings()
+		n.App.Stop()
 
 		if state.OnDone != nil {
 			state.OnDone(GetSettings(), nil)
 		} else {
 			log.Warn("OnDone is nil")
 		}
-
-		n.App.Stop()
 		return
 	}
 }
