@@ -11,8 +11,7 @@ var Network = struct {
 	Descriptions map[string]string
 }{
 	Option: NetworkOption{
-		// EthereumMainnet: "Ethereum Mainnet",
-		GoerliTestnet: "Goerli Testnet",
+		GoerliTestnet: "prater",
 	},
 }
 
