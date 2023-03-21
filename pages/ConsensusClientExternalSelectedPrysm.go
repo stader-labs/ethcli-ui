@@ -12,22 +12,22 @@ import (
 	"github.com/rivo/tview"
 )
 
-type ExecutionClientExternalSelectedPrysm struct {
+type ConsensusClientExternalSelectedPrysm struct {
 	*PageType
 	firstElement tview.Primitive
 	leftSidebar  *tview.Flex
 	body         *tview.Flex
 }
 
-func (p *ExecutionClientExternalSelectedPrysm) Page() tview.Primitive {
-	p.PageType.ID = config.PageID.ExecutionClientExternalSelectedPrysm
+func (p *ConsensusClientExternalSelectedPrysm) Page() tview.Primitive {
+	p.PageType.ID = config.PageID.ConsensusClientExternalSelectedPrysm
 
 	form := tview.NewForm().
 		AddInputField("HTTP URL", "", 0, nil, func(text string) {
-			state.ExecutionClientExternalSelectedPrysm.HTTPUrl = text
+			state.ConsensusClientExternalSelectedPrysm.HTTPUrl = text
 		}).
 		AddInputField("JSON-RPC URL", "", 0, nil, func(text string) {
-			state.ExecutionClientExternalSelectedPrysm.JSONRpcUrl = text
+			state.ConsensusClientExternalSelectedPrysm.JSONRpcUrl = text
 		}).
 		AddButton("Next", func() {
 			p.onSumit()
@@ -88,16 +88,16 @@ localhost or 127.0.0.1.`
 		AddItem(components.Footer(), 3, 1, false)
 }
 
-func (p *ExecutionClientExternalSelectedPrysm) onSumit() {
-	log.Infof("onSumit: [%s]", config.PageID.ExecutionClientExternalSelectedPrysm)
+func (p *ConsensusClientExternalSelectedPrysm) onSumit() {
+	log.Infof("onSumit: [%s]", config.PageID.ConsensusClientExternalSelectedPrysm)
 	ChangePage(config.PageID.ConsensusClientGraffiti)
 }
 
-func (p *ExecutionClientExternalSelectedPrysm) GoBack() {
+func (p *ConsensusClientExternalSelectedPrysm) GoBack() {
 	ChangePage(config.PageID.ExecutionClientExternalSelection)
 }
 
-func (p *ExecutionClientExternalSelectedPrysm) HandleEvents(event *tcell.EventKey) *tcell.EventKey {
+func (p *ConsensusClientExternalSelectedPrysm) HandleEvents(event *tcell.EventKey) *tcell.EventKey {
 	key := event.Key()
 	if key == tcell.KeyEsc {
 		p.GoBack()
@@ -106,7 +106,7 @@ func (p *ExecutionClientExternalSelectedPrysm) HandleEvents(event *tcell.EventKe
 	return event
 }
 
-func (p *ExecutionClientExternalSelectedPrysm) GetFirstElement() tview.Primitive {
+func (p *ConsensusClientExternalSelectedPrysm) GetFirstElement() tview.Primitive {
 	fb := p.firstElement
 	log.Infof("%s GetFirstElement", p.ID)
 	return fb

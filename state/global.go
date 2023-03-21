@@ -41,26 +41,6 @@ var (
 		SelectedOption: config.ExecutionClientExternalSelection.Option.Lighthouse,
 	}
 
-	ExecutionClientExternalSelectedLighthouse = struct {
-		HTTPUrl string
-	}{
-		HTTPUrl: "",
-	}
-
-	ExecutionClientExternalSelectedPrysm = struct {
-		HTTPUrl    string
-		JSONRpcUrl string
-	}{
-		HTTPUrl:    "",
-		JSONRpcUrl: "",
-	}
-
-	ExecutionClientExternalSelectedTeku = struct {
-		HTTPUrl string
-	}{
-		HTTPUrl: "",
-	}
-
 	ConsensusClient = struct {
 		SelectionSelectedOption             string
 		SelectedStage                       string
@@ -73,6 +53,26 @@ var (
 		DopelgangerProtectionSelectedOption: config.ConsensusClient.Stage.DopelgangerProtection.Option.Yes,
 		Graffiti:                            "",
 		CheckpointUrl:                       "",
+	}
+
+	ConsensusClientExternalSelectedLighthouse = struct {
+		HTTPUrl string
+	}{
+		HTTPUrl: "",
+	}
+
+	ConsensusClientExternalSelectedPrysm = struct {
+		HTTPUrl    string
+		JSONRpcUrl string
+	}{
+		HTTPUrl:    "",
+		JSONRpcUrl: "",
+	}
+
+	ConsensusClientExternalSelectedTeku = struct {
+		HTTPUrl string
+	}{
+		HTTPUrl: "",
 	}
 
 	FallbackClients = struct {

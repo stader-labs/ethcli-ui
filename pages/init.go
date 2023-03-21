@@ -51,23 +51,23 @@ func Setup(app *tview.Application) {
 		},
 	}
 
-	All[config.PageID.ExecutionClientExternalSelectedLighthouse] = &ExecutionClientExternalSelectedLighthouse{
+	All[config.PageID.ConsensusClientExternalSelectedLighthouse] = &ConsensusClientExternalSelectedLighthouse{
 		PageType: &PageType{
-			ID:  config.PageID.ExecutionClientExternalSelectedLighthouse,
+			ID:  config.PageID.ConsensusClientExternalSelectedLighthouse,
 			App: app,
 		},
 	}
 
-	All[config.PageID.ExecutionClientExternalSelectedPrysm] = &ExecutionClientExternalSelectedPrysm{
+	All[config.PageID.ConsensusClientExternalSelectedPrysm] = &ConsensusClientExternalSelectedPrysm{
 		PageType: &PageType{
-			ID:  config.PageID.ExecutionClientExternalSelectedPrysm,
+			ID:  config.PageID.ConsensusClientExternalSelectedPrysm,
 			App: app,
 		},
 	}
 
-	All[config.PageID.ExecutionClientExternalSelectedTeku] = &ExecutionClientExternalSelectedTeku{
+	All[config.PageID.ConsensusClientExternalSelectedTeku] = &ConsensusClientExternalSelectedTeku{
 		PageType: &PageType{
-			ID:  config.PageID.ExecutionClientExternalSelectedTeku,
+			ID:  config.PageID.ConsensusClientExternalSelectedTeku,
 			App: app,
 		},
 	}

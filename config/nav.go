@@ -6,9 +6,9 @@ var PageID = struct {
 	ExecutionClient                           string
 	ExecutionClientExternal                   string
 	ExecutionClientExternalSelection          string
-	ExecutionClientExternalSelectedLighthouse string
-	ExecutionClientExternalSelectedPrysm      string
-	ExecutionClientExternalSelectedTeku       string
+	ConsensusClientExternalSelectedLighthouse string
+	ConsensusClientExternalSelectedPrysm      string
+	ConsensusClientExternalSelectedTeku       string
 	ConsensusClientSelection                  string
 	ConsensusClientGraffiti                   string
 	ConsensusClientCheckpointSync             string
@@ -28,9 +28,9 @@ var PageID = struct {
 	ExecutionClient:                  "execution_client",
 	ExecutionClientExternal:          "execution_client_external",
 	ExecutionClientExternalSelection: "execution_client_external_selection",
-	ExecutionClientExternalSelectedLighthouse: "execution_client_external_selected_lighthouse",
-	ExecutionClientExternalSelectedPrysm:      "execution_client_external_selected_prysm",
-	ExecutionClientExternalSelectedTeku:       "execution_client_external_selected_teku",
+	ConsensusClientExternalSelectedLighthouse: "consensus_client_external_selected_lighthouse",
+	ConsensusClientExternalSelectedPrysm:      "consensus_client_external_selected_prysm",
+	ConsensusClientExternalSelectedTeku:       "consensus_client_external_selected_teku",
 	ConsensusClientSelection:                  "consensus_client_selection",
 	ConsensusClientGraffiti:                   "consensus_client_graffiti",
 	ConsensusClientCheckpointSync:             "consensus_client_checkpoint_sync",
@@ -54,6 +54,7 @@ var TopNav = struct {
 	FallbackClients string
 	Monitoring      string
 	MEVBoost        string
+	Confirmation    string
 }{
 	Network:         "Network",
 	ETHClient:       "ETH Client",
@@ -62,4 +63,5 @@ var TopNav = struct {
 	FallbackClients: "Fallback clients",
 	Monitoring:      "Monitoring",
 	MEVBoost:        "MEV-Boost",
+	Confirmation:    "Confirmation",
 }

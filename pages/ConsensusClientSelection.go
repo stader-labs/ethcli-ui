@@ -29,7 +29,7 @@ func (p *ConsensusClientSelection) Page() tview.Primitive {
 	p.descriptionTextView = tview.NewTextView()
 
 	left, buttons := components.BodyWithOptions(
-		"Select your preferred method for managing your\nExecution and Consensus clients.",
+		"Select the consensus client you\nwish to use. If you're\nuncertain, we suggest selecting\nSystem-recommended for your\nconvenience.",
 		cOptions,
 		p.onSumit,
 	)

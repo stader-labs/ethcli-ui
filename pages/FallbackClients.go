@@ -46,7 +46,7 @@ func (p *FallbackClients) onSumit(option string) {
 	state.FallbackClients.SelectedOption = option
 	// ChangePage(config.PageID.FallbackClients)
 
-	if state.FallbackClients.SelectedOption == config.FallbackClients.Option.Yes {
+	if state.ETHClient.SelectedOption == config.ETHClient.Option.ExternallyManaged && state.FallbackClients.SelectedOption == config.FallbackClients.Option.Yes {
 		if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Prysm {
 			ChangePage(config.PageID.FallbackClientsPrysm)
 		} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.LightHouse {

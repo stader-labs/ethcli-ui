@@ -20,9 +20,7 @@ func (n *Confirmation) Page() tview.Primitive {
 	cOptions := config.Confirmation.Options
 
 	body, buttons := components.BodyWithOptions(
-		`Confirmation
-
-Great job! You're all set to complete the
+		`Great job! You're all set to complete the
 configuration. Take a moment to review and adjust
 your Stader Node settings, or simply save and exit
 to get started.`,
@@ -34,7 +32,7 @@ to get started.`,
 	return tview.NewFlex().
 		SetDirection(tview.FlexRow).
 		AddItem(components.Header(), 3, 1, false).
-		AddItem(components.Nav(config.TopNav.MEVBoost), 3, 1, false).
+		AddItem(components.Nav(config.TopNav.Confirmation), 3, 1, false).
 		AddItem(body, 0, 1, false).
 		AddItem(components.Footer(), 3, 1, false)
 }
@@ -89,11 +87,11 @@ func (n *Confirmation) GoBack() {
 func (n *Confirmation) HandleEvents(event *tcell.EventKey) *tcell.EventKey {
 	var key = event.Key()
 
-	if key == tcell.KeyLeft {
+	if key == tcell.KeyLeft || key == tcell.KeyBacktab {
 		n.selectPrevOption()
 	}
 
-	if key == tcell.KeyRight {
+	if key == tcell.KeyRight || key == tcell.KeyTAB {
 		n.selectNextOption()
 	}
 
