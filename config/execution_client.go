@@ -14,9 +14,9 @@ var ExecutionClient = struct {
 }{
 	Option: ExecutionClientOption{
 		SystemRecommended: "System-recommended",
-		Geth:              "Geth",
-		Nethermind:        "Nethermind",
-		Besu:              "Besu",
+		Geth:              "geth",
+		Nethermind:        "nethermind",
+		Besu:              "besu",
 	},
 }
 

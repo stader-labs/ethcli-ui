@@ -49,10 +49,10 @@ var ConsensusClient = struct {
 			Name: "Selection",
 			Option: CCSelectionOption{
 				SystemRecommended: "System-recommended",
-				LightHouse:        "Lighthouse",
-				Nimbus:            "Nimbus",
-				Prysm:             "Prysm",
-				Teku:              "Teku",
+				LightHouse:        "lighthouse",
+				Nimbus:            "nimbus",
+				Prysm:             "prysm",
+				Teku:              "teku",
 			},
 		},
 		Graffiti: CSStageForm{
@@ -66,12 +66,12 @@ var ConsensusClient = struct {
 		DopelgangerProtection: CCStageDopelgangerProtection{
 			Name: "Dopelganger protection",
 			Option: CCDopelgangerProtectionOption{
-				Yes: "Yes",
-				No:  "No",
+				Yes: "true",
+				No:  "false",
 			},
 			Options: []string{
-				"Yes",
-				"No",
+				"true",
+				"false",
 			},
 		},
 	},
