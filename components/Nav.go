@@ -15,6 +15,7 @@ func Nav(selectedItem string) tview.Primitive {
 		config.TopNav.FallbackClients,
 		config.TopNav.Monitoring,
 		config.TopNav.MEVBoost,
+		config.PageID.Confirmation,
 	}
 
 	navItems := tview.NewFlex().
