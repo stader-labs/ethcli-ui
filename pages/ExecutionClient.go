@@ -77,15 +77,26 @@ func (p *ExecutionClient) updateRightSidebar() {
 	}
 }
 
+func (p *ExecutionClient) handleSelectedOption(option string) {
+	if option != config.ExecutionClient.Option.SystemRecommended {
+		state.ExecutionClient.SelectedOption = option
+	} else {
+		state.ExecutionClient.SelectedOption = utils.GetRandomItem(
+			config.ExecutionClient.Options,
+			option,
+		)
+	}
+}
+
 func (p *ExecutionClient) onSumit(option string) {
-	state.ExecutionClient.SelectedOption = option
+	p.handleSelectedOption(option)
 	ChangePage(config.PageID.ConsensusClientSelection)
 }
 
 func (p *ExecutionClient) selectPrevOption() {
 	prevItem, _ := utils.GetPrevItem(config.ExecutionClient.Options, state.ExecutionClient.SelectedOption)
 	log.Infof("Select prev: [%s] to [%s]", state.ExecutionClient.SelectedOption, prevItem)
-	state.ExecutionClient.SelectedOption = prevItem
+	p.handleSelectedOption(prevItem)
 	p.updateRightSidebar()
 	p.App.SetFocus(p.buttons[prevItem])
 }
@@ -93,7 +104,7 @@ func (p *ExecutionClient) selectPrevOption() {
 func (p *ExecutionClient) selectNextOption() {
 	nextItem, _ := utils.GetNextItem(config.ExecutionClient.Options, state.ExecutionClient.SelectedOption)
 	log.Infof("Select next: [%s] to [%s]", state.ExecutionClient.SelectedOption, nextItem)
-	state.ExecutionClient.SelectedOption = nextItem
+	p.handleSelectedOption(nextItem)
 	p.updateRightSidebar()
 	p.App.SetFocus(p.buttons[nextItem])
 }

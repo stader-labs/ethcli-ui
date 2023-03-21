@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fmt"
+	"math/rand"
 )
 
 func ChunkSlice(slice []string, chunkSize int) [][]string {
@@ -66,4 +67,15 @@ func GetPrevItem(s []string, current string) (string, error) {
 	}
 
 	return prevItem, nil
+}
+
+func GetRandomItem(options []string, valueToIgnore string) string {
+	var item string
+	for {
+		item = options[rand.Intn(len(options))]
+		if item != valueToIgnore {
+			break
+		}
+	}
+	return item
 }
