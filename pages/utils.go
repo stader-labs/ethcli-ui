@@ -1,10 +1,6 @@
 package pages
 
 import (
-	"encoding/json"
-	"fmt"
-	"os"
-
 	"github.com/stader-labs/ethcli-ui/state"
 )
 
@@ -89,11 +85,31 @@ func ChangePage(nextPage string) {
 // 	ChangePage(nextPage)
 // }
 
+type consensusClientExternalSelectedLighthouseType struct {
+	HTTPUrl string `json:"httpUrl"`
+}
+
+type consensusClientExternalSelectedPrysmType struct {
+	HTTPUrl    string `json:"httpUrl"`
+	JSONRpcUrl string `json:"jsonRpcUrl"`
+}
+
+type consensusClientExternalSelectedTekuType struct {
+	HTTPUrl string `json:"httpUrl"`
+}
+
+type consensusClientExternalType struct {
+	Lighthouse consensusClientExternalSelectedLighthouseType `json:"lighthouse"`
+	Prysm      consensusClientExternalSelectedPrysmType      `json:"prysm"`
+	Teku       consensusClientExternalSelectedTekuType       `json:"teku"`
+}
+
 type consensusClientType struct {
-	Selection              string `json:"selection"`
-	Graffit                string `json:"graffit"`
-	CheckpointUrl          string `json:"checkpointUrl"`
-	DoppelgangerProtection string `json:"doppelgangerProtection"`
+	Selection              string                      `json:"selection"`
+	Graffit                string                      `json:"graffit"`
+	CheckpointUrl          string                      `json:"checkpointUrl"`
+	DoppelgangerProtection string                      `json:"doppelgangerProtection"`
+	External               consensusClientExternalType `json:"external"`
 }
 
 type fallbackClientsLighthouseType struct {
@@ -119,10 +135,20 @@ type fallbackClientsType struct {
 	Teku            fallbackClientsTekuType       `json:"teku"`
 }
 
+type executionClientExternal struct {
+	HTTPBasedRpcApi      string `json:"httpBasedRpcApi"`
+	WebsocketBasedRpcApi string `json:"websocketBasedRpcApi"`
+}
+
+type executionClient struct {
+	SelectionOption string                  `json:"selectionOption"`
+	External        executionClientExternal `json:"external"`
+}
+
 type SettingsType struct {
 	Network                  string              `json:"network"`
 	EthClient                string              `json:"ethClient"`
-	ExecutionClient          string              `json:"executionClient"`
+	ExecutionClient          executionClient     `json:"executionClient"`
 	ConsensusClient          consensusClientType `json:"consensusClient"`
 	Monitoring               string              `json:"monitoring"`
 	MEVBoost                 string              `json:"mevBoost"`
@@ -134,14 +160,32 @@ type SettingsType struct {
 
 func GetSettings() SettingsType {
 	settings := SettingsType{
-		Network:         state.Network.SelectedOption,
-		EthClient:       state.ETHClient.SelectedOption,
-		ExecutionClient: state.ExecutionClient.SelectedOption,
+		Network:   state.Network.SelectedOption,
+		EthClient: state.ETHClient.SelectedOption,
+		ExecutionClient: executionClient{
+			SelectionOption: state.ExecutionClient.SelectedOption,
+			External: executionClientExternal{
+				HTTPBasedRpcApi:      state.ExecutionClientExternal.HTTPBasedRpcApi,
+				WebsocketBasedRpcApi: state.ExecutionClientExternal.WebsocketBasedRpcApi,
+			},
+		},
 		ConsensusClient: consensusClientType{
 			Selection:              state.ConsensusClient.SelectionSelectedOption,
 			Graffit:                state.ConsensusClient.Graffiti,
 			CheckpointUrl:          state.ConsensusClient.CheckpointUrl,
 			DoppelgangerProtection: state.ConsensusClient.DopelgangerProtectionSelectedOption,
+			External: consensusClientExternalType{
+				Lighthouse: consensusClientExternalSelectedLighthouseType{
+					HTTPUrl: state.ConsensusClientExternalSelectedLighthouse.HTTPUrl,
+				},
+				Prysm: consensusClientExternalSelectedPrysmType{
+					HTTPUrl:    state.ConsensusClientExternalSelectedPrysm.HTTPUrl,
+					JSONRpcUrl: state.ConsensusClientExternalSelectedPrysm.JSONRpcUrl,
+				},
+				Teku: consensusClientExternalSelectedTekuType{
+					HTTPUrl: state.ConsensusClientExternalSelectedTeku.HTTPUrl,
+				},
+			},
 		},
 		Monitoring:               state.Monitoring.SelectedOption,
 		MEVBoost:                 state.MEVBoost.SelectedOption,
@@ -169,22 +213,22 @@ func GetSettings() SettingsType {
 	return settings
 }
 
-func saveSettings() error {
-	settings := GetSettings()
+// func saveSettings() error {
+// 	settings := GetSettings()
 
-	file, err := os.Create("ethcliui-settings.json")
-	if err != nil {
-		fmt.Println("Error creating file:", err)
-		return err
-	}
-	defer file.Close()
+// 	file, err := os.Create("ethcliui-settings.json")
+// 	if err != nil {
+// 		fmt.Println("Error creating file:", err)
+// 		return err
+// 	}
+// 	defer file.Close()
 
-	encoder := json.NewEncoder(file)
-	err = encoder.Encode(&settings)
-	if err != nil {
-		fmt.Println("Error encoding JSON:", err)
-		return err
-	}
+// 	encoder := json.NewEncoder(file)
+// 	err = encoder.Encode(&settings)
+// 	if err != nil {
+// 		fmt.Println("Error encoding JSON:", err)
+// 		return err
+// 	}
 
-	return nil
-}
+// 	return nil
+// }

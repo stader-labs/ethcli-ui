@@ -29,7 +29,10 @@ func (p *ExecutionClient) Page() tview.Primitive {
 	p.descriptionTextView = tview.NewTextView()
 
 	left, buttons := components.BodyWithOptions(
-		"Select your preferred method for managing your\nExecution and Consensus clients.",
+		`Kindly select the Execution client of your choice.
+If you have no strong preference, we
+suggest selecting System-recommended for your
+convenience.`,
 		cOptions,
 		p.onSumit,
 	)

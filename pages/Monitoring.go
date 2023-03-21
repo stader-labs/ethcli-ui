@@ -70,6 +70,8 @@ func (n *Monitoring) GoBack() {
 			nextPage = pid.FallbackClientsLighthouse
 		} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Teku {
 			nextPage = pid.FallbackClientsTeku
+		} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Nimbus {
+			nextPage = pid.ConsensusClientDopelgangerProtection
 		} else {
 			nextPage = pid.FallbackClients
 		}

@@ -29,7 +29,7 @@ func (p *ETHClient) Page() tview.Primitive {
 	p.descriptionTextView = tview.NewTextView()
 
 	left, buttons := components.BodyWithOptions(
-		"Please select the network where you want to set\nup your node.",
+		"Select your preferred method for managing your\nExecution and Consensus clients.",
 		cOptions,
 		p.onSumit,
 	)

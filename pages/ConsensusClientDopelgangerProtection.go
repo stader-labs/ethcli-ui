@@ -55,7 +55,7 @@ func (p *ConsensusClientDopelgangerProtection) onSumit(option string) {
 	log.Infof("Selected option: [%s] to [%s]", state.ConsensusClient.DopelgangerProtectionSelectedOption, option)
 	state.ConsensusClient.DopelgangerProtectionSelectedOption = option
 
-	if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Nimbus {
+	if state.ETHClient.SelectedOption == config.ETHClient.Option.LocallyManaged && state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Nimbus {
 		ChangePage(config.PageID.Monitoring)
 		return
 	}

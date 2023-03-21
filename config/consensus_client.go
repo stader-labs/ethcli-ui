@@ -64,7 +64,7 @@ var ConsensusClient = struct {
 			Form: tview.NewForm(),
 		},
 		DopelgangerProtection: CCStageDopelgangerProtection{
-			Name: "Dopelganger protection",
+			Name: "Doppelganger protection",
 			Option: CCDopelgangerProtectionOption{
 				Yes: "true",
 				No:  "false",

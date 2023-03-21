@@ -12,19 +12,19 @@ import (
 	"github.com/rivo/tview"
 )
 
-type ExecutionClientExternalSelectedTeku struct {
+type ConsensusClientExternalSelectedLighthouse struct {
 	*PageType
 	firstElement tview.Primitive
 	leftSidebar  *tview.Flex
 	body         *tview.Flex
 }
 
-func (p *ExecutionClientExternalSelectedTeku) Page() tview.Primitive {
-	p.PageType.ID = config.PageID.ExecutionClientExternalSelectedTeku
+func (p *ConsensusClientExternalSelectedLighthouse) Page() tview.Primitive {
+	p.PageType.ID = config.PageID.ConsensusClientExternalSelectedLighthouse
 
 	form := tview.NewForm().
 		AddInputField("HTTP URL", "", 0, nil, func(text string) {
-			state.ExecutionClientExternalSelectedTeku.HTTPUrl = text
+			state.ConsensusClientExternalSelectedLighthouse.HTTPUrl = text
 		}).
 		AddButton("Next", func() {
 			p.onSumit()
@@ -32,7 +32,7 @@ func (p *ExecutionClientExternalSelectedTeku) Page() tview.Primitive {
 
 	p.firstElement = form
 
-	bodyText := `Enter the HTTP API URL of your Teku client.
+	bodyText := `Enter the HTTP API URL of your Lighthouse client.
 e.g. http://192.168.1.40:5052
 
 Note: When running this client on the same machine as the
@@ -63,8 +63,8 @@ localhost or 127.0.0.1.`
 	p.leftSidebar = tview.NewFlex().
 		SetDirection(tview.FlexColumn).
 		AddItem(components.PageLeftNav(
-			append([]string{"Teku"}, config.ConsensusClient.Stages[1:]...),
-			"Teku",
+			append([]string{"Lighthouse"}, config.ConsensusClient.Stages[1:]...),
+			"Lighthouse",
 		), 0, 1, false)
 
 	p.body = tview.NewFlex().
@@ -83,24 +83,16 @@ localhost or 127.0.0.1.`
 		AddItem(components.Footer(), 3, 1, false)
 }
 
-// func (p *ExecutionClientExternalSelectedTeku) OnResume() {
-// 	leftSidebar := components.PageLeftNav(
-// 		append([]string{state.ExecutionClientExternalSelection.SelectedOption}, config.ConsensusClient.Stages[1:]...),
-// 		state.ExecutionClientExternalSelection.SelectedOption,
-// 	)
-// 	p.leftSidebar.Clear().AddItem(leftSidebar, 0, 1, false)
-// }
-
-func (p *ExecutionClientExternalSelectedTeku) onSumit() {
-	log.Infof("onSumit: [%s]", config.PageID.ExecutionClientExternalSelectedTeku)
+func (p *ConsensusClientExternalSelectedLighthouse) onSumit() {
+	log.Infof("onSumit: [%s]", config.PageID.ConsensusClientExternalSelectedLighthouse)
 	ChangePage(config.PageID.ConsensusClientGraffiti)
 }
 
-func (p *ExecutionClientExternalSelectedTeku) GoBack() {
+func (p *ConsensusClientExternalSelectedLighthouse) GoBack() {
 	ChangePage(config.PageID.ExecutionClientExternalSelection)
 }
 
-func (p *ExecutionClientExternalSelectedTeku) HandleEvents(event *tcell.EventKey) *tcell.EventKey {
+func (p *ConsensusClientExternalSelectedLighthouse) HandleEvents(event *tcell.EventKey) *tcell.EventKey {
 	key := event.Key()
 	if key == tcell.KeyEsc {
 		p.GoBack()
@@ -109,7 +101,7 @@ func (p *ExecutionClientExternalSelectedTeku) HandleEvents(event *tcell.EventKey
 	return event
 }
 
-func (p *ExecutionClientExternalSelectedTeku) GetFirstElement() tview.Primitive {
+func (p *ConsensusClientExternalSelectedLighthouse) GetFirstElement() tview.Primitive {
 	fb := p.firstElement
 	log.Infof("%s GetFirstElement", p.ID)
 	return fb

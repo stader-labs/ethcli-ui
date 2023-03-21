@@ -47,7 +47,7 @@ behavior accordingly.`,
 	return tview.NewFlex().
 		SetDirection(tview.FlexRow).
 		AddItem(components.Header(), 3, 1, false).
-		AddItem(components.Nav(config.TopNav.ExecutionClient), 3, 1, false).
+		AddItem(components.Nav(config.TopNav.ConsensusClient), 3, 1, false).
 		AddItem(body, 0, 1, false).
 		AddItem(components.Footer(), 3, 1, false)
 }
@@ -57,11 +57,11 @@ func (p *ExecutionClientExternalSelection) onSumit(option string) {
 	log.Info("Selected option: ", option)
 
 	if state.ExecutionClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Teku {
-		ChangePage(config.PageID.ExecutionClientExternalSelectedTeku)
+		ChangePage(config.PageID.ConsensusClientExternalSelectedTeku)
 	} else if state.ExecutionClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Lighthouse {
-		ChangePage(config.PageID.ExecutionClientExternalSelectedLighthouse)
+		ChangePage(config.PageID.ConsensusClientExternalSelectedLighthouse)
 	} else if state.ExecutionClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Prysm {
-		ChangePage(config.PageID.ExecutionClientExternalSelectedPrysm)
+		ChangePage(config.PageID.ConsensusClientExternalSelectedPrysm)
 	}
 }
 

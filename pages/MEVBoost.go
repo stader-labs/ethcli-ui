@@ -29,8 +29,8 @@ func (p *MEVBoost) Page() tview.Primitive {
 
 	left, buttons := components.BodyWithOptions(
 		`Stader Node comes with an MEV-Boost, which
-enables you to capture extra profits from block
-proposals. 
+enables you to capture additional profits from
+block proposals.
 
 Would you prefer Stader to manage your MEV-
 Boost, or would you like to handle it yourself?`,
