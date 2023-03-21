@@ -16,13 +16,12 @@ var (
 func Run(
 	onDone func(settings interface{}, err error),
 ) (func() pages.SettingsType, error) {
+	state.OnDone = onDone
 	state.CurrentApp = tview.NewApplication()
 	startPageID := config.PageID.Network
 
 	pages.Setup(state.CurrentApp)
 	allPages := pages.Pages
-
-	state.OnDone = onDone
 
 	state.CurrentApp.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
 		pageName, _ := allPages.GetFrontPage()

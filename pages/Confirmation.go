@@ -49,6 +49,8 @@ func (n *Confirmation) onSumit(option string) {
 
 		if state.OnDone != nil {
 			state.OnDone(GetSettings(), nil)
+		} else {
+			log.Warn("OnDone is nil")
 		}
 
 		n.App.Stop()
