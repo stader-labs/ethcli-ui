@@ -75,16 +75,27 @@ func (p *ConsensusClientSelection) updateRightSidebar() {
 	}
 }
 
+func (p *ConsensusClientSelection) handleSelectedOption(option string) {
+	if option != config.ConsensusClient.Stage.Selection.Option.SystemRecommended {
+		state.ConsensusClient.SelectionSelectedOption = option
+	} else {
+		state.ConsensusClient.SelectionSelectedOption = utils.GetRandomItem(
+			config.ConsensusClient.Stage.Selection.Options,
+			option,
+		)
+	}
+}
+
 func (p *ConsensusClientSelection) onSumit(option string) {
 	log.Infof("Selected option: [%s] to [%s]", state.ConsensusClient.SelectionSelectedOption, option)
-	state.ConsensusClient.SelectionSelectedOption = option
+	p.handleSelectedOption(option)
 	ChangePage(config.PageID.ConsensusClientGraffiti)
 }
 
 func (p *ConsensusClientSelection) selectPrevOption() {
 	prevItem, _ := utils.GetPrevItem(config.ConsensusClient.Stage.Selection.Options, state.ConsensusClient.SelectionSelectedOption)
 	log.Infof("Select prev: [%s] to [%s]", state.ConsensusClient.SelectionSelectedOption, prevItem)
-	state.ConsensusClient.SelectionSelectedOption = prevItem
+	p.handleSelectedOption(prevItem)
 	p.updateRightSidebar()
 	p.App.SetFocus(p.buttons[prevItem])
 }
@@ -92,7 +103,7 @@ func (p *ConsensusClientSelection) selectPrevOption() {
 func (p *ConsensusClientSelection) selectNextOption() {
 	nextItem, _ := utils.GetNextItem(config.ConsensusClient.Stage.Selection.Options, state.ConsensusClient.SelectionSelectedOption)
 	log.Infof("Select next: [%s] to [%s]", state.ConsensusClient.SelectionSelectedOption, nextItem)
-	state.ConsensusClient.SelectionSelectedOption = nextItem
+	p.handleSelectedOption(nextItem)
 	p.updateRightSidebar()
 	p.App.SetFocus(p.buttons[nextItem])
 }
