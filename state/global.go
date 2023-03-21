@@ -138,4 +138,6 @@ var (
 	}{
 		SelectedOption: config.Confirmation.Option.GoBack,
 	}
+
+	OnDone func(settings interface{}, err error) = nil
 )
