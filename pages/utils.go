@@ -2,6 +2,8 @@ package pages
 
 import (
 	"github.com/stader-labs/ethcli-ui/state"
+	"math/rand"
+	"time"
 )
 
 func ChangePage(nextPage string) {
@@ -10,6 +12,43 @@ func ChangePage(nextPage string) {
 	firstElement := pageInstance.GetFirstElement()
 	state.CurrentApp.SetFocus(firstElement)
 	pageInstance.OnResume()
+}
+
+// TODO - bchain - abstract these to constants
+func GetRandomEcClient() string {
+	availableEcClients := []string{"geth", "nethermind", "besu"}
+
+	rand.Seed(time.Now().UnixNano())
+	randIndex := rand.Intn(len(availableEcClients))
+
+	return availableEcClients[randIndex]
+}
+
+// TODO - bchain - We can abstract the random selection logic out
+func GetRandomCcClient() string {
+	// TODO - bchain - use teku only if enough memory is not there
+	availableCcClients := []string{"lighthouse", "nimbus", "prysm", "teku"}
+
+	rand.Seed(time.Now().UnixNano())
+	randIndex := rand.Intn(len(availableCcClients))
+
+	return availableCcClients[randIndex]
+}
+
+func GetEcClient(ecClient string) string {
+	if ecClient == "System-recommended" {
+		return GetRandomEcClient()
+	}
+
+	return ecClient
+}
+
+func GetCcClient(ccClient string) string {
+	if ccClient == "System-recommended" {
+		return GetRandomCcClient()
+	}
+
+	return ccClient
 }
 
 // func GoBack(app *tview.Application) {

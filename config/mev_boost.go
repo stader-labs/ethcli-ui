@@ -11,8 +11,8 @@ var MEVBoost = struct {
 	Descriptions map[string]string
 }{
 	Option: MEVBoostOption{
-		LocallyManaged:    "Locally managed",
-		ExternallyManaged: "Externally managed",
+		LocallyManaged:    "local",
+		ExternallyManaged: "external",
 	},
 }
 
