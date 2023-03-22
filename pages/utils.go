@@ -106,6 +106,7 @@ type consensusClientExternalType struct {
 
 type consensusClientType struct {
 	Selection              string                      `json:"selection"`
+	ExternalSelection      string                      `json:"externalSelection"`
 	Graffit                string                      `json:"graffit"`
 	CheckpointUrl          string                      `json:"checkpointUrl"`
 	DoppelgangerProtection string                      `json:"doppelgangerProtection"`
@@ -171,6 +172,7 @@ func GetSettings() SettingsType {
 		},
 		ConsensusClient: consensusClientType{
 			Selection:              state.ConsensusClient.SelectionSelectedOption,
+			ExternalSelection:      state.ConsensusClientExternalSelection.SelectedOption,
 			Graffit:                state.ConsensusClient.Graffiti,
 			CheckpointUrl:          state.ConsensusClient.CheckpointUrl,
 			DoppelgangerProtection: state.ConsensusClient.DopelgangerProtectionSelectedOption,

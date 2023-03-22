@@ -35,7 +35,7 @@ var (
 		WebsocketBasedRpcApi: "",
 	}
 
-	ExecutionClientExternalSelection = struct {
+	ConsensusClientExternalSelection = struct {
 		SelectedOption string
 	}{
 		SelectedOption: config.ExecutionClientExternalSelection.Option.Lighthouse,
