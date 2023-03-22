@@ -53,29 +53,29 @@ behavior accordingly.`,
 }
 
 func (p *ExecutionClientExternalSelection) onSumit(option string) {
-	state.ExecutionClientExternalSelection.SelectedOption = option
+	state.ConsensusClientExternalSelection.SelectedOption = option
 	log.Info("Selected option: ", option)
 
-	if state.ExecutionClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Teku {
+	if state.ConsensusClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Teku {
 		ChangePage(config.PageID.ConsensusClientExternalSelectedTeku)
-	} else if state.ExecutionClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Lighthouse {
+	} else if state.ConsensusClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Lighthouse {
 		ChangePage(config.PageID.ConsensusClientExternalSelectedLighthouse)
-	} else if state.ExecutionClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Prysm {
+	} else if state.ConsensusClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Prysm {
 		ChangePage(config.PageID.ConsensusClientExternalSelectedPrysm)
 	}
 }
 
 func (p *ExecutionClientExternalSelection) selectPrevOption() {
-	prevItem, _ := utils.GetPrevItem(config.ExecutionClientExternalSelection.Options, state.ExecutionClientExternalSelection.SelectedOption)
-	log.Infof("Select prev: [%s] to [%s]", state.ExecutionClientExternalSelection.SelectedOption, prevItem)
-	state.ExecutionClientExternalSelection.SelectedOption = prevItem
+	prevItem, _ := utils.GetPrevItem(config.ExecutionClientExternalSelection.Options, state.ConsensusClientExternalSelection.SelectedOption)
+	log.Infof("Select prev: [%s] to [%s]", state.ConsensusClientExternalSelection.SelectedOption, prevItem)
+	state.ConsensusClientExternalSelection.SelectedOption = prevItem
 	p.App.SetFocus(p.buttons[prevItem])
 }
 
 func (p *ExecutionClientExternalSelection) selectNextOption() {
-	nextItem, _ := utils.GetNextItem(config.ExecutionClientExternalSelection.Options, state.ExecutionClientExternalSelection.SelectedOption)
-	log.Infof("Select next: [%s] to [%s]", state.ExecutionClientExternalSelection.SelectedOption, nextItem)
-	state.ExecutionClientExternalSelection.SelectedOption = nextItem
+	nextItem, _ := utils.GetNextItem(config.ExecutionClientExternalSelection.Options, state.ConsensusClientExternalSelection.SelectedOption)
+	log.Infof("Select next: [%s] to [%s]", state.ConsensusClientExternalSelection.SelectedOption, nextItem)
+	state.ConsensusClientExternalSelection.SelectedOption = nextItem
 	p.App.SetFocus(p.buttons[nextItem])
 }
 
@@ -102,7 +102,7 @@ func (p *ExecutionClientExternalSelection) HandleEvents(event *tcell.EventKey) *
 }
 
 func (n *ExecutionClientExternalSelection) GetFirstElement() tview.Primitive {
-	fb := n.buttons[state.ExecutionClientExternalSelection.SelectedOption]
+	fb := n.buttons[state.ConsensusClientExternalSelection.SelectedOption]
 	log.Infof("%s GetFirstElement: [%s]", n.ID, fb.GetLabel())
 	return fb
 }

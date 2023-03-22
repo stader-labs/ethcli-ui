@@ -87,11 +87,11 @@ func (p *ConsensusClientGraffiti) onSumit() {
 func (p *ConsensusClientGraffiti) GoBack() {
 	nextPage := config.PageID.ConsensusClientSelection
 	if state.ETHClient.SelectedOption == config.ETHClient.Option.ExternallyManaged {
-		if state.ExecutionClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Teku {
+		if state.ConsensusClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Teku {
 			nextPage = config.PageID.ConsensusClientExternalSelectedTeku
-		} else if state.ExecutionClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Lighthouse {
+		} else if state.ConsensusClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Lighthouse {
 			nextPage = config.PageID.ConsensusClientExternalSelectedLighthouse
-		} else if state.ExecutionClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Prysm {
+		} else if state.ConsensusClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Prysm {
 			nextPage = config.PageID.ConsensusClientExternalSelectedPrysm
 		}
 	}
