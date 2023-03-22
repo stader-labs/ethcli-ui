@@ -13,10 +13,7 @@ var (
 	log = logger.Log
 )
 
-func Run(
-	onDone func(settings interface{}, err error),
-) (func() pages.SettingsType, error) {
-	state.OnDone = onDone
+func Run(settings pages.SettingsType) (func() pages.SettingsType, error) {
 	state.CurrentApp = tview.NewApplication()
 	startPageID := config.PageID.Network
 
