@@ -46,7 +46,7 @@ func (p *FallbackClients) onSumit(option string) {
 	state.FallbackClients.SelectedOption = option
 	// ChangePage(config.PageID.FallbackClients)
 
-	if state.ETHClient.SelectedOption == config.ETHClient.Option.ExternallyManaged && state.FallbackClients.SelectedOption == config.FallbackClients.Option.Yes {
+	if state.FallbackClients.SelectedOption == config.FallbackClients.Option.Yes {
 		if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Prysm {
 			ChangePage(config.PageID.FallbackClientsPrysm)
 		} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.LightHouse {
@@ -54,7 +54,8 @@ func (p *FallbackClients) onSumit(option string) {
 		} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Teku {
 			ChangePage(config.PageID.FallbackClientsTeku)
 		} else {
-			ChangePage(config.PageID.Monitoring)
+			log.Error("Invalid option selected")
+			//ChangePage(config.PageID.Monitoring)
 		}
 	} else {
 		ChangePage(config.PageID.Monitoring)
