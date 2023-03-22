@@ -3,6 +3,7 @@ package utils
 import (
 	"fmt"
 	"math/rand"
+	"time"
 )
 
 func ChunkSlice(slice []string, chunkSize int) [][]string {
@@ -71,6 +72,7 @@ func GetPrevItem(s []string, current string) (string, error) {
 
 func GetRandomItem(options []string, valueToIgnore string) string {
 	var item string
+	rand.Seed(time.Now().UnixNano())
 	for {
 		item = options[rand.Intn(len(options))]
 		if item != valueToIgnore {
