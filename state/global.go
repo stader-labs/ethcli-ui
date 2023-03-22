@@ -38,7 +38,7 @@ var (
 	ConsensusClientExternalSelection = struct {
 		SelectedOption string
 	}{
-		SelectedOption: config.ExecutionClientExternalSelection.Option.Lighthouse,
+		SelectedOption: config.ConsensusClientExternalSelection.Option.Lighthouse,
 	}
 
 	ConsensusClient = struct {

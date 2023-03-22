@@ -1,26 +1,26 @@
 package config
 
-type ExecutionClientExternalSelectionOption struct {
+type ConsensusClientExternalSelectionOption struct {
 	Lighthouse string
 	Prysm      string
 	Teku       string
 }
 
-var ExecutionClientExternalSelection = struct {
-	Option  ExecutionClientExternalSelectionOption
+var ConsensusClientExternalSelection = struct {
+	Option  ConsensusClientExternalSelectionOption
 	Options []string
 }{
-	Option: ExecutionClientExternalSelectionOption{
-		Lighthouse: "Lighthouse",
-		Prysm:      "Prysm",
-		Teku:       "Teku",
+	Option: ConsensusClientExternalSelectionOption{
+		Lighthouse: "lighthouse",
+		Prysm:      "prysm",
+		Teku:       "teku",
 	},
 }
 
 func init() {
-	ExecutionClientExternalSelection.Options = []string{
-		ExecutionClientExternalSelection.Option.Lighthouse,
-		ExecutionClientExternalSelection.Option.Prysm,
-		ExecutionClientExternalSelection.Option.Teku,
+	ConsensusClientExternalSelection.Options = []string{
+		ConsensusClientExternalSelection.Option.Lighthouse,
+		ConsensusClientExternalSelection.Option.Prysm,
+		ConsensusClientExternalSelection.Option.Teku,
 	}
 }
