@@ -1,6 +1,7 @@
 package ethcliui
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
@@ -20,7 +21,8 @@ func Run(settings *pages.SettingsType) (func() pages.SettingsType, error) {
 	state.CurrentApp = tview.NewApplication()
 	startPageID := config.PageID.Network
 
-	fmt.Printf("settings are %v\n", settings)
+	marshelledSettings, _ := json.Marshal(settings)
+	fmt.Printf("settings are %s\n", string(marshelledSettings))
 	if settings != nil {
 		pages.SetSettings(*settings)
 	}
