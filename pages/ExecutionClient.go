@@ -44,7 +44,7 @@ convenience.`,
 		AddItem(p.titleTextView, 2, 1, false).
 		AddItem(
 			p.descriptionTextView,
-			strings.Count(cDescriptions[state.ExecutionClient.SelectedOption], "\n"), 1, false,
+			strings.Count(cDescriptions[state.ExecutionClient.SelectedOption], "\n")+1, 1, false,
 		).
 		AddItem(nil, 0, 1, false)
 
@@ -71,7 +71,7 @@ func (p *ExecutionClient) updateRightSidebar() {
 	p.descriptionTextView.SetText(desc)
 
 	if p.rightSide != nil {
-		p.rightSide.ResizeItem(p.descriptionTextView, strings.Count(desc, "\n"), 1)
+		p.rightSide.ResizeItem(p.descriptionTextView, strings.Count(desc, "\n")+1, 1)
 	} else {
 		log.Error("Update right sidebar: ", "nil")
 	}

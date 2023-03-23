@@ -42,7 +42,7 @@ func (n *Network) Page() tview.Primitive {
 		AddItem(n.titleTextView, 2, 1, false).
 		AddItem(
 			n.descriptionTextView,
-			strings.Count(cDescriptions[state.Network.SelectedOption], "\n"), 1, false,
+			strings.Count(cDescriptions[state.Network.SelectedOption], "\n")+1, 1, false,
 		).
 		AddItem(nil, 0, 1, false)
 
@@ -68,7 +68,7 @@ func (n *Network) updateRightSidebar() {
 	n.descriptionTextView.SetText(desc)
 
 	if n.rightSide != nil {
-		n.rightSide.ResizeItem(n.descriptionTextView, strings.Count(desc, "\n"), 1)
+		n.rightSide.ResizeItem(n.descriptionTextView, strings.Count(desc, "\n")+1, 1)
 	} else {
 		log.Error("Update right sidebar: ", "nil")
 	}

@@ -29,7 +29,8 @@ func (p *ETHClient) Page() tview.Primitive {
 	p.descriptionTextView = tview.NewTextView()
 
 	left, buttons := components.BodyWithOptions(
-		"Select your preferred method for managing your\nExecution and Consensus clients.",
+		`Select your preferred method for managing your
+Execution and Consensus clients.`,
 		cOptions,
 		p.onSumit,
 	)
@@ -41,7 +42,7 @@ func (p *ETHClient) Page() tview.Primitive {
 		AddItem(p.titleTextView, 2, 1, false).
 		AddItem(
 			p.descriptionTextView,
-			strings.Count(cDescriptions[state.ETHClient.SelectedOption], "\n"), 1, false,
+			strings.Count(cDescriptions[state.ETHClient.SelectedOption], "\n")+1, 1, false,
 		).
 		AddItem(nil, 0, 1, false)
 
@@ -67,7 +68,7 @@ func (p *ETHClient) updateRightSidebar() {
 	p.descriptionTextView.SetText(desc)
 
 	if p.rightSide != nil {
-		p.rightSide.ResizeItem(p.descriptionTextView, strings.Count(desc, "\n"), 1)
+		p.rightSide.ResizeItem(p.descriptionTextView, strings.Count(desc, "\n")+1, 1)
 	} else {
 		log.Error("Update right sidebar: ", "nil")
 	}

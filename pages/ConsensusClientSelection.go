@@ -29,7 +29,11 @@ func (p *ConsensusClientSelection) Page() tview.Primitive {
 	p.descriptionTextView = tview.NewTextView()
 
 	left, buttons := components.BodyWithOptions(
-		"Select the consensus client you\nwish to use. If you're\nuncertain, we suggest selecting\nSystem-recommended for your\nconvenience.",
+		`Select the consensus client you
+wish to use. If you're
+uncertain, we suggest selecting
+System-recommended for your
+convenience.`,
 		cOptions,
 		p.onSumit,
 	)
@@ -53,7 +57,7 @@ func (p *ConsensusClientSelection) Page() tview.Primitive {
 		AddItem(left, 0, 1, false).
 		AddItem(components.VerticalLine(tcell.ColorDarkSlateGray), 1, 1, false).
 		AddItem(nil, 2, 1, false).
-		AddItem(p.rightSide, 60, 1, false)
+		AddItem(p.rightSide, 40, 1, false)
 
 	return tview.NewFlex().
 		SetDirection(tview.FlexRow).
@@ -69,7 +73,7 @@ func (p *ConsensusClientSelection) updateRightSidebar() {
 	p.descriptionTextView.SetText(desc)
 
 	if p.rightSide != nil {
-		p.rightSide.ResizeItem(p.descriptionTextView, strings.Count(desc, "\n"), 1)
+		p.rightSide.ResizeItem(p.descriptionTextView, strings.Count(desc, "\n")+1, 1)
 	} else {
 		log.Error("Update right sidebar: ", "nil")
 	}
