@@ -80,6 +80,7 @@ func (p *ConsensusClientSelection) updateRightSidebar(option string) {
 		log.Error("Update right sidebar: ", "nil")
 	}
 
+	state.ConsensusClient.SelectionSelectedOption = option
 	p.App.SetFocus(p.buttons[option])
 }
 
