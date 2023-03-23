@@ -154,18 +154,18 @@ type ConsensusClientSettingsType struct {
 }
 
 type FallbackClientsLighthouseType struct {
-	ExecutionClientUrl string `json:"ExecutionClientSettingsType"`
+	ExecutionClientUrl string `json:"executionClientUrl"`
 	BeaconNodeHttpUrl  string `json:"beaconNodeHttpUrl"`
 }
 
 type FallbackClientsPrysmType struct {
-	ExecutionClientUrl    string `json:"ExecutionClientSettingsType"`
+	ExecutionClientUrl    string `json:"executionClientUrl"`
 	BeaconNodeHttpUrl     string `json:"beaconNodeHttpUrl"`
 	BeaconNodeJsonRpcpUrl string `json:"beaconNodeJsonRpcpUrl"`
 }
 
 type FallbackClientsTekuType struct {
-	ExecutionClientUrl string `json:"ExecutionClientSettingsType"`
+	ExecutionClientUrl string `json:"executionClientUrl"`
 	BeaconNodeHttpUrl  string `json:"beaconNodeHttpUrl"`
 }
 
@@ -190,7 +190,7 @@ type SettingsType struct {
 	Confirmed                bool                        `json:"confirmed"`
 	Network                  string                      `json:"network"`
 	EthClient                string                      `json:"ethClient"`
-	ExecutionClient          ExecutionClientSettingsType `json:"ExecutionClientSettingsType"`
+	ExecutionClient          ExecutionClientSettingsType `json:"executionClient"`
 	ConsensusClient          ConsensusClientSettingsType `json:"consensusClient"`
 	Monitoring               string                      `json:"monitoring"`
 	MEVBoost                 string                      `json:"mevBoost"`

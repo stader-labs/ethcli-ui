@@ -30,7 +30,7 @@ func Setup(app *tview.Application) {
 		},
 	}
 
-	All[config.PageID.ExecutionClient] = &ExecutionClientSettingsType{
+	All[config.PageID.ExecutionClient] = &ExecutionClient{
 		PageType: &PageType{
 			ID:  config.PageID.ExecutionClient,
 			App: app,
