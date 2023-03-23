@@ -86,6 +86,15 @@ func (p *ConsensusClientSelection) updateRightSidebar(option string) {
 
 func (p *ConsensusClientSelection) onSumit(option string) {
 	log.Infof("Selected option: [%s] to [%s]", state.ConsensusClient.SelectionSelectedOption, option)
+
+	if option != config.ConsensusClient.Stage.Selection.Option.SystemRecommended {
+		state.ConsensusClient.SelectionSelectedOption = option
+	} else {
+		state.ConsensusClient.SelectionSelectedOption = utils.GetRandomItem(
+			config.ConsensusClient.Stage.Selection.Options,
+			option,
+		)
+	}
 	ChangePage(config.PageID.ConsensusClientGraffiti)
 }
 
