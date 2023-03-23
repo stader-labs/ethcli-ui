@@ -84,16 +84,35 @@ func (p *ExecutionClient) updateRightSidebar(option string) {
 func (p *ExecutionClient) onSumit(option string) {
 	if option != config.ExecutionClient.Option.SystemRecommended {
 		state.ExecutionClient.SelectedOption = option
-	} else {
-		//state.ExecutionClient.SelectedOption = utils.GetRandomItem(
-		//	//config.ExecutionClientSettingsType.Options,
-		//	[]string{"geth", "nethermind", "besu"},
-		//	option,
-		//)
-		state.ExecutionClient.SelectedOption = GetRandomCcClient()
+		ChangePage(config.PageID.ConsensusClientSelection)
+		return
 	}
 
-	ChangePage(config.PageID.ConsensusClientSelection)
+	// recommendedValue := utils.GetRandomItem(
+	// 	config.ExecutionClient.Options,
+	// 	option,
+	// )
+
+	// TODO: fix hardcoded values
+	recommendedValue := GetRandomEcClient()
+	recommendedLabel := config.ExecutionClient.OptionLabels[recommendedValue]
+
+	alert := components.Alert(
+		"System-recommended: "+recommendedLabel,
+		[]string{"OK", "Back"},
+		map[string]func(){
+			"OK": func() {
+				state.ExecutionClient.SelectedOption = recommendedValue
+				p.App.SetRoot(Pages, true)
+				ChangePage(config.PageID.ConsensusClientSelection)
+			},
+			"Back": func() {
+				p.App.SetRoot(Pages, true).SetFocus(p.GetFirstElement())
+			},
+		},
+	)
+
+	p.App.SetRoot(alert, true)
 }
 
 func (p *ExecutionClient) selectPrevOption() {
@@ -113,6 +132,11 @@ func (p *ExecutionClient) GoBack() {
 }
 
 func (p *ExecutionClient) HandleEvents(event *tcell.EventKey) *tcell.EventKey {
+	shouldHandleEvents := Pages.HasFocus()
+	if !shouldHandleEvents {
+		return event
+	}
+
 	var key = event.Key()
 
 	if key == tcell.KeyLeft {

@@ -65,7 +65,9 @@ func (n *Network) Page() tview.Primitive {
 
 func (n *Network) updateRightSidebar() {
 	desc := config.Network.Descriptions[state.Network.SelectedOption]
-	n.titleTextView.SetText(state.Network.SelectedOption)
+	title := config.Network.OptionLabels[state.Network.SelectedOption]
+
+	n.titleTextView.SetText(title)
 	n.descriptionTextView.SetText(desc)
 
 	if n.rightSide != nil {

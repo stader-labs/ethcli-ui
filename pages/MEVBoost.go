@@ -64,7 +64,9 @@ Boost, or would you like to handle it yourself?`,
 
 func (p *MEVBoost) updateRightSidebar() {
 	desc := config.MEVBoost.Descriptions[state.MEVBoost.SelectedOption]
-	p.titleTextView.SetText(state.MEVBoost.SelectedOption)
+	title := config.MEVBoost.OptionLabels[state.MEVBoost.SelectedOption]
+
+	p.titleTextView.SetText(title)
 	p.descriptionTextView.SetText(desc)
 
 	if p.rightSide != nil {

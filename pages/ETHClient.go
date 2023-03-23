@@ -64,7 +64,9 @@ Execution and Consensus clients.`,
 
 func (p *ETHClient) updateRightSidebar() {
 	desc := config.ETHClient.Descriptions[state.ETHClient.SelectedOption]
-	p.titleTextView.SetText(state.ETHClient.SelectedOption)
+	title := config.ETHClient.OptionLabels[state.ETHClient.SelectedOption]
+
+	p.titleTextView.SetText(title)
 	p.descriptionTextView.SetText(desc)
 
 	if p.rightSide != nil {

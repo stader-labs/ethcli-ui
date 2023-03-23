@@ -1,6 +1,7 @@
 package pages
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/stader-labs/ethcli-ui/components"
@@ -52,9 +53,13 @@ convenience.`,
 
 	p.updateRightSidebar(state.ConsensusClient.SelectionSelectedOption)
 
+	leftNav := components.PageLeftNav(
+		config.ConsensusClient.Stages,
+		config.ConsensusClient.Stage.Selection.Name,
+	)
 	body := tview.NewFlex().
 		SetDirection(tview.FlexColumn).
-		AddItem(components.PageLeftNav(config.ConsensusClient.Stages, config.ConsensusClient.Stage.Selection.Name), 40, 1, false).
+		AddItem(leftNav, 40, 1, false).
 		AddItem(left, 0, 1, false).
 		AddItem(components.VerticalLine(tcell.ColorDarkSlateGray), 1, 1, false).
 		AddItem(nil, 2, 1, false).
@@ -70,8 +75,10 @@ convenience.`,
 
 func (p *ConsensusClientSelection) updateRightSidebar(option string) {
 	desc := config.ConsensusClient.Stage.Selection.Descriptions[option]
+	title := config.ConsensusClient.Stage.Selection.OptionLabels[option]
+
 	p.currentValue = option
-	p.titleTextView.SetText(option)
+	p.titleTextView.SetText(title)
 	p.descriptionTextView.SetText(desc)
 
 	if p.rightSide != nil {
@@ -89,13 +96,35 @@ func (p *ConsensusClientSelection) onSumit(option string) {
 
 	if option != config.ConsensusClient.Stage.Selection.Option.SystemRecommended {
 		state.ConsensusClient.SelectionSelectedOption = option
-	} else {
-		state.ConsensusClient.SelectionSelectedOption = utils.GetRandomItem(
-			config.ConsensusClient.Stage.Selection.Options,
-			option,
-		)
+		ChangePage(config.PageID.ConsensusClientGraffiti)
+		return
 	}
-	ChangePage(config.PageID.ConsensusClientGraffiti)
+
+	// recommendedValue := utils.GetRandomItem(
+	// 	config.ConsensusClient.Stage.Selection.Options,
+	// 	option,
+	// )
+
+	// TODO: fix hardcoded values
+	recommendedValue := GetRandomCcClient()
+	recommendedLabel := config.ConsensusClient.Stage.Selection.OptionLabels[recommendedValue]
+
+	alert := components.Alert(
+		fmt.Sprintf("System-recommended: [%s]", recommendedLabel),
+		[]string{"OK", "Back"},
+		map[string]func(){
+			"OK": func() {
+				state.ConsensusClient.SelectionSelectedOption = recommendedValue
+				p.App.SetRoot(Pages, true)
+				ChangePage(config.PageID.ConsensusClientGraffiti)
+			},
+			"Back": func() {
+				p.App.SetRoot(Pages, true).SetFocus(p.GetFirstElement())
+			},
+		},
+	)
+
+	p.App.SetRoot(alert, true)
 }
 
 func (p *ConsensusClientSelection) selectPrevOption() {
@@ -115,6 +144,11 @@ func (p *ConsensusClientSelection) GoBack() {
 }
 
 func (p *ConsensusClientSelection) HandleEvents(event *tcell.EventKey) *tcell.EventKey {
+	shouldHandleEvents := Pages.HasFocus()
+	if !shouldHandleEvents {
+		return event
+	}
+
 	var key = event.Key()
 
 	if key == tcell.KeyLeft {

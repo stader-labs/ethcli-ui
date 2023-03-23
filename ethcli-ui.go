@@ -1,5 +1,7 @@
 package ethcliui
 
+// package main
+
 import (
 	"encoding/json"
 	"fmt"
@@ -52,3 +54,14 @@ func Run(settings *pages.SettingsType) (func() pages.SettingsType, error) {
 		EnableMouse(true).
 		SetFocus(firstElement).Run()
 }
+
+// func main() {
+// 	getSettings, err := Run(nil)
+// 	if err != nil {
+// 		panic(err)
+// 	}
+
+// 	settings := getSettings()
+// 	marshelledSettings, _ := json.Marshal(settings)
+// 	fmt.Printf("saved settings are %s\n", string(marshelledSettings))
+// }
