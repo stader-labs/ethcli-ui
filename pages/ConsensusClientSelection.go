@@ -1,7 +1,6 @@
 package pages
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/stader-labs/ethcli-ui/components"
@@ -110,7 +109,7 @@ func (p *ConsensusClientSelection) onSumit(option string) {
 	recommendedLabel := config.ConsensusClient.Stage.Selection.OptionLabels[recommendedValue]
 
 	alert := components.Alert(
-		fmt.Sprintf("System-recommended: [%s]", recommendedLabel),
+		"System-recommended: "+recommendedLabel,
 		[]string{"OK", "Back"},
 		map[string]func(){
 			"OK": func() {
