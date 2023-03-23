@@ -1,6 +1,7 @@
 package ethcliui
 
 import (
+	"fmt"
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
 	"github.com/stader-labs/ethcli-ui/config"
@@ -19,6 +20,7 @@ func Run(settings *pages.SettingsType) (func() pages.SettingsType, error) {
 	state.CurrentApp = tview.NewApplication()
 	startPageID := config.PageID.Network
 
+	fmt.Printf("settings are %v\n", settings)
 	if settings != nil {
 		pages.SetSettings(*settings)
 	}
