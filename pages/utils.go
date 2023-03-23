@@ -1,7 +1,9 @@
 package pages
 
 import (
+	"github.com/pbnjay/memory"
 	"math/rand"
+	"runtime"
 	"time"
 
 	"github.com/stader-labs/ethcli-ui/state"
@@ -17,9 +19,16 @@ func ChangePage(nextPage string) {
 	pageInstance.OnResume()
 }
 
-// TODO - bchain - abstract these to constants
 func GetRandomEcClient() string {
 	availableEcClients := []string{"geth", "nethermind", "besu"}
+
+	// If is a low power device ignore nethermind
+	totalMemoryGB := memory.TotalMemory() / 1024 / 1024 / 1024
+	isLowPower := (totalMemoryGB < 15 || runtime.GOARCH == "arm64")
+
+	if isLowPower {
+		availableEcClients = []string{"geth", "besu"}
+	}
 
 	rand.Seed(time.Now().UnixNano())
 	randIndex := rand.Intn(len(availableEcClients))
@@ -27,9 +36,7 @@ func GetRandomEcClient() string {
 	return availableEcClients[randIndex]
 }
 
-// TODO - bchain - We can abstract the random selection logic out
 func GetRandomCcClient() string {
-	// TODO - bchain - use teku only if enough memory is not there
 	availableCcClients := []string{"lighthouse", "nimbus", "prysm", "teku"}
 
 	rand.Seed(time.Now().UnixNano())

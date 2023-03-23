@@ -85,11 +85,12 @@ func (p *ExecutionClient) onSumit(option string) {
 	if option != config.ExecutionClient.Option.SystemRecommended {
 		state.ExecutionClient.SelectedOption = option
 	} else {
-		state.ExecutionClient.SelectedOption = utils.GetRandomItem(
-			//config.ExecutionClientSettingsType.Options,
-			[]string{"geth", "nethermind", "besu"},
-			option,
-		)
+		//state.ExecutionClient.SelectedOption = utils.GetRandomItem(
+		//	//config.ExecutionClientSettingsType.Options,
+		//	[]string{"geth", "nethermind", "besu"},
+		//	option,
+		//)
+		state.ExecutionClient.SelectedOption = GetRandomCcClient()
 	}
 
 	ChangePage(config.PageID.ConsensusClientSelection)
