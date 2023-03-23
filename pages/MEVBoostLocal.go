@@ -14,7 +14,6 @@ import (
 
 type MEVBoostLocal struct {
 	*PageType
-	// buttons             map[string]*tview.Button
 	titleTextView       *tview.TextView
 	descriptionTextView *tview.TextView
 	rightSide           *tview.Flex
@@ -23,8 +22,6 @@ type MEVBoostLocal struct {
 
 func (p *MEVBoostLocal) Page() tview.Primitive {
 	p.PageType.ID = config.PageID.MEVBoostLocal
-	// cOptions := config.MEVBoostLocal.Options
-
 	p.titleTextView = tview.NewTextView()
 	p.descriptionTextView = tview.NewTextView()
 
@@ -74,7 +71,7 @@ including sandwich attacks.
 
 Relays: Ultra Sound and bloXroute Max Profit`)
 
-	unregulatedTextViewHeight := unregulatedTextView.GetFieldHeight()
+	unregulatedTextViewHeight := 8
 
 	regulatedTextView := tview.NewTextView().SetText(`Regulated
 	
@@ -85,7 +82,7 @@ sandwich attacks.
 
 Relays: Blocknative, Flashbots and Eden Network.`)
 
-	regulatedTextViewHeight := regulatedTextView.GetFieldHeight()
+	regulatedTextViewHeight := 8
 
 	p.rightSide = tview.NewFlex().
 		SetDirection(tview.FlexRow).
@@ -94,8 +91,6 @@ Relays: Blocknative, Flashbots and Eden Network.`)
 		AddItem(nil, 3, 1, false).
 		AddItem(regulatedTextView, regulatedTextViewHeight, 1, false).
 		AddItem(nil, 0, 1, false)
-
-	p.updateRightSidebar()
 
 	body := tview.NewFlex().
 		SetDirection(tview.FlexColumn).
@@ -111,38 +106,8 @@ Relays: Blocknative, Flashbots and Eden Network.`)
 		AddItem(components.Footer(), 3, 1, false)
 }
 
-func (p *MEVBoostLocal) updateRightSidebar() {
-	// desc := config.MEVBoostLocal.Descriptions[state.MEVBoostLocal.SelectedOption]
-	// p.titleTextView.SetText(state.MEVBoostLocal.SelectedOption)
-	// p.descriptionTextView.SetText(desc)
-
-	// if p.rightSide != nil {
-	// 	p.rightSide.ResizeItem(p.descriptionTextView, strings.Count(desc, "\n")+2, 1)
-	// } else {
-	// 	log.Error("Update right sidebar: ", "nil")
-	// }
-}
-
 func (p *MEVBoostLocal) onSumit() {
-	// state.MEVBoostLocal.SelectedOption = option
-	// ChangePage(config.PageID.MEVBoostType)
 	ChangePage(config.PageID.Confirmation)
-}
-
-func (p *MEVBoostLocal) selectPrevOption() {
-	// prevItem, _ := utils.GetPrevItem(config.MEVBoostLocal.Options, state.MEVBoostLocal.SelectedOption)
-	// log.Infof("Select prev: [%s] to [%s]", state.MEVBoostLocal.SelectedOption, prevItem)
-	// state.MEVBoostLocal.SelectedOption = prevItem
-	// p.updateRightSidebar()
-	// p.App.SetFocus(p.buttons[prevItem])
-}
-
-func (p *MEVBoostLocal) selectNextOption() {
-	// nextItem, _ := utils.GetNextItem(config.MEVBoostLocal.Options, state.MEVBoostLocal.SelectedOption)
-	// log.Infof("Select next: [%s] to [%s]", state.MEVBoostLocal.SelectedOption, nextItem)
-	// state.MEVBoostLocal.SelectedOption = nextItem
-	// p.updateRightSidebar()
-	// p.App.SetFocus(p.buttons[nextItem])
 }
 
 func (p *MEVBoostLocal) GoBack() {
@@ -151,14 +116,6 @@ func (p *MEVBoostLocal) GoBack() {
 
 func (p *MEVBoostLocal) HandleEvents(event *tcell.EventKey) *tcell.EventKey {
 	var key = event.Key()
-
-	if key == tcell.KeyLeft {
-		p.selectPrevOption()
-	}
-
-	if key == tcell.KeyRight {
-		p.selectNextOption()
-	}
 
 	if key == tcell.KeyEscape {
 		p.GoBack()
@@ -172,7 +129,5 @@ func (p *MEVBoostLocal) OnResume() {
 }
 
 func (p *MEVBoostLocal) GetFirstElement() tview.Primitive {
-	// fb := p.buttons[state.MEVBoostLocal.SelectedOption]
-	// log.Infof("%s GetFirstElement: [%s]", p.ID, fb.GetLabel())
 	return p.firstElement
 }
