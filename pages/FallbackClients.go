@@ -54,8 +54,8 @@ func (p *FallbackClients) onSumit(option string) {
 		} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Teku {
 			ChangePage(config.PageID.FallbackClientsTeku)
 		} else {
-			log.Error("Invalid option selected")
-			//ChangePage(config.PageID.Monitoring)
+			// Skip for all others (for our case, skip for only Nimbus)
+			ChangePage(config.PageID.Monitoring)
 		}
 	} else {
 		ChangePage(config.PageID.Monitoring)
