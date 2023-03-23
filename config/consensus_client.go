@@ -66,12 +66,12 @@ var ConsensusClient = struct {
 		DopelgangerProtection: CCStageDopelgangerProtection{
 			Name: "Doppelganger protection",
 			Option: CCDopelgangerProtectionOption{
-				Yes: "true",
-				No:  "false",
+				Yes: "Yes",
+				No:  "No",
 			},
 			Options: []string{
-				"true",
-				"false",
+				"Yes",
+				"No",
 			},
 		},
 	},
