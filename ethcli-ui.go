@@ -1,4 +1,4 @@
-package main
+package ethcliui
 
 import (
 	"github.com/gdamore/tcell/v2"
@@ -46,11 +46,4 @@ func Run(settings *pages.SettingsType) (func() pages.SettingsType, error) {
 		SetRoot(allPages, true).
 		EnableMouse(true).
 		SetFocus(firstElement).Run()
-}
-
-func main() {
-	_, err := Run(nil)
-	if err != nil {
-		panic(err)
-	}
 }
