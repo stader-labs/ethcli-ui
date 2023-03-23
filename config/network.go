@@ -8,6 +8,7 @@ type NetworkOption struct {
 var Network = struct {
 	Option       NetworkOption
 	Options      []string
+	OptionLabels map[string]string
 	Descriptions map[string]string
 }{
 	Option: NetworkOption{
@@ -19,6 +20,11 @@ func init() {
 	Network.Options = []string{
 		// Network.Option.EthereumMainnet,
 		Network.Option.GoerliTestnet,
+	}
+
+	Network.OptionLabels = map[string]string{
+		// Network.Option.EthereumMainnet: "Ethereum Mainnet",
+		Network.Option.GoerliTestnet: "Goerli Testnet",
 	}
 
 	Network.Descriptions = map[string]string{

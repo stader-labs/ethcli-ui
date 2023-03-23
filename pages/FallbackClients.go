@@ -16,7 +16,6 @@ type FallbackClients struct {
 }
 
 func (p *FallbackClients) Page() tview.Primitive {
-	cOptions := config.FallbackClients.Options
 	p.PageType.ID = config.PageID.FallbackClients
 
 	body, buttons := components.BodyWithOptions(
@@ -28,7 +27,8 @@ This ensures that your Validator Client and Stader Node stay connected and
 ontinue functioning properly.
 		
 So, do you want to set up a fallback client pair?`,
-		cOptions,
+		config.FallbackClients.Options,
+		config.FallbackClients.OptionLabels,
 		p.onSumit,
 	)
 	p.buttons = buttons

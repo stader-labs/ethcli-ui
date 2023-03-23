@@ -22,7 +22,6 @@ type MEVBoost struct {
 
 func (p *MEVBoost) Page() tview.Primitive {
 	p.PageType.ID = config.PageID.MEVBoost
-	cOptions := config.MEVBoost.Options
 
 	p.titleTextView = tview.NewTextView()
 	p.descriptionTextView = tview.NewTextView()
@@ -34,7 +33,8 @@ block proposals.
 
 Would you prefer Stader to manage your MEV-
 Boost, or would you like to handle it yourself?`,
-		cOptions,
+		config.MEVBoost.Options,
+		config.MEVBoost.OptionLabels,
 		p.onSumit,
 	)
 	p.buttons = buttons

@@ -8,6 +8,7 @@ type ETHClientOption struct {
 var ETHClient = struct {
 	Option       ETHClientOption
 	Options      []string
+	OptionLabels map[string]string
 	Descriptions map[string]string
 }{
 	Option: ETHClientOption{
@@ -20,6 +21,11 @@ func init() {
 	ETHClient.Options = []string{
 		ETHClient.Option.LocallyManaged,
 		ETHClient.Option.ExternallyManaged,
+	}
+
+	ETHClient.OptionLabels = map[string]string{
+		ETHClient.Option.ExternallyManaged: "Externally managed",
+		ETHClient.Option.LocallyManaged:    "Locally managed",
 	}
 
 	ETHClient.Descriptions = map[string]string{

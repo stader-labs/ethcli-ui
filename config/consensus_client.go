@@ -16,15 +16,17 @@ type CCDopelgangerProtectionOption struct {
 }
 
 type CCStageDopelgangerProtection struct {
-	Name    string
-	Option  CCDopelgangerProtectionOption
-	Options []string
+	Name         string
+	Option       CCDopelgangerProtectionOption
+	Options      []string
+	OptionLabels map[string]string
 }
 
 type CCStageSelection struct {
 	Name         string
 	Option       CCSelectionOption
 	Options      []string
+	OptionLabels map[string]string
 	Descriptions map[string]string
 }
 
@@ -69,10 +71,6 @@ var ConsensusClient = struct {
 				Yes: "Yes",
 				No:  "No",
 			},
-			Options: []string{
-				"Yes",
-				"No",
-			},
 		},
 	},
 }
@@ -85,12 +83,30 @@ func init() {
 		ConsensusClient.Stage.DopelgangerProtection.Name,
 	}
 
+	ConsensusClient.Stage.DopelgangerProtection.Options = []string{
+		ConsensusClient.Stage.DopelgangerProtection.Option.Yes,
+		ConsensusClient.Stage.DopelgangerProtection.Option.No,
+	}
+
+	ConsensusClient.Stage.DopelgangerProtection.OptionLabels = map[string]string{
+		ConsensusClient.Stage.DopelgangerProtection.Option.Yes: "Yes",
+		ConsensusClient.Stage.DopelgangerProtection.Option.No:  "No",
+	}
+
 	ConsensusClient.Stage.Selection.Options = []string{
 		ConsensusClient.Stage.Selection.Option.SystemRecommended,
 		ConsensusClient.Stage.Selection.Option.LightHouse,
 		ConsensusClient.Stage.Selection.Option.Nimbus,
 		ConsensusClient.Stage.Selection.Option.Prysm,
 		ConsensusClient.Stage.Selection.Option.Teku,
+	}
+
+	ConsensusClient.Stage.Selection.OptionLabels = map[string]string{
+		ConsensusClient.Stage.Selection.Option.SystemRecommended: "System-recommended",
+		ConsensusClient.Stage.Selection.Option.LightHouse:        "Lighthouse",
+		ConsensusClient.Stage.Selection.Option.Nimbus:            "Nimbus",
+		ConsensusClient.Stage.Selection.Option.Prysm:             "Prysm",
+		ConsensusClient.Stage.Selection.Option.Teku:              "Teku",
 	}
 
 	ConsensusClient.Stage.Selection.Descriptions = map[string]string{

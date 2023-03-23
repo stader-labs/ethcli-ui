@@ -22,7 +22,6 @@ type ExecutionClient struct {
 }
 
 func (p *ExecutionClient) Page() tview.Primitive {
-	cOptions := config.ExecutionClient.Options
 	cDescriptions := config.ExecutionClient.Descriptions
 	p.PageType.ID = config.PageID.ExecutionClient
 
@@ -34,7 +33,8 @@ func (p *ExecutionClient) Page() tview.Primitive {
 If you have no strong preference, we
 suggest selecting System-recommended for your
 convenience.`,
-		cOptions,
+		config.ExecutionClient.Options,
+		config.ExecutionClient.OptionLabels,
 		p.onSumit,
 	)
 	p.buttons = buttons

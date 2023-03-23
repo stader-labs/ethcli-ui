@@ -3,6 +3,7 @@ package ethcliui
 import (
 	"encoding/json"
 	"fmt"
+
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
 	"github.com/stader-labs/ethcli-ui/config"

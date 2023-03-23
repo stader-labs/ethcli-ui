@@ -21,7 +21,7 @@ func (p *ConsensusClientGraffiti) Page() tview.Primitive {
 	p.PageType.ID = config.PageID.ConsensusClientGraffiti
 
 	form := tview.NewForm().
-		AddInputField("Add graffiti", "", 0, nil, func(text string) {
+		AddInputField("Add graffiti", state.ConsensusClient.Graffiti, 0, nil, func(text string) {
 			state.ConsensusClient.Graffiti = text
 		}).
 		AddButton("Next", func() {

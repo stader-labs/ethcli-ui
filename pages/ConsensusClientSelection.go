@@ -22,7 +22,6 @@ type ConsensusClientSelection struct {
 }
 
 func (p *ConsensusClientSelection) Page() tview.Primitive {
-	cOptions := config.ConsensusClient.Stage.Selection.Options
 	cDescriptions := config.ConsensusClient.Stage.Selection.Descriptions
 	p.PageType.ID = config.PageID.ConsensusClientSelection
 
@@ -35,7 +34,8 @@ wish to use. If you're
 uncertain, we suggest selecting
 System-recommended for your
 convenience.`,
-		cOptions,
+		config.ConsensusClient.Stage.Selection.Options,
+		config.ConsensusClient.Stage.Selection.OptionLabels,
 		p.onSumit,
 	)
 	p.buttons = buttons

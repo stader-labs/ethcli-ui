@@ -21,7 +21,7 @@ func (p *ConsensusClientCheckpointSync) Page() tview.Primitive {
 	p.PageType.ID = config.PageID.ConsensusClientCheckpointSync
 
 	form := tview.NewForm().
-		AddInputField("Checkpoint URL", "", 0, nil, func(text string) {
+		AddInputField("Checkpoint URL", state.ConsensusClient.CheckpointUrl, 0, nil, func(text string) {
 			state.ConsensusClient.CheckpointUrl = text
 		}).
 		AddButton("Next", func() {

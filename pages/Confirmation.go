@@ -17,14 +17,14 @@ type Confirmation struct {
 
 func (n *Confirmation) Page() tview.Primitive {
 	n.PageType.ID = config.PageID.Confirmation
-	cOptions := config.Confirmation.Options
 
 	body, buttons := components.BodyWithOptions(
 		`Great job! You're all set to complete the
 configuration. Take a moment to review and adjust
 your Stader Node settings, or simply save and exit
 to get started.`,
-		cOptions,
+		config.Confirmation.Options,
+		config.Confirmation.OptionLabels,
 		n.onSumit,
 	)
 	n.buttons = buttons

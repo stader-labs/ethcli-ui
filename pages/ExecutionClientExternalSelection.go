@@ -18,7 +18,6 @@ type ExecutionClientExternalSelection struct {
 }
 
 func (p *ExecutionClientExternalSelection) Page() tview.Primitive {
-	cOptions := config.ConsensusClientExternalSelection.Options
 	p.PageType.ID = config.PageID.ExecutionClientExternalSelection
 
 	p.titleTextView = tview.NewTextView()
@@ -35,7 +34,8 @@ unique behavior, Stader Node must be informed
 of the specific client you are using
 externally. This way, it can adjust its
 behavior accordingly.`,
-		cOptions,
+		config.ConsensusClientExternalSelection.Options,
+		config.ConsensusClientExternalSelection.OptionLabels,
 		p.onSumit,
 	)
 	p.buttons = buttons

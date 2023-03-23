@@ -23,7 +23,7 @@ func (p *ConsensusClientExternalSelectedLighthouse) Page() tview.Primitive {
 	p.PageType.ID = config.PageID.ConsensusClientExternalSelectedLighthouse
 
 	form := tview.NewForm().
-		AddInputField("HTTP URL", "", 0, nil, func(text string) {
+		AddInputField("HTTP URL", state.ConsensusClientExternalSelectedLighthouse.HTTPUrl, 0, nil, func(text string) {
 			state.ConsensusClientExternalSelectedLighthouse.HTTPUrl = text
 		}).
 		AddButton("Next", func() {

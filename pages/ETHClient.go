@@ -21,7 +21,6 @@ type ETHClient struct {
 }
 
 func (p *ETHClient) Page() tview.Primitive {
-	cOptions := config.ETHClient.Options
 	cDescriptions := config.ETHClient.Descriptions
 	p.PageType.ID = config.PageID.EthClient
 
@@ -31,7 +30,8 @@ func (p *ETHClient) Page() tview.Primitive {
 	left, buttons := components.BodyWithOptions(
 		`Select your preferred method for managing your
 Execution and Consensus clients.`,
-		cOptions,
+		config.ETHClient.Options,
+		config.ETHClient.OptionLabels,
 		p.onSumit,
 	)
 	p.buttons = buttons

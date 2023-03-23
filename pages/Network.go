@@ -18,10 +18,10 @@ type Network struct {
 	titleTextView       *tview.TextView
 	descriptionTextView *tview.TextView
 	rightSide           *tview.Flex
+	buttonLabels        map[string]string
 }
 
 func (n *Network) Page() tview.Primitive {
-	cOptions := config.Network.Options
 	cDescriptions := config.Network.Descriptions
 
 	n.PageType.ID = config.PageID.Network
@@ -31,7 +31,8 @@ func (n *Network) Page() tview.Primitive {
 
 	left, buttons := components.BodyWithOptions(
 		"Please select the network where you want to set\nup your node.",
-		cOptions,
+		config.Network.Options,
+		config.Network.OptionLabels,
 		n.onSumit,
 	)
 	n.buttons = buttons

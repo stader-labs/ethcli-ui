@@ -21,10 +21,10 @@ func (p *ExecutionClientExternal) Page() tview.Primitive {
 	p.PageType.ID = config.PageID.ExecutionClientExternal
 
 	form := tview.NewForm().
-		AddInputField("HTTP-based RPC API", "", 0, nil, func(text string) {
+		AddInputField("HTTP-based RPC API", state.ExecutionClientExternal.HTTPBasedRpcApi, 0, nil, func(text string) {
 			state.ExecutionClientExternal.HTTPBasedRpcApi = text
 		}).
-		AddInputField("Websocket-based RPC API", "", 0, nil, func(text string) {
+		AddInputField("Websocket-based RPC API", state.ExecutionClientExternal.WebsocketBasedRpcApi, 0, nil, func(text string) {
 			state.ExecutionClientExternal.WebsocketBasedRpcApi = text
 		}).
 		AddButton("Next", func() {
