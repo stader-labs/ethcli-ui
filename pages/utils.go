@@ -8,6 +8,8 @@ import (
 )
 
 func ChangePage(nextPage string) {
+	currentPageName, _ := Pages.GetFrontPage()
+	log.Infof("ChangePage: from [%s] to [%s]", currentPageName, nextPage)
 	Pages.SwitchToPage(nextPage)
 	pageInstance := All[nextPage]
 	firstElement := pageInstance.GetFirstElement()
