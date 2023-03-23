@@ -88,11 +88,6 @@ func (p *ExecutionClient) onSumit(option string) {
 		return
 	}
 
-	// recommendedValue := utils.GetRandomItem(
-	// 	config.ExecutionClient.Options,
-	// 	option,
-	// )
-
 	// TODO: fix hardcoded values
 	recommendedValue := GetRandomEcClient()
 	recommendedLabel := config.ExecutionClient.OptionLabels[recommendedValue]

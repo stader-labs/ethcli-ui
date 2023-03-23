@@ -99,11 +99,6 @@ func (p *ConsensusClientSelection) onSumit(option string) {
 		return
 	}
 
-	// recommendedValue := utils.GetRandomItem(
-	// 	config.ConsensusClient.Stage.Selection.Options,
-	// 	option,
-	// )
-
 	// TODO: fix hardcoded values
 	recommendedValue := GetRandomCcClient()
 	recommendedLabel := config.ConsensusClient.Stage.Selection.OptionLabels[recommendedValue]
