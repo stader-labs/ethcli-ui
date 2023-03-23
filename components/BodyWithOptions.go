@@ -44,9 +44,6 @@ func BodyWithOptions(
 			btn := func(v string) *tview.Button {
 				return tview.NewButton(optionLabels[v]).
 					SetSelectedFunc(func() {
-
-						log.Info("=======Selected option: ", v)
-
 						onSelect(v)
 					}).
 					SetStyle(btnStyle).

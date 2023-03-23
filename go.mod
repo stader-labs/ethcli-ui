@@ -7,6 +7,7 @@ require (
 	github.com/pbnjay/memory v0.0.0-20210728143218-7b4eea64cf58
 	github.com/rivo/tview v0.0.0-20230307144320-cc10b288e304
 	go.uber.org/zap v1.24.0
+	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519
 )
 
 require (
