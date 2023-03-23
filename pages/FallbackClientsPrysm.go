@@ -1,6 +1,8 @@
 package pages
 
 import (
+	"strings"
+
 	"github.com/stader-labs/ethcli-ui/components"
 	"github.com/stader-labs/ethcli-ui/config"
 	"github.com/stader-labs/ethcli-ui/state"
@@ -40,11 +42,7 @@ func (p *FallbackClientsPrysm) Page() tview.Primitive {
 		AddItem(form, 60, 1, false).
 		AddItem(nil, 0, 1, false)
 
-	left := tview.NewFlex().
-		SetDirection(tview.FlexRow).
-		AddItem(nil, 0, 1, false).
-		AddItem(
-			utils.CenterText(`Fallback Clients > Prysm
+	bodyText := `Fallback Clients > Prysm
 
 Please note that you have selected Prysm as your primary Consensus client. To
 ensure proper connectivity, it's crucial that your fallback Consensus client is
@@ -54,8 +52,16 @@ Please enter the URLs of the HTTP APIs for your fallback clients, including the
 JSON-RPC URL for your fallback Prysm node.
 			
 e.g. http://192.168.1.45:8545 for your Execution client and
-http://192.168.1.45:5052 for your fallback Prysm node.`),
-			9, 1, false,
+http://192.168.1.45:5052 for your fallback Prysm node.`
+
+	bodyTextHeight := strings.Count(bodyText, "\n") + 1
+
+	left := tview.NewFlex().
+		SetDirection(tview.FlexRow).
+		AddItem(nil, 0, 1, false).
+		AddItem(
+			utils.CenterText(bodyText),
+			bodyTextHeight, 1, false,
 		).
 		AddItem(nil, 2, 1, false).
 		AddItem(formWrap, 0, 1, false).

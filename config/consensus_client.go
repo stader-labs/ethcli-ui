@@ -129,19 +129,21 @@ prioritizes usability,
 security and reliability
 in the implementation of
 its consensus protocol.`,
-		ConsensusClient.Stage.Selection.Option.Teku: `Teku is an Ethereum
-consensus client developed by PegaSys,
-a branch of ConsenSys that focuses on
-building high-quality clients for Ethereum.
-Written in Java, Teku offers impressive security
-and scalability features, although it requires
-substantial RAM and CPU resources to operate
-efficiently.
+		ConsensusClient.Stage.Selection.Option.Teku: `Teku is an Ethereum consensus client
+developed by PegaSys, a branch of
+ConsenSys that focuses on building
+high-quality clients for Ethereum.
+Written in Java, Teku offers impressive
+security and scalability features,
+although it requires substantial RAM and
+CPU resources to operate efficiently.
 
-NOTE: Please note that Teku, while a powerful client,
-is quite resource-intensive. Given your system has
-limited RAM, it may not perform as well as you'd like.
-We recommend considering a lighter client option
-instead to ensure optimal performance.`,
+NOTE: Please note that Teku, while a
+powerful client, is quite resource-
+intensive. Given your system has limited
+RAM, it may not perform as well as you'd
+like. We recommend considering a lighter
+client option instead to ensure optimal
+performance.`,
 	}
 }

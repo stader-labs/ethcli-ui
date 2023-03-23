@@ -18,6 +18,7 @@ type ConsensusClientSelection struct {
 	titleTextView       *tview.TextView
 	descriptionTextView *tview.TextView
 	rightSide           *tview.Flex
+	currentValue        string
 }
 
 func (p *ConsensusClientSelection) Page() tview.Primitive {
@@ -49,7 +50,7 @@ convenience.`,
 		).
 		AddItem(nil, 0, 1, false)
 
-	p.updateRightSidebar()
+	p.updateRightSidebar(state.ConsensusClient.SelectionSelectedOption)
 
 	body := tview.NewFlex().
 		SetDirection(tview.FlexColumn).
@@ -57,7 +58,7 @@ convenience.`,
 		AddItem(left, 0, 1, false).
 		AddItem(components.VerticalLine(tcell.ColorDarkSlateGray), 1, 1, false).
 		AddItem(nil, 2, 1, false).
-		AddItem(p.rightSide, 40, 1, false)
+		AddItem(p.rightSide, 41, 1, false)
 
 	return tview.NewFlex().
 		SetDirection(tview.FlexRow).
@@ -67,9 +68,10 @@ convenience.`,
 		AddItem(components.Footer(), 3, 1, false)
 }
 
-func (p *ConsensusClientSelection) updateRightSidebar() {
-	desc := config.ConsensusClient.Stage.Selection.Descriptions[state.ConsensusClient.SelectionSelectedOption]
-	p.titleTextView.SetText(state.ConsensusClient.SelectionSelectedOption)
+func (p *ConsensusClientSelection) updateRightSidebar(option string) {
+	desc := config.ConsensusClient.Stage.Selection.Descriptions[option]
+	p.currentValue = option
+	p.titleTextView.SetText(option)
 	p.descriptionTextView.SetText(desc)
 
 	if p.rightSide != nil {
@@ -77,40 +79,25 @@ func (p *ConsensusClientSelection) updateRightSidebar() {
 	} else {
 		log.Error("Update right sidebar: ", "nil")
 	}
-}
 
-func (p *ConsensusClientSelection) handleSelectedOption(option string) {
-	if option != config.ConsensusClient.Stage.Selection.Option.SystemRecommended {
-		state.ConsensusClient.SelectionSelectedOption = option
-	} else {
-		state.ConsensusClient.SelectionSelectedOption = utils.GetRandomItem(
-			//config.ConsensusClient.Stage.Selection.Options,
-			[]string{"lighthouse", "nimbus", "prysm", "teku"},
-			option,
-		)
-	}
+	p.App.SetFocus(p.buttons[option])
 }
 
 func (p *ConsensusClientSelection) onSumit(option string) {
 	log.Infof("Selected option: [%s] to [%s]", state.ConsensusClient.SelectionSelectedOption, option)
-	p.handleSelectedOption(option)
 	ChangePage(config.PageID.ConsensusClientGraffiti)
 }
 
 func (p *ConsensusClientSelection) selectPrevOption() {
-	prevItem, _ := utils.GetPrevItem(config.ConsensusClient.Stage.Selection.Options, state.ConsensusClient.SelectionSelectedOption)
-	log.Infof("Select prev: [%s] to [%s]", state.ConsensusClient.SelectionSelectedOption, prevItem)
-	p.handleSelectedOption(prevItem)
-	p.updateRightSidebar()
-	p.App.SetFocus(p.buttons[prevItem])
+	prevItem, _ := utils.GetPrevItem(config.ConsensusClient.Stage.Selection.Options, p.currentValue)
+	log.Infof("Select prev: [%s] to [%s]", p.currentValue, prevItem)
+	p.updateRightSidebar(prevItem)
 }
 
 func (p *ConsensusClientSelection) selectNextOption() {
-	nextItem, _ := utils.GetNextItem(config.ConsensusClient.Stage.Selection.Options, state.ConsensusClient.SelectionSelectedOption)
-	log.Infof("Select next: [%s] to [%s]", state.ConsensusClient.SelectionSelectedOption, nextItem)
-	p.handleSelectedOption(nextItem)
-	p.updateRightSidebar()
-	p.App.SetFocus(p.buttons[nextItem])
+	nextItem, _ := utils.GetNextItem(config.ConsensusClient.Stage.Selection.Options, p.currentValue)
+	log.Infof("Select next: [%s] to [%s]", p.currentValue, nextItem)
+	p.updateRightSidebar(nextItem)
 }
 
 func (p *ConsensusClientSelection) GoBack() {

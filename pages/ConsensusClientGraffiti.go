@@ -28,6 +28,8 @@ func (p *ConsensusClientGraffiti) Page() tview.Primitive {
 			p.onSumit()
 		})
 
+	formHeight := 3 + 2
+
 	p.firstElement = form
 
 	bodyText := `Want to add a personal touch to your proposed blocks?
@@ -39,6 +41,8 @@ This feature is non-mandatory and is intended purely
 for fun! If you do not wish to add any graffiti, simply
 leave it blank.`
 
+	bodyTextHeight := strings.Count(bodyText, "\n") + 1
+
 	formWrap := tview.NewFlex().
 		SetDirection(tview.FlexColumn).
 		AddItem(nil, 0, 1, false).
@@ -46,18 +50,20 @@ leave it blank.`
 			tview.NewFlex().
 				SetDirection(tview.FlexRow).
 				AddItem(nil, 0, 1, false).
-				AddItem(utils.CenterText(bodyText), strings.Count(bodyText, "\n")+1, 1, false).
+				AddItem(utils.CenterText(bodyText), bodyTextHeight, 1, false).
 				AddItem(nil, 1, 1, false).
-				AddItem(form, 5, 1, false).
+				AddItem(form, formHeight, 1, false).
 				AddItem(nil, 0, 1, false),
 			60, 1, false,
 		).
 		AddItem(nil, 0, 1, false)
 
+	formWrapHeight := formHeight + bodyTextHeight + 1
+
 	content := tview.NewFlex().
 		SetDirection(tview.FlexRow).
 		AddItem(nil, 0, 1, false).
-		AddItem(formWrap, 10, 1, false).
+		AddItem(formWrap, formWrapHeight, 1, false).
 		AddItem(nil, 0, 1, false)
 
 	body := tview.NewFlex().

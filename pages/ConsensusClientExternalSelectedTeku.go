@@ -30,6 +30,8 @@ func (p *ConsensusClientExternalSelectedTeku) Page() tview.Primitive {
 			p.onSumit()
 		})
 
+	formHeight := 3 + 2
+
 	p.firstElement = form
 
 	bodyText := `Enter the HTTP API URL of your Teku client.
@@ -39,6 +41,8 @@ Note: When running this client on the same machine as the
 Stader Node, use your machine's LAN IP address instead of
 localhost or 127.0.0.1.`
 
+	bodyTextHeight := strings.Count(bodyText, "\n") + 1
+
 	formWrap := tview.NewFlex().
 		SetDirection(tview.FlexColumn).
 		AddItem(nil, 0, 1, false).
@@ -46,18 +50,20 @@ localhost or 127.0.0.1.`
 			tview.NewFlex().
 				SetDirection(tview.FlexRow).
 				AddItem(nil, 0, 1, false).
-				AddItem(utils.CenterText(bodyText), strings.Count(bodyText, "\n")+1, 1, false).
+				AddItem(utils.CenterText(bodyText), bodyTextHeight, 1, false).
 				AddItem(nil, 1, 1, false).
-				AddItem(form, 7, 1, false).
+				AddItem(form, formHeight, 1, false).
 				AddItem(nil, 0, 1, false),
 			60, 1, false,
 		).
 		AddItem(nil, 0, 1, false)
 
+	formWrapHeight := bodyTextHeight + formHeight + 1
+
 	content := tview.NewFlex().
 		SetDirection(tview.FlexRow).
 		AddItem(nil, 0, 1, false).
-		AddItem(formWrap, 10, 1, false).
+		AddItem(formWrap, formWrapHeight, 1, false).
 		AddItem(nil, 0, 1, false)
 
 	p.leftSidebar = tview.NewFlex().

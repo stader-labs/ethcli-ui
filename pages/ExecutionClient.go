@@ -18,6 +18,7 @@ type ExecutionClient struct {
 	titleTextView       *tview.TextView
 	descriptionTextView *tview.TextView
 	rightSide           *tview.Flex
+	currentValue        string
 }
 
 func (p *ExecutionClient) Page() tview.Primitive {
@@ -48,7 +49,7 @@ convenience.`,
 		).
 		AddItem(nil, 0, 1, false)
 
-	p.updateRightSidebar()
+	p.updateRightSidebar(state.ExecutionClient.SelectedOption)
 
 	body := tview.NewFlex().
 		SetDirection(tview.FlexColumn).
@@ -65,9 +66,10 @@ convenience.`,
 		AddItem(components.Footer(), 3, 1, false)
 }
 
-func (p *ExecutionClient) updateRightSidebar() {
-	desc := config.ExecutionClient.Descriptions[state.ExecutionClient.SelectedOption]
-	p.titleTextView.SetText(state.ExecutionClient.SelectedOption)
+func (p *ExecutionClient) updateRightSidebar(option string) {
+	desc := config.ExecutionClient.Descriptions[option]
+	p.currentValue = option
+	p.titleTextView.SetText(option)
 	p.descriptionTextView.SetText(desc)
 
 	if p.rightSide != nil {
@@ -75,9 +77,11 @@ func (p *ExecutionClient) updateRightSidebar() {
 	} else {
 		log.Error("Update right sidebar: ", "nil")
 	}
+
+	p.App.SetFocus(p.buttons[option])
 }
 
-func (p *ExecutionClient) handleSelectedOption(option string) {
+func (p *ExecutionClient) onSumit(option string) {
 	if option != config.ExecutionClient.Option.SystemRecommended {
 		state.ExecutionClient.SelectedOption = option
 	} else {
@@ -87,27 +91,20 @@ func (p *ExecutionClient) handleSelectedOption(option string) {
 			option,
 		)
 	}
-}
 
-func (p *ExecutionClient) onSumit(option string) {
-	p.handleSelectedOption(option)
 	ChangePage(config.PageID.ConsensusClientSelection)
 }
 
 func (p *ExecutionClient) selectPrevOption() {
-	prevItem, _ := utils.GetPrevItem(config.ExecutionClient.Options, state.ExecutionClient.SelectedOption)
-	log.Infof("Select prev: [%s] to [%s]", state.ExecutionClient.SelectedOption, prevItem)
-	p.handleSelectedOption(prevItem)
-	p.updateRightSidebar()
-	p.App.SetFocus(p.buttons[prevItem])
+	prevItem, _ := utils.GetPrevItem(config.ExecutionClient.Options, p.currentValue)
+	log.Infof("Select prev: [%s] to [%s]", p.currentValue, prevItem)
+	p.updateRightSidebar(prevItem)
 }
 
 func (p *ExecutionClient) selectNextOption() {
-	nextItem, _ := utils.GetNextItem(config.ExecutionClient.Options, state.ExecutionClient.SelectedOption)
-	log.Infof("Select next: [%s] to [%s]", state.ExecutionClient.SelectedOption, nextItem)
-	p.handleSelectedOption(nextItem)
-	p.updateRightSidebar()
-	p.App.SetFocus(p.buttons[nextItem])
+	nextItem, _ := utils.GetNextItem(config.ExecutionClient.Options, p.currentValue)
+	log.Infof("Select next: [%s] to [%s]", p.currentValue, nextItem)
+	p.updateRightSidebar(nextItem)
 }
 
 func (p *ExecutionClient) GoBack() {

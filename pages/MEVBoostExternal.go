@@ -1,6 +1,8 @@
 package pages
 
 import (
+	"strings"
+
 	"github.com/stader-labs/ethcli-ui/components"
 	"github.com/stader-labs/ethcli-ui/config"
 	"github.com/stader-labs/ethcli-ui/state"
@@ -42,15 +44,19 @@ func (p *MEVBoostExternal) Page() tview.Primitive {
 		AddItem(form, 60, 1, false).
 		AddItem(nil, 0, 1, false)
 
+	bodyText := `Read the MEV profile description and select the
+one you wish to activate. If you're not
+interested in using MEV-Boost at this time,
+leave both options unchecked.`
+
+	bodyTextHeight := strings.Count(bodyText, "\n") + 1
+
 	left := tview.NewFlex().
 		SetDirection(tview.FlexRow).
 		AddItem(nil, 0, 1, false).
 		AddItem(
-			utils.CenterText(`Read the MEV profile description and select the
-one you wish to activate. If you're not
-interested in using MEV-Boost at this time,
-leave both options unchecked.`),
-			4, 1, false,
+			utils.CenterText(bodyText),
+			bodyTextHeight, 1, false,
 		).
 		AddItem(nil, 2, 1, false).
 		AddItem(formWrap, 0, 1, false).

@@ -1,9 +1,10 @@
 package pages
 
 import (
-	"github.com/stader-labs/ethcli-ui/state"
 	"math/rand"
 	"time"
+
+	"github.com/stader-labs/ethcli-ui/state"
 )
 
 func ChangePage(nextPage string) {
@@ -186,6 +187,7 @@ type executionClient struct {
 }
 
 type SettingsType struct {
+	Confirmed                bool                `json:"confirmed"`
 	Network                  string              `json:"network"`
 	EthClient                string              `json:"ethClient"`
 	ExecutionClient          executionClient     `json:"executionClient"`
@@ -200,6 +202,7 @@ type SettingsType struct {
 
 func GetSettings() SettingsType {
 	settings := SettingsType{
+		Confirmed: state.Confirmed,
 		Network:   state.Network.SelectedOption,
 		EthClient: state.ETHClient.SelectedOption,
 		ExecutionClient: executionClient{
@@ -252,6 +255,48 @@ func GetSettings() SettingsType {
 	}
 
 	return settings
+}
+
+func SetSettings(settings SettingsType) {
+	// Should initialise with false value always
+	// state.Confirmed = settings.Confirmed
+
+	state.Network.SelectedOption = settings.Network
+
+	state.ETHClient.SelectedOption = settings.EthClient
+
+	state.ExecutionClient.SelectedOption = settings.ExecutionClient.SelectionOption
+
+	state.ExecutionClientExternal.HTTPBasedRpcApi = settings.ExecutionClient.External.HTTPBasedRpcApi
+	state.ExecutionClientExternal.WebsocketBasedRpcApi = settings.ExecutionClient.External.WebsocketBasedRpcApi
+
+	state.ConsensusClient.SelectionSelectedOption = settings.ConsensusClient.Selection
+	state.ConsensusClient.Graffiti = settings.ConsensusClient.Graffit
+	state.ConsensusClient.CheckpointUrl = settings.ConsensusClient.CheckpointUrl
+	state.ConsensusClient.DopelgangerProtectionSelectedOption = settings.ConsensusClient.DoppelgangerProtection
+
+	state.ConsensusClientExternalSelection.SelectedOption = settings.ConsensusClient.ExternalSelection
+	state.ConsensusClientExternalSelectedLighthouse.HTTPUrl = settings.ConsensusClient.External.Lighthouse.HTTPUrl
+	state.ConsensusClientExternalSelectedPrysm.HTTPUrl = settings.ConsensusClient.External.Prysm.HTTPUrl
+	state.ConsensusClientExternalSelectedPrysm.JSONRpcUrl = settings.ConsensusClient.External.Prysm.JSONRpcUrl
+	state.ConsensusClientExternalSelectedTeku.HTTPUrl = settings.ConsensusClient.External.Teku.HTTPUrl
+
+	state.Monitoring.SelectedOption = settings.Monitoring
+
+	state.MEVBoost.SelectedOption = settings.MEVBoost
+
+	state.MEVBoostExternal.MevUrl = settings.MEVBoostExternalMevUrl
+
+	state.MEVBoostLocal.Regulated = settings.MEVBoostLocalRegulated
+	state.MEVBoostLocal.Unregulated = settings.MEVBoostLocalUnregulated
+
+	state.FallbackClients.SelectedOption = settings.FallbackClients.SelectionOption
+	state.FallbackClientsLighthouse.ExecutionClientUrl = settings.FallbackClients.Lighthouse.ExecutionClientUrl
+	state.FallbackClientsLighthouse.BeaconNodeHttpUrl = settings.FallbackClients.Lighthouse.BeaconNodeHttpUrl
+	state.FallbackClientsPrysm.ExecutionClientUrl = settings.FallbackClients.Prysm.ExecutionClientUrl
+	state.FallbackClientsPrysm.BeaconNodeHttpUrl = settings.FallbackClients.Prysm.BeaconNodeHttpUrl
+	state.FallbackClientsPrysm.BeaconNodeJsonRpcpUrl = settings.FallbackClients.Prysm.BeaconNodeJsonRpcpUrl
+	state.FallbackClientsTeku.ExecutionClientUrl = settings.FallbackClients.Teku.ExecutionClientUrl
 }
 
 // func saveSettings() error {

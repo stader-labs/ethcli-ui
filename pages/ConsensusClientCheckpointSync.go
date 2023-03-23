@@ -28,6 +28,8 @@ func (p *ConsensusClientCheckpointSync) Page() tview.Primitive {
 			p.onSumit()
 		})
 
+	formHeight := 3 + 2
+
 	p.firstElement = form
 
 	bodyText := `Good news - Your client is equipped with the Checkpoint
@@ -41,6 +43,8 @@ If you wish to activate Checkpoint Sync, kindly provide
 the provider URL. However, if it's not something you're
 interested in, feel free to leave it blank.`
 
+	bodyTextHeight := strings.Count(bodyText, "\n") + 1
+
 	formWrap := tview.NewFlex().
 		SetDirection(tview.FlexColumn).
 		AddItem(nil, 0, 1, false).
@@ -48,18 +52,19 @@ interested in, feel free to leave it blank.`
 			tview.NewFlex().
 				SetDirection(tview.FlexRow).
 				AddItem(nil, 0, 1, false).
-				AddItem(utils.CenterText(bodyText), strings.Count(bodyText, "\n")+1, 1, false).
+				AddItem(utils.CenterText(bodyText), bodyTextHeight, 1, false).
 				AddItem(nil, 1, 1, false).
-				AddItem(form, 5, 1, false).
+				AddItem(form, formHeight, 1, false).
 				AddItem(nil, 0, 1, false),
 			60, 1, false,
 		).
 		AddItem(nil, 0, 1, false)
+	formWrapHeight := formHeight + bodyTextHeight
 
 	content := tview.NewFlex().
 		SetDirection(tview.FlexRow).
 		AddItem(nil, 0, 1, false).
-		AddItem(formWrap, 10, 1, false).
+		AddItem(formWrap, formWrapHeight, 1, false).
 		AddItem(nil, 0, 1, false)
 
 	body := tview.NewFlex().

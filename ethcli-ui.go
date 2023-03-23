@@ -1,4 +1,4 @@
-package ethcliui
+package main
 
 import (
 	"github.com/gdamore/tcell/v2"
@@ -13,9 +13,15 @@ var (
 	log = logger.Log
 )
 
-func Run() (func() pages.SettingsType, error) {
+// Run starts the app
+// If settings is nil, it will start the app with default settings
+func Run(settings *pages.SettingsType) (func() pages.SettingsType, error) {
 	state.CurrentApp = tview.NewApplication()
 	startPageID := config.PageID.Network
+
+	if settings != nil {
+		pages.SetSettings(*settings)
+	}
 
 	pages.Setup(state.CurrentApp)
 	allPages := pages.Pages
@@ -40,4 +46,11 @@ func Run() (func() pages.SettingsType, error) {
 		SetRoot(allPages, true).
 		EnableMouse(true).
 		SetFocus(firstElement).Run()
+}
+
+func main() {
+	_, err := Run(nil)
+	if err != nil {
+		panic(err)
+	}
 }
