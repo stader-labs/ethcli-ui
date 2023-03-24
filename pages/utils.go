@@ -39,6 +39,15 @@ func GetRandomEcClient() string {
 func GetRandomCcClient() string {
 	availableCcClients := []string{"lighthouse", "nimbus", "prysm", "teku"}
 
+	// If is a low power device ignore teku
+	// TODO - bchain - these are heuristics for now. We need to properly come up with these numbers via benchmarks
+	totalMemoryGB := memory.TotalMemory() / 1024 / 1024 / 1024
+	isLowPower := (totalMemoryGB < 15 || runtime.GOARCH == "arm64")
+
+	if isLowPower {
+		availableCcClients = []string{"lighthouse", "nimbus", "prysm"}
+	}
+
 	rand.Seed(time.Now().UnixNano())
 	randIndex := rand.Intn(len(availableCcClients))
 
