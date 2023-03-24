@@ -25,3 +25,5 @@ bin/
 coverage.out
 *.log
 ethcliui-settings.json
+
+ethcli-ui

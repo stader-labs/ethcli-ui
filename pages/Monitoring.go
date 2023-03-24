@@ -17,7 +17,6 @@ type Monitoring struct {
 
 func (n *Monitoring) Page() tview.Primitive {
 	n.PageType.ID = config.PageID.Monitoring
-	cOptions := config.Monitoring.Options
 
 	body, buttons := components.BodyWithOptions(
 		`Monitoring system will provide valuable insights into your hardware stats, such
@@ -28,7 +27,8 @@ Please note that none of this information will not be transmitted to any distant
 server for examination - purely for your consumption on your node.
 		
 Are you interested in enabling Monitoring system?`,
-		cOptions,
+		config.Monitoring.Options,
+		config.Monitoring.OptionLabels,
 		n.onSumit,
 	)
 	n.buttons = buttons

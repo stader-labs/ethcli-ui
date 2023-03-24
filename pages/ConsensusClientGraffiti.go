@@ -21,12 +21,19 @@ func (p *ConsensusClientGraffiti) Page() tview.Primitive {
 	p.PageType.ID = config.PageID.ConsensusClientGraffiti
 
 	form := tview.NewForm().
-		AddInputField("Add graffiti", "", 0, nil, func(text string) {
-			state.ConsensusClient.Graffiti = text
-		}).
+		AddInputField("Add graffiti", state.ConsensusClient.Graffiti, 0,
+			func(textToCheck string, lastChar rune) bool {
+				return len(textToCheck) <= 16
+			},
+			func(text string) {
+				state.ConsensusClient.Graffiti = text
+			},
+		).
 		AddButton("Next", func() {
 			p.onSumit()
 		})
+
+	formHeight := 3 + 2
 
 	p.firstElement = form
 
@@ -39,6 +46,8 @@ This feature is non-mandatory and is intended purely
 for fun! If you do not wish to add any graffiti, simply
 leave it blank.`
 
+	bodyTextHeight := strings.Count(bodyText, "\n") + 1
+
 	formWrap := tview.NewFlex().
 		SetDirection(tview.FlexColumn).
 		AddItem(nil, 0, 1, false).
@@ -46,18 +55,20 @@ leave it blank.`
 			tview.NewFlex().
 				SetDirection(tview.FlexRow).
 				AddItem(nil, 0, 1, false).
-				AddItem(utils.CenterText(bodyText), strings.Count(bodyText, "\n")+1, 1, false).
+				AddItem(utils.CenterText(bodyText), bodyTextHeight, 1, false).
 				AddItem(nil, 1, 1, false).
-				AddItem(form, 5, 1, false).
+				AddItem(form, formHeight, 1, false).
 				AddItem(nil, 0, 1, false),
 			60, 1, false,
 		).
 		AddItem(nil, 0, 1, false)
 
+	formWrapHeight := formHeight + bodyTextHeight + 1
+
 	content := tview.NewFlex().
 		SetDirection(tview.FlexRow).
 		AddItem(nil, 0, 1, false).
-		AddItem(formWrap, 10, 1, false).
+		AddItem(formWrap, formWrapHeight, 1, false).
 		AddItem(nil, 0, 1, false)
 
 	body := tview.NewFlex().
@@ -87,11 +98,11 @@ func (p *ConsensusClientGraffiti) onSumit() {
 func (p *ConsensusClientGraffiti) GoBack() {
 	nextPage := config.PageID.ConsensusClientSelection
 	if state.ETHClient.SelectedOption == config.ETHClient.Option.ExternallyManaged {
-		if state.ExecutionClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Teku {
+		if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Teku {
 			nextPage = config.PageID.ConsensusClientExternalSelectedTeku
-		} else if state.ExecutionClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Lighthouse {
+		} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Lighthouse {
 			nextPage = config.PageID.ConsensusClientExternalSelectedLighthouse
-		} else if state.ExecutionClientExternalSelection.SelectedOption == config.ExecutionClientExternalSelection.Option.Prysm {
+		} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Prysm {
 			nextPage = config.PageID.ConsensusClientExternalSelectedPrysm
 		}
 	}

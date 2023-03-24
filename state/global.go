@@ -9,6 +9,10 @@ import (
 var (
 	CurrentApp *tview.Application
 
+	// If user successfully completed the Wizard or not
+	// Initialised with false, and becomes true on Confirmation page
+	Confirmed bool
+
 	Network = struct {
 		SelectedOption string
 	}{
@@ -35,10 +39,10 @@ var (
 		WebsocketBasedRpcApi: "",
 	}
 
-	ExecutionClientExternalSelection = struct {
+	ConsensusClientExternalSelection = struct {
 		SelectedOption string
 	}{
-		SelectedOption: config.ExecutionClientExternalSelection.Option.Lighthouse,
+		SelectedOption: config.ConsensusClientExternalSelection.Option.Lighthouse,
 	}
 
 	ConsensusClient = struct {
@@ -141,3 +145,7 @@ var (
 
 	OnDone func(settings interface{}, err error) = nil
 )
+
+func init() {
+	Confirmed = false
+}

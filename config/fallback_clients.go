@@ -6,8 +6,9 @@ type FllbackClientsOption struct {
 }
 
 var FallbackClients = struct {
-	Option  FllbackClientsOption
-	Options []string
+	Option       FllbackClientsOption
+	Options      []string
+	OptionLabels map[string]string
 }{
 	Option: FllbackClientsOption{
 		Yes: "Yes",
@@ -19,5 +20,10 @@ func init() {
 	FallbackClients.Options = []string{
 		FallbackClients.Option.Yes,
 		FallbackClients.Option.No,
+	}
+
+	FallbackClients.OptionLabels = map[string]string{
+		FallbackClients.Option.Yes: "Yes",
+		FallbackClients.Option.No:  "No",
 	}
 }

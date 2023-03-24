@@ -8,11 +8,11 @@ type NetworkOption struct {
 var Network = struct {
 	Option       NetworkOption
 	Options      []string
+	OptionLabels map[string]string
 	Descriptions map[string]string
 }{
 	Option: NetworkOption{
-		// EthereumMainnet: "Ethereum Mainnet",
-		GoerliTestnet: "Goerli Testnet",
+		GoerliTestnet: "prater",
 	},
 }
 
@@ -20,6 +20,11 @@ func init() {
 	Network.Options = []string{
 		// Network.Option.EthereumMainnet,
 		Network.Option.GoerliTestnet,
+	}
+
+	Network.OptionLabels = map[string]string{
+		// Network.Option.EthereumMainnet: "Ethereum Mainnet",
+		Network.Option.GoerliTestnet: "Goerli Testnet",
 	}
 
 	Network.Descriptions = map[string]string{
@@ -34,12 +39,10 @@ func init() {
 		// you're ready to take on this
 		// challenge, Ethereum Mainnet
 		// welcomes you!`,
-		Network.Option.GoerliTestnet: `Goerli is a test network that
-provides a secure and cost-free
-environment for practicing the
-operation of Stader Node. By
-choosing this network, you can
-create Demo validators using
-GoerliETH.`,
+		Network.Option.GoerliTestnet: `Goerli is a test network that provides
+a secure and zero-cost environment for
+executing Stader Node operations. By
+choosing this network, you can create
+Demo validators using testnet ETH.`,
 	}
 }

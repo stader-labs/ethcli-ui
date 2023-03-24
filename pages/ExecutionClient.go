@@ -18,10 +18,10 @@ type ExecutionClient struct {
 	titleTextView       *tview.TextView
 	descriptionTextView *tview.TextView
 	rightSide           *tview.Flex
+	currentValue        string
 }
 
 func (p *ExecutionClient) Page() tview.Primitive {
-	cOptions := config.ExecutionClient.Options
 	cDescriptions := config.ExecutionClient.Descriptions
 	p.PageType.ID = config.PageID.ExecutionClient
 
@@ -33,7 +33,8 @@ func (p *ExecutionClient) Page() tview.Primitive {
 If you have no strong preference, we
 suggest selecting System-recommended for your
 convenience.`,
-		cOptions,
+		config.ExecutionClient.Options,
+		config.ExecutionClient.OptionLabels,
 		p.onSumit,
 	)
 	p.buttons = buttons
@@ -44,11 +45,11 @@ convenience.`,
 		AddItem(p.titleTextView, 2, 1, false).
 		AddItem(
 			p.descriptionTextView,
-			strings.Count(cDescriptions[state.ExecutionClient.SelectedOption], "\n"), 1, false,
+			strings.Count(cDescriptions[state.ExecutionClient.SelectedOption], "\n")+1, 1, false,
 		).
 		AddItem(nil, 0, 1, false)
 
-	p.updateRightSidebar()
+	p.updateRightSidebar(state.ExecutionClient.SelectedOption)
 
 	body := tview.NewFlex().
 		SetDirection(tview.FlexColumn).
@@ -65,48 +66,60 @@ convenience.`,
 		AddItem(components.Footer(), 3, 1, false)
 }
 
-func (p *ExecutionClient) updateRightSidebar() {
-	desc := config.ExecutionClient.Descriptions[state.ExecutionClient.SelectedOption]
-	p.titleTextView.SetText(state.ExecutionClient.SelectedOption)
+func (p *ExecutionClient) updateRightSidebar(option string) {
+	desc := config.ExecutionClient.Descriptions[option]
+	p.currentValue = option
+	p.titleTextView.SetText(option)
 	p.descriptionTextView.SetText(desc)
 
 	if p.rightSide != nil {
-		p.rightSide.ResizeItem(p.descriptionTextView, strings.Count(desc, "\n"), 1)
+		p.rightSide.ResizeItem(p.descriptionTextView, strings.Count(desc, "\n")+1, 1)
 	} else {
 		log.Error("Update right sidebar: ", "nil")
 	}
-}
 
-func (p *ExecutionClient) handleSelectedOption(option string) {
-	if option != config.ExecutionClient.Option.SystemRecommended {
-		state.ExecutionClient.SelectedOption = option
-	} else {
-		state.ExecutionClient.SelectedOption = utils.GetRandomItem(
-			config.ExecutionClient.Options,
-			option,
-		)
-	}
+	p.App.SetFocus(p.buttons[option])
 }
 
 func (p *ExecutionClient) onSumit(option string) {
-	p.handleSelectedOption(option)
-	ChangePage(config.PageID.ConsensusClientSelection)
+	if option != config.ExecutionClient.Option.SystemRecommended {
+		state.ExecutionClient.SelectedOption = option
+		ChangePage(config.PageID.ConsensusClientSelection)
+		return
+	}
+
+	// TODO: fix hardcoded values
+	recommendedValue := GetRandomEcClient()
+	recommendedLabel := config.ExecutionClient.OptionLabels[recommendedValue]
+
+	alert := components.Alert(
+		"System-recommended: "+recommendedLabel,
+		[]string{"OK", "Back"},
+		map[string]func(){
+			"OK": func() {
+				state.ExecutionClient.SelectedOption = recommendedValue
+				p.App.SetRoot(Pages, true)
+				ChangePage(config.PageID.ConsensusClientSelection)
+			},
+			"Back": func() {
+				p.App.SetRoot(Pages, true).SetFocus(p.GetFirstElement())
+			},
+		},
+	)
+
+	p.App.SetRoot(alert, true)
 }
 
 func (p *ExecutionClient) selectPrevOption() {
-	prevItem, _ := utils.GetPrevItem(config.ExecutionClient.Options, state.ExecutionClient.SelectedOption)
-	log.Infof("Select prev: [%s] to [%s]", state.ExecutionClient.SelectedOption, prevItem)
-	p.handleSelectedOption(prevItem)
-	p.updateRightSidebar()
-	p.App.SetFocus(p.buttons[prevItem])
+	prevItem, _ := utils.GetPrevItem(config.ExecutionClient.Options, p.currentValue)
+	log.Infof("Select prev: [%s] to [%s]", p.currentValue, prevItem)
+	p.updateRightSidebar(prevItem)
 }
 
 func (p *ExecutionClient) selectNextOption() {
-	nextItem, _ := utils.GetNextItem(config.ExecutionClient.Options, state.ExecutionClient.SelectedOption)
-	log.Infof("Select next: [%s] to [%s]", state.ExecutionClient.SelectedOption, nextItem)
-	p.handleSelectedOption(nextItem)
-	p.updateRightSidebar()
-	p.App.SetFocus(p.buttons[nextItem])
+	nextItem, _ := utils.GetNextItem(config.ExecutionClient.Options, p.currentValue)
+	log.Infof("Select next: [%s] to [%s]", p.currentValue, nextItem)
+	p.updateRightSidebar(nextItem)
 }
 
 func (p *ExecutionClient) GoBack() {
@@ -114,6 +127,11 @@ func (p *ExecutionClient) GoBack() {
 }
 
 func (p *ExecutionClient) HandleEvents(event *tcell.EventKey) *tcell.EventKey {
+	shouldHandleEvents := Pages.HasFocus()
+	if !shouldHandleEvents {
+		return event
+	}
+
 	var key = event.Key()
 
 	if key == tcell.KeyLeft {

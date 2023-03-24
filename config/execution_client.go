@@ -10,13 +10,14 @@ type ExecutionClientOption struct {
 var ExecutionClient = struct {
 	Option       ExecutionClientOption
 	Options      []string
+	OptionLabels map[string]string
 	Descriptions map[string]string
 }{
 	Option: ExecutionClientOption{
 		SystemRecommended: "System-recommended",
-		Geth:              "Geth",
-		Nethermind:        "Nethermind",
-		Besu:              "Besu",
+		Geth:              "geth",
+		Nethermind:        "nethermind",
+		Besu:              "besu",
 	},
 }
 
@@ -26,6 +27,13 @@ func init() {
 		ExecutionClient.Option.Geth,
 		ExecutionClient.Option.Nethermind,
 		ExecutionClient.Option.Besu,
+	}
+
+	ExecutionClient.OptionLabels = map[string]string{
+		ExecutionClient.Option.SystemRecommended: "System-recommended",
+		ExecutionClient.Option.Geth:              "Geth",
+		ExecutionClient.Option.Nethermind:        "Nethermind",
+		ExecutionClient.Option.Besu:              "Besu",
 	}
 
 	ExecutionClient.Descriptions = map[string]string{

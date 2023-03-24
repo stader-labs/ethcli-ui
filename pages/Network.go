@@ -18,10 +18,10 @@ type Network struct {
 	titleTextView       *tview.TextView
 	descriptionTextView *tview.TextView
 	rightSide           *tview.Flex
+	buttonLabels        map[string]string
 }
 
 func (n *Network) Page() tview.Primitive {
-	cOptions := config.Network.Options
 	cDescriptions := config.Network.Descriptions
 
 	n.PageType.ID = config.PageID.Network
@@ -31,7 +31,8 @@ func (n *Network) Page() tview.Primitive {
 
 	left, buttons := components.BodyWithOptions(
 		"Please select the network where you want to set\nup your node.",
-		cOptions,
+		config.Network.Options,
+		config.Network.OptionLabels,
 		n.onSumit,
 	)
 	n.buttons = buttons
@@ -42,7 +43,7 @@ func (n *Network) Page() tview.Primitive {
 		AddItem(n.titleTextView, 2, 1, false).
 		AddItem(
 			n.descriptionTextView,
-			strings.Count(cDescriptions[state.Network.SelectedOption], "\n"), 1, false,
+			strings.Count(cDescriptions[state.Network.SelectedOption], "\n")+1, 1, false,
 		).
 		AddItem(nil, 0, 1, false)
 
@@ -64,11 +65,13 @@ func (n *Network) Page() tview.Primitive {
 
 func (n *Network) updateRightSidebar() {
 	desc := config.Network.Descriptions[state.Network.SelectedOption]
-	n.titleTextView.SetText(state.Network.SelectedOption)
+	title := config.Network.OptionLabels[state.Network.SelectedOption]
+
+	n.titleTextView.SetText(title)
 	n.descriptionTextView.SetText(desc)
 
 	if n.rightSide != nil {
-		n.rightSide.ResizeItem(n.descriptionTextView, strings.Count(desc, "\n"), 1)
+		n.rightSide.ResizeItem(n.descriptionTextView, strings.Count(desc, "\n")+1, 1)
 	} else {
 		log.Error("Update right sidebar: ", "nil")
 	}

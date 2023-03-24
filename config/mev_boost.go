@@ -8,11 +8,12 @@ type MEVBoostOption struct {
 var MEVBoost = struct {
 	Option       MEVBoostOption
 	Options      []string
+	OptionLabels map[string]string
 	Descriptions map[string]string
 }{
 	Option: MEVBoostOption{
-		LocallyManaged:    "Locally managed",
-		ExternallyManaged: "Externally managed",
+		LocallyManaged:    "local",
+		ExternallyManaged: "external",
 	},
 }
 
@@ -20,6 +21,11 @@ func init() {
 	MEVBoost.Options = []string{
 		MEVBoost.Option.LocallyManaged,
 		MEVBoost.Option.ExternallyManaged,
+	}
+
+	MEVBoost.OptionLabels = map[string]string{
+		MEVBoost.Option.LocallyManaged:    "Locally managed",
+		MEVBoost.Option.ExternallyManaged: "Externally managed",
 	}
 
 	MEVBoost.Descriptions = map[string]string{

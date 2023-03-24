@@ -21,7 +21,6 @@ type ETHClient struct {
 }
 
 func (p *ETHClient) Page() tview.Primitive {
-	cOptions := config.ETHClient.Options
 	cDescriptions := config.ETHClient.Descriptions
 	p.PageType.ID = config.PageID.EthClient
 
@@ -29,8 +28,10 @@ func (p *ETHClient) Page() tview.Primitive {
 	p.descriptionTextView = tview.NewTextView()
 
 	left, buttons := components.BodyWithOptions(
-		"Select your preferred method for managing your\nExecution and Consensus clients.",
-		cOptions,
+		`Select your preferred method for managing your
+Execution and Consensus clients.`,
+		config.ETHClient.Options,
+		config.ETHClient.OptionLabels,
 		p.onSumit,
 	)
 	p.buttons = buttons
@@ -41,7 +42,7 @@ func (p *ETHClient) Page() tview.Primitive {
 		AddItem(p.titleTextView, 2, 1, false).
 		AddItem(
 			p.descriptionTextView,
-			strings.Count(cDescriptions[state.ETHClient.SelectedOption], "\n"), 1, false,
+			strings.Count(cDescriptions[state.ETHClient.SelectedOption], "\n")+1, 1, false,
 		).
 		AddItem(nil, 0, 1, false)
 
@@ -63,11 +64,13 @@ func (p *ETHClient) Page() tview.Primitive {
 
 func (p *ETHClient) updateRightSidebar() {
 	desc := config.ETHClient.Descriptions[state.ETHClient.SelectedOption]
-	p.titleTextView.SetText(state.ETHClient.SelectedOption)
+	title := config.ETHClient.OptionLabels[state.ETHClient.SelectedOption]
+
+	p.titleTextView.SetText(title)
 	p.descriptionTextView.SetText(desc)
 
 	if p.rightSide != nil {
-		p.rightSide.ResizeItem(p.descriptionTextView, strings.Count(desc, "\n"), 1)
+		p.rightSide.ResizeItem(p.descriptionTextView, strings.Count(desc, "\n")+1, 1)
 	} else {
 		log.Error("Update right sidebar: ", "nil")
 	}

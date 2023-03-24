@@ -12,6 +12,7 @@ import (
 func BodyWithOptions(
 	instructions string,
 	options []string,
+	optionLabels map[string]string,
 	onSelect func(option string),
 ) (body *tview.Flex, buttons map[string]*tview.Button) {
 	buttons = make(map[string]*tview.Button)
@@ -41,11 +42,8 @@ func BodyWithOptions(
 
 		for i, v := range chunk {
 			btn := func(v string) *tview.Button {
-				return tview.NewButton(v).
+				return tview.NewButton(optionLabels[v]).
 					SetSelectedFunc(func() {
-
-						log.Info("=======Selected option: ", v)
-
 						onSelect(v)
 					}).
 					SetStyle(btnStyle).

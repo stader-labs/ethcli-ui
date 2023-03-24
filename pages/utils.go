@@ -1,15 +1,64 @@
 package pages
 
 import (
+	"github.com/pbnjay/memory"
+	"math/rand"
+	"runtime"
+	"time"
+
 	"github.com/stader-labs/ethcli-ui/state"
 )
 
 func ChangePage(nextPage string) {
+	currentPageName, _ := Pages.GetFrontPage()
+	log.Infof("ChangePage: from [%s] to [%s]", currentPageName, nextPage)
 	Pages.SwitchToPage(nextPage)
 	pageInstance := All[nextPage]
 	firstElement := pageInstance.GetFirstElement()
 	state.CurrentApp.SetFocus(firstElement)
 	pageInstance.OnResume()
+}
+
+func GetRandomEcClient() string {
+	availableEcClients := []string{"geth", "nethermind", "besu"}
+
+	// If is a low power device ignore nethermind
+	totalMemoryGB := memory.TotalMemory() / 1024 / 1024 / 1024
+	isLowPower := (totalMemoryGB < 15 || runtime.GOARCH == "arm64")
+
+	if isLowPower {
+		availableEcClients = []string{"geth", "besu"}
+	}
+
+	rand.Seed(time.Now().UnixNano())
+	randIndex := rand.Intn(len(availableEcClients))
+
+	return availableEcClients[randIndex]
+}
+
+func GetRandomCcClient() string {
+	availableCcClients := []string{"lighthouse", "nimbus", "prysm", "teku"}
+
+	rand.Seed(time.Now().UnixNano())
+	randIndex := rand.Intn(len(availableCcClients))
+
+	return availableCcClients[randIndex]
+}
+
+func GetEcClient(ecClient string) string {
+	if ecClient == "System-recommended" {
+		return GetRandomEcClient()
+	}
+
+	return ecClient
+}
+
+func GetCcClient(ccClient string) string {
+	if ccClient == "System-recommended" {
+		return GetRandomCcClient()
+	}
+
+	return ccClient
 }
 
 // func GoBack(app *tview.Application) {
@@ -74,8 +123,8 @@ func ChangePage(nextPage string) {
 // 	} else if currentPage == pid.ConsensusClientGraffiti {
 // 		nextPage = pid.ConsensusClientSelection
 // 	} else if currentPage == pid.ConsensusClientSelection {
-// 		nextPage = pid.ExecutionClient
-// 	} else if currentPage == pid.ExecutionClient {
+// 		nextPage = pid.ExecutionClientSettingsType
+// 	} else if currentPage == pid.ExecutionClientSettingsType {
 // 		nextPage = pid.EthClient
 // 	} else if currentPage == pid.EthClient {
 // 		nextPage = pid.Network
@@ -85,104 +134,108 @@ func ChangePage(nextPage string) {
 // 	ChangePage(nextPage)
 // }
 
-type consensusClientExternalSelectedLighthouseType struct {
+type ConsensusClientExternalSelectedLighthouseType struct {
 	HTTPUrl string `json:"httpUrl"`
 }
 
-type consensusClientExternalSelectedPrysmType struct {
+type ConsensusClientExternalSelectedPrysmType struct {
 	HTTPUrl    string `json:"httpUrl"`
 	JSONRpcUrl string `json:"jsonRpcUrl"`
 }
 
-type consensusClientExternalSelectedTekuType struct {
+type ConsensusClientExternalSelectedTekuType struct {
 	HTTPUrl string `json:"httpUrl"`
 }
 
-type consensusClientExternalType struct {
-	Lighthouse consensusClientExternalSelectedLighthouseType `json:"lighthouse"`
-	Prysm      consensusClientExternalSelectedPrysmType      `json:"prysm"`
-	Teku       consensusClientExternalSelectedTekuType       `json:"teku"`
+type ConsensusClientExternalType struct {
+	Lighthouse ConsensusClientExternalSelectedLighthouseType `json:"lighthouse"`
+	Prysm      ConsensusClientExternalSelectedPrysmType      `json:"prysm"`
+	Teku       ConsensusClientExternalSelectedTekuType       `json:"teku"`
 }
 
-type consensusClientType struct {
+type ConsensusClientSettingsType struct {
 	Selection              string                      `json:"selection"`
+	ExternalSelection      string                      `json:"externalSelection"`
 	Graffit                string                      `json:"graffit"`
 	CheckpointUrl          string                      `json:"checkpointUrl"`
 	DoppelgangerProtection string                      `json:"doppelgangerProtection"`
-	External               consensusClientExternalType `json:"external"`
+	External               ConsensusClientExternalType `json:"external"`
 }
 
-type fallbackClientsLighthouseType struct {
-	ExecutionClientUrl string `json:"executionClient"`
+type FallbackClientsLighthouseType struct {
+	ExecutionClientUrl string `json:"executionClientUrl"`
 	BeaconNodeHttpUrl  string `json:"beaconNodeHttpUrl"`
 }
 
-type fallbackClientsPrysmType struct {
-	ExecutionClientUrl    string `json:"executionClient"`
+type FallbackClientsPrysmType struct {
+	ExecutionClientUrl    string `json:"executionClientUrl"`
 	BeaconNodeHttpUrl     string `json:"beaconNodeHttpUrl"`
 	BeaconNodeJsonRpcpUrl string `json:"beaconNodeJsonRpcpUrl"`
 }
 
-type fallbackClientsTekuType struct {
-	ExecutionClientUrl string `json:"executionClient"`
+type FallbackClientsTekuType struct {
+	ExecutionClientUrl string `json:"executionClientUrl"`
 	BeaconNodeHttpUrl  string `json:"beaconNodeHttpUrl"`
 }
 
-type fallbackClientsType struct {
+type FallbackClientsSettingsType struct {
 	SelectionOption string                        `json:"selectionOption"`
-	Lighthouse      fallbackClientsLighthouseType `json:"lighthouse"`
-	Prysm           fallbackClientsPrysmType      `json:"prysm"`
-	Teku            fallbackClientsTekuType       `json:"teku"`
+	Lighthouse      FallbackClientsLighthouseType `json:"lighthouse"`
+	Prysm           FallbackClientsPrysmType      `json:"prysm"`
+	Teku            FallbackClientsTekuType       `json:"teku"`
 }
 
-type executionClientExternal struct {
+type ExecutionClientExternalType struct {
 	HTTPBasedRpcApi      string `json:"httpBasedRpcApi"`
 	WebsocketBasedRpcApi string `json:"websocketBasedRpcApi"`
 }
 
-type executionClient struct {
-	SelectionOption string                  `json:"selectionOption"`
-	External        executionClientExternal `json:"external"`
+type ExecutionClientSettingsType struct {
+	SelectionOption string                      `json:"selectionOption"`
+	External        ExecutionClientExternalType `json:"external"`
 }
 
 type SettingsType struct {
-	Network                  string              `json:"network"`
-	EthClient                string              `json:"ethClient"`
-	ExecutionClient          executionClient     `json:"executionClient"`
-	ConsensusClient          consensusClientType `json:"consensusClient"`
-	Monitoring               string              `json:"monitoring"`
-	MEVBoost                 string              `json:"mevBoost"`
-	MEVBoostExternalMevUrl   string              `json:"mevBoostLocalMevUrl"`
-	MEVBoostLocalRegulated   bool                `json:"mevBoostLocalRegulated"`
-	MEVBoostLocalUnregulated bool                `json:"mevBoostLocalUnregulated"`
-	FallbackClients          fallbackClientsType `json:"fallbackClients"`
+	Confirmed                bool                        `json:"confirmed"`
+	Network                  string                      `json:"network"`
+	EthClient                string                      `json:"ethClient"`
+	ExecutionClient          ExecutionClientSettingsType `json:"executionClient"`
+	ConsensusClient          ConsensusClientSettingsType `json:"consensusClient"`
+	Monitoring               string                      `json:"monitoring"`
+	MEVBoost                 string                      `json:"mevBoost"`
+	MEVBoostExternalMevUrl   string                      `json:"mevBoostLocalMevUrl"`
+	MEVBoostLocalRegulated   bool                        `json:"mevBoostLocalRegulated"`
+	MEVBoostLocalUnregulated bool                        `json:"mevBoostLocalUnregulated"`
+	FallbackClients          FallbackClientsSettingsType `json:"fallbackClients"`
 }
 
 func GetSettings() SettingsType {
 	settings := SettingsType{
+		Confirmed: state.Confirmed,
 		Network:   state.Network.SelectedOption,
 		EthClient: state.ETHClient.SelectedOption,
-		ExecutionClient: executionClient{
+		ExecutionClient: ExecutionClientSettingsType{
 			SelectionOption: state.ExecutionClient.SelectedOption,
-			External: executionClientExternal{
+			External: ExecutionClientExternalType{
 				HTTPBasedRpcApi:      state.ExecutionClientExternal.HTTPBasedRpcApi,
 				WebsocketBasedRpcApi: state.ExecutionClientExternal.WebsocketBasedRpcApi,
 			},
 		},
-		ConsensusClient: consensusClientType{
+		ConsensusClient: ConsensusClientSettingsType{
 			Selection:              state.ConsensusClient.SelectionSelectedOption,
+			ExternalSelection:      state.ConsensusClientExternalSelection.SelectedOption,
 			Graffit:                state.ConsensusClient.Graffiti,
 			CheckpointUrl:          state.ConsensusClient.CheckpointUrl,
 			DoppelgangerProtection: state.ConsensusClient.DopelgangerProtectionSelectedOption,
-			External: consensusClientExternalType{
-				Lighthouse: consensusClientExternalSelectedLighthouseType{
+			External: ConsensusClientExternalType{
+				Lighthouse: ConsensusClientExternalSelectedLighthouseType{
 					HTTPUrl: state.ConsensusClientExternalSelectedLighthouse.HTTPUrl,
 				},
-				Prysm: consensusClientExternalSelectedPrysmType{
+				Prysm: ConsensusClientExternalSelectedPrysmType{
 					HTTPUrl:    state.ConsensusClientExternalSelectedPrysm.HTTPUrl,
 					JSONRpcUrl: state.ConsensusClientExternalSelectedPrysm.JSONRpcUrl,
 				},
-				Teku: consensusClientExternalSelectedTekuType{
+				Teku: ConsensusClientExternalSelectedTekuType{
 					HTTPUrl: state.ConsensusClientExternalSelectedTeku.HTTPUrl,
 				},
 			},
@@ -192,18 +245,18 @@ func GetSettings() SettingsType {
 		MEVBoostExternalMevUrl:   state.MEVBoostExternal.MevUrl,
 		MEVBoostLocalRegulated:   state.MEVBoostLocal.Regulated,
 		MEVBoostLocalUnregulated: state.MEVBoostLocal.Unregulated,
-		FallbackClients: fallbackClientsType{
+		FallbackClients: FallbackClientsSettingsType{
 			SelectionOption: state.FallbackClients.SelectedOption,
-			Lighthouse: fallbackClientsLighthouseType{
+			Lighthouse: FallbackClientsLighthouseType{
 				ExecutionClientUrl: state.FallbackClientsLighthouse.ExecutionClientUrl,
 				BeaconNodeHttpUrl:  state.FallbackClientsLighthouse.BeaconNodeHttpUrl,
 			},
-			Prysm: fallbackClientsPrysmType{
+			Prysm: FallbackClientsPrysmType{
 				ExecutionClientUrl:    state.FallbackClientsPrysm.ExecutionClientUrl,
 				BeaconNodeHttpUrl:     state.FallbackClientsPrysm.BeaconNodeHttpUrl,
 				BeaconNodeJsonRpcpUrl: state.FallbackClientsPrysm.BeaconNodeJsonRpcpUrl,
 			},
-			Teku: fallbackClientsTekuType{
+			Teku: FallbackClientsTekuType{
 				ExecutionClientUrl: state.FallbackClientsTeku.ExecutionClientUrl,
 				BeaconNodeHttpUrl:  state.FallbackClientsTeku.BeaconNodeHttpUrl,
 			},
@@ -211,6 +264,48 @@ func GetSettings() SettingsType {
 	}
 
 	return settings
+}
+
+func SetSettings(settings SettingsType) {
+	// Should initialise with false value always
+	// state.Confirmed = settings.Confirmed
+
+	state.Network.SelectedOption = settings.Network
+
+	state.ETHClient.SelectedOption = settings.EthClient
+
+	state.ExecutionClient.SelectedOption = settings.ExecutionClient.SelectionOption
+
+	state.ExecutionClientExternal.HTTPBasedRpcApi = settings.ExecutionClient.External.HTTPBasedRpcApi
+	state.ExecutionClientExternal.WebsocketBasedRpcApi = settings.ExecutionClient.External.WebsocketBasedRpcApi
+
+	state.ConsensusClient.SelectionSelectedOption = settings.ConsensusClient.Selection
+	state.ConsensusClient.Graffiti = settings.ConsensusClient.Graffit
+	state.ConsensusClient.CheckpointUrl = settings.ConsensusClient.CheckpointUrl
+	state.ConsensusClient.DopelgangerProtectionSelectedOption = settings.ConsensusClient.DoppelgangerProtection
+
+	state.ConsensusClientExternalSelection.SelectedOption = settings.ConsensusClient.ExternalSelection
+	state.ConsensusClientExternalSelectedLighthouse.HTTPUrl = settings.ConsensusClient.External.Lighthouse.HTTPUrl
+	state.ConsensusClientExternalSelectedPrysm.HTTPUrl = settings.ConsensusClient.External.Prysm.HTTPUrl
+	state.ConsensusClientExternalSelectedPrysm.JSONRpcUrl = settings.ConsensusClient.External.Prysm.JSONRpcUrl
+	state.ConsensusClientExternalSelectedTeku.HTTPUrl = settings.ConsensusClient.External.Teku.HTTPUrl
+
+	state.Monitoring.SelectedOption = settings.Monitoring
+
+	state.MEVBoost.SelectedOption = settings.MEVBoost
+
+	state.MEVBoostExternal.MevUrl = settings.MEVBoostExternalMevUrl
+
+	state.MEVBoostLocal.Regulated = settings.MEVBoostLocalRegulated
+	state.MEVBoostLocal.Unregulated = settings.MEVBoostLocalUnregulated
+
+	state.FallbackClients.SelectedOption = settings.FallbackClients.SelectionOption
+	state.FallbackClientsLighthouse.ExecutionClientUrl = settings.FallbackClients.Lighthouse.ExecutionClientUrl
+	state.FallbackClientsLighthouse.BeaconNodeHttpUrl = settings.FallbackClients.Lighthouse.BeaconNodeHttpUrl
+	state.FallbackClientsPrysm.ExecutionClientUrl = settings.FallbackClients.Prysm.ExecutionClientUrl
+	state.FallbackClientsPrysm.BeaconNodeHttpUrl = settings.FallbackClients.Prysm.BeaconNodeHttpUrl
+	state.FallbackClientsPrysm.BeaconNodeJsonRpcpUrl = settings.FallbackClients.Prysm.BeaconNodeJsonRpcpUrl
+	state.FallbackClientsTeku.ExecutionClientUrl = settings.FallbackClients.Teku.ExecutionClientUrl
 }
 
 // func saveSettings() error {

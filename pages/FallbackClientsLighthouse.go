@@ -1,6 +1,8 @@
 package pages
 
 import (
+	"strings"
+
 	"github.com/stader-labs/ethcli-ui/components"
 	"github.com/stader-labs/ethcli-ui/config"
 	"github.com/stader-labs/ethcli-ui/state"
@@ -37,11 +39,7 @@ func (p *FallbackClientsLighthouse) Page() tview.Primitive {
 		AddItem(form, 60, 1, false).
 		AddItem(nil, 0, 1, false)
 
-	left := tview.NewFlex().
-		SetDirection(tview.FlexRow).
-		AddItem(nil, 0, 1, false).
-		AddItem(
-			utils.CenterText(`Fallback Clients > Lighthouse
+	bodyText := `Fallback Clients > Lighthouse
 
 Your selected Consensus client's validator has the ability to connect with any
 Execution client and any Consensus client. 
@@ -49,8 +47,16 @@ Execution client and any Consensus client.
 To ensure proper connectivity, please enter the URLs of the HTTP APIs for your
 fallback clients.e.g.
 http://192.168.1.45:8545 for your Execution client and
-http://192.168.1.45:5052 for your fallback Lighthouse node.`),
-			7, 1, false,
+http://192.168.1.45:5052 for your fallback Lighthouse node.`
+
+	bodyTextHeight := strings.Count(bodyText, "\n") + 1
+
+	left := tview.NewFlex().
+		SetDirection(tview.FlexRow).
+		AddItem(nil, 0, 1, false).
+		AddItem(
+			utils.CenterText(bodyText),
+			bodyTextHeight, 1, false,
 		).
 		AddItem(nil, 2, 1, false).
 		AddItem(formWrap, 0, 1, false).

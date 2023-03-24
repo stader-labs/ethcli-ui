@@ -16,7 +16,6 @@ type ConsensusClientDopelgangerProtection struct {
 }
 
 func (p *ConsensusClientDopelgangerProtection) Page() tview.Primitive {
-	cOptions := config.ConsensusClient.Stage.DopelgangerProtection.Options
 	p.PageType.ID = config.PageID.ConsensusClientDopelgangerProtection
 
 	left, buttons := components.BodyWithOptions(
@@ -33,7 +32,8 @@ you can be rest assured that you're good to start
 attesting again
 		
 Do you want to enable this awesome feature?`,
-		cOptions,
+		config.ConsensusClient.Stage.DopelgangerProtection.Options,
+		config.ConsensusClient.Stage.DopelgangerProtection.OptionLabels,
 		p.onSumit,
 	)
 	p.buttons = buttons

@@ -22,7 +22,6 @@ type MEVBoost struct {
 
 func (p *MEVBoost) Page() tview.Primitive {
 	p.PageType.ID = config.PageID.MEVBoost
-	cOptions := config.MEVBoost.Options
 
 	p.titleTextView = tview.NewTextView()
 	p.descriptionTextView = tview.NewTextView()
@@ -34,7 +33,8 @@ block proposals.
 
 Would you prefer Stader to manage your MEV-
 Boost, or would you like to handle it yourself?`,
-		cOptions,
+		config.MEVBoost.Options,
+		config.MEVBoost.OptionLabels,
 		p.onSumit,
 	)
 	p.buttons = buttons
@@ -64,11 +64,13 @@ Boost, or would you like to handle it yourself?`,
 
 func (p *MEVBoost) updateRightSidebar() {
 	desc := config.MEVBoost.Descriptions[state.MEVBoost.SelectedOption]
-	p.titleTextView.SetText(state.MEVBoost.SelectedOption)
+	title := config.MEVBoost.OptionLabels[state.MEVBoost.SelectedOption]
+
+	p.titleTextView.SetText(title)
 	p.descriptionTextView.SetText(desc)
 
 	if p.rightSide != nil {
-		p.rightSide.ResizeItem(p.descriptionTextView, strings.Count(desc, "\n")+2, 1)
+		p.rightSide.ResizeItem(p.descriptionTextView, strings.Count(desc, "\n")+1, 1)
 	} else {
 		log.Error("Update right sidebar: ", "nil")
 	}

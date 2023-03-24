@@ -21,15 +21,17 @@ func (p *ExecutionClientExternal) Page() tview.Primitive {
 	p.PageType.ID = config.PageID.ExecutionClientExternal
 
 	form := tview.NewForm().
-		AddInputField("HTTP-based RPC API", "", 0, nil, func(text string) {
+		AddInputField("HTTP-based RPC API", state.ExecutionClientExternal.HTTPBasedRpcApi, 0, nil, func(text string) {
 			state.ExecutionClientExternal.HTTPBasedRpcApi = text
 		}).
-		AddInputField("Websocket-based RPC API", "", 0, nil, func(text string) {
+		AddInputField("Websocket-based RPC API", state.ExecutionClientExternal.WebsocketBasedRpcApi, 0, nil, func(text string) {
 			state.ExecutionClientExternal.WebsocketBasedRpcApi = text
 		}).
 		AddButton("Next", func() {
 			p.onSumit()
 		})
+
+	formHeight := 5 + 2
 
 	p.firstElement = form
 
@@ -38,6 +40,8 @@ and Websocket-based RPC API URL for your
 current clients.
 E.g. http://127.0.0.1:8545 & ws://127.0.0.1`
 
+	bodyTextHeight := strings.Count(bodyText, "\n") + 1
+
 	formWrap := tview.NewFlex().
 		SetDirection(tview.FlexColumn).
 		AddItem(nil, 0, 1, false).
@@ -45,18 +49,20 @@ E.g. http://127.0.0.1:8545 & ws://127.0.0.1`
 			tview.NewFlex().
 				SetDirection(tview.FlexRow).
 				AddItem(nil, 0, 1, false).
-				AddItem(utils.CenterText(bodyText), strings.Count(bodyText, "\n")+1, 1, false).
+				AddItem(utils.CenterText(bodyText), bodyTextHeight, 1, false).
 				AddItem(nil, 1, 1, false).
-				AddItem(form, 7, 1, false).
+				AddItem(form, formHeight, 1, false).
 				AddItem(nil, 0, 1, false),
 			60, 1, false,
 		).
 		AddItem(nil, 0, 1, false)
 
+	formWrapHeight := bodyTextHeight + formHeight + 1
+
 	content := tview.NewFlex().
 		SetDirection(tview.FlexRow).
 		AddItem(nil, 0, 1, false).
-		AddItem(formWrap, 10, 1, false).
+		AddItem(formWrap, formWrapHeight, 1, false).
 		AddItem(nil, 0, 1, false)
 
 	body := tview.NewFlex().
