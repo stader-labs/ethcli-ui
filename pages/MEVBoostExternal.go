@@ -17,8 +17,8 @@ type MEVBoostExternal struct {
 	// buttons             map[string]*tview.Button
 	titleTextView       *tview.TextView
 	descriptionTextView *tview.TextView
-	rightSide           *tview.Flex
-	firstElement        tview.Primitive
+	// rightSide           *tview.Flex
+	firstElement tview.Primitive
 }
 
 func (p *MEVBoostExternal) Page() tview.Primitive {
@@ -36,6 +36,8 @@ func (p *MEVBoostExternal) Page() tview.Primitive {
 			p.onSumit()
 		})
 
+	formHeight := 5
+
 	p.firstElement = form
 
 	formWrap := tview.NewFlex().
@@ -51,7 +53,7 @@ leave both options unchecked.`
 
 	bodyTextHeight := strings.Count(bodyText, "\n") + 1
 
-	left := tview.NewFlex().
+	body := tview.NewFlex().
 		SetDirection(tview.FlexRow).
 		AddItem(nil, 0, 1, false).
 		AddItem(
@@ -59,7 +61,7 @@ leave both options unchecked.`
 			bodyTextHeight, 1, false,
 		).
 		AddItem(nil, 2, 1, false).
-		AddItem(formWrap, 0, 1, false).
+		AddItem(formWrap, formHeight, 1, false).
 		AddItem(nil, 0, 1, false)
 
 	// 	left, buttons := components.BodyWithOptions(
@@ -72,20 +74,20 @@ leave both options unchecked.`
 	// 	)
 	// 	p.buttons = buttons
 
-	p.rightSide = tview.NewFlex().
-		SetDirection(tview.FlexRow).
-		AddItem(nil, 0, 1, false).
-		AddItem(p.titleTextView, 2, 1, false).
-		AddItem(p.descriptionTextView, 1, 1, false).
-		AddItem(nil, 0, 1, false)
+	// p.rightSide = tview.NewFlex().
+	// 	SetDirection(tview.FlexRow).
+	// 	AddItem(nil, 0, 1, false).
+	// 	AddItem(p.titleTextView, 2, 1, false).
+	// 	AddItem(p.descriptionTextView, 1, 1, false).
+	// 	AddItem(nil, 0, 1, false)
 
-	p.updateRightSidebar()
+	// p.updateRightSidebar()
 
-	body := tview.NewFlex().
-		SetDirection(tview.FlexColumn).
-		AddItem(left, 0, 1, false).
-		AddItem(components.VerticalLine(tcell.ColorDarkSlateGray), 4, 1, false).
-		AddItem(p.rightSide, 40, 1, false)
+	// body := tview.NewFlex().
+	// 	SetDirection(tview.FlexColumn).
+	// 	AddItem(left, 0, 1, false).
+	// 	AddItem(components.VerticalLine(tcell.ColorDarkSlateGray), 4, 1, false).
+	// 	AddItem(p.rightSide, 40, 1, false)
 
 	return tview.NewFlex().
 		SetDirection(tview.FlexRow).
@@ -95,17 +97,17 @@ leave both options unchecked.`
 		AddItem(components.Footer(), 3, 1, false)
 }
 
-func (p *MEVBoostExternal) updateRightSidebar() {
-	// desc := config.MEVBoostExternal.Descriptions[state.MEVBoostExternal.SelectedOption]
-	// p.titleTextView.SetText(state.MEVBoostExternal.SelectedOption)
-	// p.descriptionTextView.SetText(desc)
+// func (p *MEVBoostExternal) updateRightSidebar() {
+// 	// desc := config.MEVBoostExternal.Descriptions[state.MEVBoostExternal.SelectedOption]
+// 	// p.titleTextView.SetText(state.MEVBoostExternal.SelectedOption)
+// 	// p.descriptionTextView.SetText(desc)
 
-	// if p.rightSide != nil {
-	// 	p.rightSide.ResizeItem(p.descriptionTextView, strings.Count(desc, "\n")+2, 1)
-	// } else {
-	// 	log.Error("Update right sidebar: ", "nil")
-	// }
-}
+// 	// if p.rightSide != nil {
+// 	// 	p.rightSide.ResizeItem(p.descriptionTextView, strings.Count(desc, "\n")+2, 1)
+// 	// } else {
+// 	// 	log.Error("Update right sidebar: ", "nil")
+// 	// }
+// }
 
 func (p *MEVBoostExternal) onSumit() {
 	// state.MEVBoostExternal.SelectedOption = option
@@ -113,21 +115,21 @@ func (p *MEVBoostExternal) onSumit() {
 	ChangePage(config.PageID.Confirmation)
 }
 
-func (p *MEVBoostExternal) selectPrevOption() {
-	// prevItem, _ := utils.GetPrevItem(config.MEVBoostExternal.Options, state.MEVBoostExternal.SelectedOption)
-	// log.Infof("Select prev: [%s] to [%s]", state.MEVBoostExternal.SelectedOption, prevItem)
-	// state.MEVBoostExternal.SelectedOption = prevItem
-	// p.updateRightSidebar()
-	// p.App.SetFocus(p.buttons[prevItem])
-}
+// func (p *MEVBoostExternal) selectPrevOption() {
+// 	// prevItem, _ := utils.GetPrevItem(config.MEVBoostExternal.Options, state.MEVBoostExternal.SelectedOption)
+// 	// log.Infof("Select prev: [%s] to [%s]", state.MEVBoostExternal.SelectedOption, prevItem)
+// 	// state.MEVBoostExternal.SelectedOption = prevItem
+// 	// p.updateRightSidebar()
+// 	// p.App.SetFocus(p.buttons[prevItem])
+// }
 
-func (p *MEVBoostExternal) selectNextOption() {
-	// nextItem, _ := utils.GetNextItem(config.MEVBoostExternal.Options, state.MEVBoostExternal.SelectedOption)
-	// log.Infof("Select next: [%s] to [%s]", state.MEVBoostExternal.SelectedOption, nextItem)
-	// state.MEVBoostExternal.SelectedOption = nextItem
-	// p.updateRightSidebar()
-	// p.App.SetFocus(p.buttons[nextItem])
-}
+// func (p *MEVBoostExternal) selectNextOption() {
+// 	// nextItem, _ := utils.GetNextItem(config.MEVBoostExternal.Options, state.MEVBoostExternal.SelectedOption)
+// 	// log.Infof("Select next: [%s] to [%s]", state.MEVBoostExternal.SelectedOption, nextItem)
+// 	// state.MEVBoostExternal.SelectedOption = nextItem
+// 	// p.updateRightSidebar()
+// 	// p.App.SetFocus(p.buttons[nextItem])
+// }
 
 func (p *MEVBoostExternal) GoBack() {
 	ChangePage(config.PageID.MEVBoost)
@@ -136,13 +138,13 @@ func (p *MEVBoostExternal) GoBack() {
 func (p *MEVBoostExternal) HandleEvents(event *tcell.EventKey) *tcell.EventKey {
 	var key = event.Key()
 
-	if key == tcell.KeyLeft {
-		p.selectPrevOption()
-	}
+	// if key == tcell.KeyLeft {
+	// 	p.selectPrevOption()
+	// }
 
-	if key == tcell.KeyRight {
-		p.selectNextOption()
-	}
+	// if key == tcell.KeyRight {
+	// 	p.selectNextOption()
+	// }
 
 	if key == tcell.KeyEscape {
 		p.GoBack()
