@@ -3,9 +3,6 @@ package ethcliui
 // package main
 
 import (
-	"encoding/json"
-	"fmt"
-
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
 	"github.com/stader-labs/ethcli-ui/components"
@@ -26,8 +23,6 @@ func Run(settings *pages.SettingsType) (func() pages.SettingsType, error) {
 	state.CurrentApp = tview.NewApplication().EnableMouse(true)
 	startPageID := config.PageID.Network
 
-	marshelledSettings, _ := json.Marshal(settings)
-	fmt.Printf("settings are %s\n", string(marshelledSettings))
 	if settings != nil {
 		pages.SetSettings(*settings)
 	}
