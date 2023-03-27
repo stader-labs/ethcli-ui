@@ -19,6 +19,7 @@ func ChangePage(nextPage string) {
 	pageInstance.OnResume()
 }
 
+// TODO - bchain and hamid - refactor the types to a repo to share types b/w wizard and stader node
 func GetRandomEcClient() string {
 	availableEcClients := []string{"geth", "nethermind", "besu"}
 
