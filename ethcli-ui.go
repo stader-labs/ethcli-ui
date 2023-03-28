@@ -1,6 +1,6 @@
-// package ethcliui
+package ethcliui
 
-package main
+// package main
 
 import (
 	"encoding/json"
@@ -24,7 +24,7 @@ var (
 // If settings is nil, it will start the app with default settings
 func Run(settings *pages.SettingsType) (func() pages.SettingsType, error) {
 	state.CurrentApp = tview.NewApplication().EnableMouse(true)
-	startPageID := config.PageID.ExecutionClient
+	startPageID := config.PageID.Network
 
 	marshelledSettings, _ := json.Marshal(settings)
 	fmt.Printf("settings are %s\n", string(marshelledSettings))
