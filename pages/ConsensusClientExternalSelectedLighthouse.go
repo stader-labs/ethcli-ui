@@ -22,7 +22,7 @@ type ConsensusClientExternalSelectedLighthouse struct {
 func (p *ConsensusClientExternalSelectedLighthouse) Page() tview.Primitive {
 	p.PageType.ID = config.PageID.ConsensusClientExternalSelectedLighthouse
 
-	form := tview.NewForm().
+	form := components.Form().
 		AddInputField("HTTP URL", state.ConsensusClientExternalSelectedLighthouse.HTTPUrl, 0, nil, func(text string) {
 			state.ConsensusClientExternalSelectedLighthouse.HTTPUrl = text
 		}).

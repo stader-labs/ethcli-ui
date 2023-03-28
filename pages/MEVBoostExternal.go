@@ -28,7 +28,7 @@ func (p *MEVBoostExternal) Page() tview.Primitive {
 	p.titleTextView = tview.NewTextView()
 	p.descriptionTextView = tview.NewTextView()
 
-	form := tview.NewForm().
+	form := components.Form().
 		AddInputField("MEV URL", state.MEVBoostExternal.MevUrl, 0, nil, func(text string) {
 			state.MEVBoostExternal.MevUrl = text
 		}).
