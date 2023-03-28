@@ -1,6 +1,7 @@
 package pages
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/stader-labs/ethcli-ui/components"
@@ -22,11 +23,11 @@ type ExecutionClient struct {
 }
 
 func (p *ExecutionClient) Page() tview.Primitive {
-	cDescriptions := config.ExecutionClient.Descriptions
 	p.PageType.ID = config.PageID.ExecutionClient
 
 	p.titleTextView = tview.NewTextView()
 	p.descriptionTextView = tview.NewTextView()
+	p.currentValue = state.ExecutionClient.SelectedOption
 
 	left, buttons := components.BodyWithOptions(
 		`Kindly select the Execution client of your choice.
@@ -43,13 +44,10 @@ convenience.`,
 		SetDirection(tview.FlexRow).
 		AddItem(nil, 0, 1, false).
 		AddItem(p.titleTextView, 2, 1, false).
-		AddItem(
-			p.descriptionTextView,
-			strings.Count(cDescriptions[state.ExecutionClient.SelectedOption], "\n")+1, 1, false,
-		).
+		AddItem(p.descriptionTextView, 1, 1, false).
 		AddItem(nil, 0, 1, false)
 
-	p.updateRightSidebar(state.ExecutionClient.SelectedOption)
+	p.updateRightSidebar(p.currentValue)
 
 	body := tview.NewFlex().
 		SetDirection(tview.FlexColumn).
@@ -68,8 +66,9 @@ convenience.`,
 
 func (p *ExecutionClient) updateRightSidebar(option string) {
 	desc := config.ExecutionClient.Descriptions[option]
+	title := config.ExecutionClient.OptionLabels[option]
 	p.currentValue = option
-	p.titleTextView.SetText(option)
+	p.titleTextView.SetText(title)
 	p.descriptionTextView.SetText(desc)
 
 	if p.rightSide != nil {
@@ -93,17 +92,18 @@ func (p *ExecutionClient) onSumit(option string) {
 	recommendedLabel := config.ExecutionClient.OptionLabels[recommendedValue]
 
 	alert := components.Alert(
-		"System-recommended: "+recommendedLabel,
-		[]string{"OK", "Back"},
+		fmt.Sprintf("%s has been designated as your execution client based on system-recommendation", recommendedLabel),
+		[]string{"OK"},
 		map[string]func(){
 			"OK": func() {
 				state.ExecutionClient.SelectedOption = recommendedValue
+				p.updateRightSidebar(recommendedValue)
 				p.App.SetRoot(Pages, true)
 				ChangePage(config.PageID.ConsensusClientSelection)
 			},
-			"Back": func() {
-				p.App.SetRoot(Pages, true).SetFocus(p.GetFirstElement())
-			},
+		},
+		func() {
+			p.App.SetRoot(Pages, true).SetFocus(p.GetFirstElement())
 		},
 	)
 
@@ -149,8 +149,8 @@ func (p *ExecutionClient) HandleEvents(event *tcell.EventKey) *tcell.EventKey {
 	return event
 }
 
-func (n *ExecutionClient) GetFirstElement() tview.Primitive {
-	fb := n.buttons[state.ExecutionClient.SelectedOption]
-	log.Infof("%s GetFirstElement: [%s]", n.ID, fb.GetLabel())
+func (p *ExecutionClient) GetFirstElement() tview.Primitive {
+	fb := p.buttons[p.currentValue]
+	log.Infof("%s GetFirstElement: [%s]", p.ID, fb.GetLabel())
 	return fb
 }

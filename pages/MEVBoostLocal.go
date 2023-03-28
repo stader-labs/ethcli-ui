@@ -25,13 +25,13 @@ func (p *MEVBoostLocal) Page() tview.Primitive {
 	p.titleTextView = tview.NewTextView()
 	p.descriptionTextView = tview.NewTextView()
 
-	form := tview.NewForm().
-		AddCheckbox("Regulated", state.MEVBoostLocal.Regulated, func(checked bool) {
+	form := components.Form().
+		AddFormItem(components.Checkbox("Regulated", state.MEVBoostLocal.Regulated, func(checked bool) {
 			state.MEVBoostLocal.Regulated = checked
-		}).
-		AddCheckbox("Unregulated", state.MEVBoostLocal.Unregulated, func(checked bool) {
+		})).
+		AddFormItem(components.Checkbox("Unregulated", state.MEVBoostLocal.Unregulated, func(checked bool) {
 			state.MEVBoostLocal.Unregulated = checked
-		}).
+		})).
 		AddButton("NEXT", func() {
 			p.onSumit()
 		})

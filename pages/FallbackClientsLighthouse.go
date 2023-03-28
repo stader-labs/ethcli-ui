@@ -20,7 +20,7 @@ type FallbackClientsLighthouse struct {
 func (p *FallbackClientsLighthouse) Page() tview.Primitive {
 	p.PageType.ID = config.PageID.FallbackClientsLighthouse
 
-	form := tview.NewForm().
+	form := components.Form().
 		AddInputField("Execution client URL", state.FallbackClientsLighthouse.ExecutionClientUrl, 0, nil, func(text string) {
 			state.FallbackClientsLighthouse.ExecutionClientUrl = text
 		}).

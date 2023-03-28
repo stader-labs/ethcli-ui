@@ -1,7 +1,5 @@
 package config
 
-import "github.com/rivo/tview"
-
 type CCSelectionOption struct {
 	SystemRecommended string
 	LightHouse        string
@@ -32,7 +30,6 @@ type CCStageSelection struct {
 
 type CSStageForm struct {
 	Name string
-	Form *tview.Form
 }
 
 type CCStage struct {
@@ -59,11 +56,9 @@ var ConsensusClient = struct {
 		},
 		Graffiti: CSStageForm{
 			Name: "Graffiti",
-			Form: tview.NewForm(),
 		},
 		CheckpointSync: CSStageForm{
 			Name: "Checkpoint sync",
-			Form: tview.NewForm(),
 		},
 		DopelgangerProtection: CCStageDopelgangerProtection{
 			Name: "Doppelganger protection",

@@ -1,6 +1,6 @@
-package ethcliui
+// package ethcliui
 
-// package main
+package main
 
 import (
 	"encoding/json"
@@ -24,7 +24,7 @@ var (
 // If settings is nil, it will start the app with default settings
 func Run(settings *pages.SettingsType) (func() pages.SettingsType, error) {
 	state.CurrentApp = tview.NewApplication().EnableMouse(true)
-	startPageID := config.PageID.Network
+	startPageID := config.PageID.ExecutionClient
 
 	marshelledSettings, _ := json.Marshal(settings)
 	fmt.Printf("settings are %s\n", string(marshelledSettings))
@@ -40,6 +40,7 @@ func Run(settings *pages.SettingsType) (func() pages.SettingsType, error) {
 				state.CurrentApp.Stop()
 			},
 		},
+		nil,
 	)
 
 	w, h, err := term.GetSize(0)
@@ -73,14 +74,3 @@ func Run(settings *pages.SettingsType) (func() pages.SettingsType, error) {
 		SetRoot(allPages, true).
 		SetFocus(firstElement).Run()
 }
-
-// func main() {
-// 	getSettings, err := Run(nil)
-// 	if err != nil {
-// 		panic(err)
-// 	}
-
-// 	settings := getSettings()
-// 	marshelledSettings, _ := json.Marshal(settings)
-// 	fmt.Printf("saved settings are %s\n", string(marshelledSettings))
-// }

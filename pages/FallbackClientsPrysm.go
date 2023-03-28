@@ -20,7 +20,7 @@ type FallbackClientsPrysm struct {
 func (p *FallbackClientsPrysm) Page() tview.Primitive {
 	p.PageType.ID = config.PageID.FallbackClientsPrysm
 
-	form := tview.NewForm().
+	form := components.Form().
 		AddInputField("Execution client URL", state.FallbackClientsPrysm.ExecutionClientUrl, 0, nil, func(text string) {
 			state.FallbackClientsPrysm.ExecutionClientUrl = text
 		}).

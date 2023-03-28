@@ -20,7 +20,7 @@ type FallbackClientsTeku struct {
 func (p *FallbackClientsTeku) Page() tview.Primitive {
 	p.PageType.ID = config.PageID.FallbackClientsTeku
 
-	form := tview.NewForm().
+	form := components.Form().
 		AddInputField("Execution client URL", state.FallbackClientsTeku.ExecutionClientUrl, 0, nil, func(text string) {
 			state.FallbackClientsTeku.ExecutionClientUrl = text
 		}).

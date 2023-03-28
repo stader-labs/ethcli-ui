@@ -1,6 +1,7 @@
 package pages
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/stader-labs/ethcli-ui/components"
@@ -22,11 +23,11 @@ type ConsensusClientSelection struct {
 }
 
 func (p *ConsensusClientSelection) Page() tview.Primitive {
-	cDescriptions := config.ConsensusClient.Stage.Selection.Descriptions
 	p.PageType.ID = config.PageID.ConsensusClientSelection
 
 	p.titleTextView = tview.NewTextView()
 	p.descriptionTextView = tview.NewTextView()
+	p.currentValue = state.ConsensusClient.SelectionSelectedOption
 
 	left, buttons := components.BodyWithOptions(
 		`Select the consensus client you
@@ -44,13 +45,10 @@ convenience.`,
 		SetDirection(tview.FlexRow).
 		AddItem(nil, 0, 1, false).
 		AddItem(p.titleTextView, 2, 1, false).
-		AddItem(
-			p.descriptionTextView,
-			strings.Count(cDescriptions[state.ConsensusClient.SelectionSelectedOption], "\n"), 1, false,
-		).
+		AddItem(p.descriptionTextView, 1, 1, false).
 		AddItem(nil, 0, 1, false)
 
-	p.updateRightSidebar(state.ConsensusClient.SelectionSelectedOption)
+	p.updateRightSidebar(p.currentValue)
 
 	leftNav := components.PageLeftNav(
 		config.ConsensusClient.Stages,
@@ -75,7 +73,6 @@ convenience.`,
 func (p *ConsensusClientSelection) updateRightSidebar(option string) {
 	desc := config.ConsensusClient.Stage.Selection.Descriptions[option]
 	title := config.ConsensusClient.Stage.Selection.OptionLabels[option]
-
 	p.currentValue = option
 	p.titleTextView.SetText(title)
 	p.descriptionTextView.SetText(desc)
@@ -104,17 +101,18 @@ func (p *ConsensusClientSelection) onSumit(option string) {
 	recommendedLabel := config.ConsensusClient.Stage.Selection.OptionLabels[recommendedValue]
 
 	alert := components.Alert(
-		"System-recommended: "+recommendedLabel,
-		[]string{"OK", "Back"},
+		fmt.Sprintf("%s has been designated as your consensus client based on system-recommendation", recommendedLabel),
+		[]string{"OK"},
 		map[string]func(){
 			"OK": func() {
 				state.ConsensusClient.SelectionSelectedOption = recommendedValue
+				p.updateRightSidebar(recommendedValue)
 				p.App.SetRoot(Pages, true)
 				ChangePage(config.PageID.ConsensusClientGraffiti)
 			},
-			"Back": func() {
-				p.App.SetRoot(Pages, true).SetFocus(p.GetFirstElement())
-			},
+		},
+		func() {
+			p.App.SetRoot(Pages, true).SetFocus(p.GetFirstElement())
 		},
 	)
 
@@ -160,8 +158,8 @@ func (p *ConsensusClientSelection) HandleEvents(event *tcell.EventKey) *tcell.Ev
 	return event
 }
 
-func (n *ConsensusClientSelection) GetFirstElement() tview.Primitive {
-	fb := n.buttons[state.ConsensusClient.SelectionSelectedOption]
-	log.Infof("%s GetFirstElement: [%s]", n.ID, fb.GetLabel())
+func (p *ConsensusClientSelection) GetFirstElement() tview.Primitive {
+	fb := p.buttons[p.currentValue]
+	log.Infof("%s GetFirstElement: [%s]", p.ID, fb.GetLabel())
 	return fb
 }
