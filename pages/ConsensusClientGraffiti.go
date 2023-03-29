@@ -18,8 +18,6 @@ type ConsensusClientGraffiti struct {
 }
 
 func (p *ConsensusClientGraffiti) Page() tview.Primitive {
-	p.PageType.ID = config.PageID.ConsensusClientGraffiti
-
 	form := components.Form().
 		AddInputField("Add graffiti", state.ConsensusClient.Graffiti, 0,
 			func(textToCheck string, lastChar rune) bool {

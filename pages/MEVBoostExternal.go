@@ -22,9 +22,6 @@ type MEVBoostExternal struct {
 }
 
 func (p *MEVBoostExternal) Page() tview.Primitive {
-	p.PageType.ID = config.PageID.MEVBoostExternal
-	// cOptions := config.MEVBoostExternal.Options
-
 	p.titleTextView = tview.NewTextView()
 	p.descriptionTextView = tview.NewTextView()
 

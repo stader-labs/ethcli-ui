@@ -8,163 +8,40 @@ import (
 )
 
 var (
-	All   = make(map[string]PageInterface)
+	All   = map[string]PageInterface{}
 	Pages *tview.Pages
 	log   = logger.Log
 )
 
+// TODO: This is a bit of a mess, I'm sure there's a better way to do this.
 // Setup should be called once to initialize the pages
 func Setup(app *tview.Application) {
-
-	All[config.PageID.Network] = &Network{
-		PageType: &PageType{
-			ID:  config.PageID.Network,
-			App: app,
-		},
-	}
-
-	All[config.PageID.EthClient] = &ETHClient{
-		PageType: &PageType{
-			ID:  config.PageID.EthClient,
-			App: app,
-		},
-	}
-
-	All[config.PageID.ExecutionClient] = &ExecutionClient{
-		PageType: &PageType{
-			ID:  config.PageID.ExecutionClient,
-			App: app,
-		},
-	}
-
-	All[config.PageID.ExecutionClientExternal] = &ExecutionClientExternal{
-		PageType: &PageType{
-			ID:  config.PageID.ExecutionClientExternal,
-			App: app,
-		},
-	}
-
-	All[config.PageID.ExecutionClientExternalSelection] = &ExecutionClientExternalSelection{
-		PageType: &PageType{
-			ID:  config.PageID.ExecutionClientExternalSelection,
-			App: app,
-		},
-	}
-
-	All[config.PageID.ConsensusClientExternalSelectedLighthouse] = &ConsensusClientExternalSelectedLighthouse{
-		PageType: &PageType{
-			ID:  config.PageID.ConsensusClientExternalSelectedLighthouse,
-			App: app,
-		},
-	}
-
-	All[config.PageID.ConsensusClientExternalSelectedPrysm] = &ConsensusClientExternalSelectedPrysm{
-		PageType: &PageType{
-			ID:  config.PageID.ConsensusClientExternalSelectedPrysm,
-			App: app,
-		},
-	}
-
-	All[config.PageID.ConsensusClientExternalSelectedTeku] = &ConsensusClientExternalSelectedTeku{
-		PageType: &PageType{
-			ID:  config.PageID.ConsensusClientExternalSelectedTeku,
-			App: app,
-		},
-	}
-
-	All[config.PageID.ConsensusClientSelection] = &ConsensusClientSelection{
-		PageType: &PageType{
-			ID:  config.PageID.ConsensusClientSelection,
-			App: app,
-		},
-	}
-
-	All[config.PageID.ConsensusClientGraffiti] = &ConsensusClientGraffiti{
-		PageType: &PageType{
-			ID:  config.PageID.ConsensusClientGraffiti,
-			App: app,
-		},
-	}
-
-	All[config.PageID.ConsensusClientCheckpointSync] = &ConsensusClientCheckpointSync{
-		PageType: &PageType{
-			ID:  config.PageID.ConsensusClientCheckpointSync,
-			App: app,
-		},
-	}
-
-	All[config.PageID.ConsensusClientDopelgangerProtection] = &ConsensusClientDopelgangerProtection{
-		PageType: &PageType{
-			ID:  config.PageID.ConsensusClientDopelgangerProtection,
-			App: app,
-		},
-	}
-
-	All[config.PageID.FallbackClients] = &FallbackClients{
-		PageType: &PageType{
-			ID:  config.PageID.FallbackClients,
-			App: app,
-		},
-	}
-
-	All[config.PageID.FallbackClientsPrysm] = &FallbackClientsPrysm{
-		PageType: &PageType{
-			ID:  config.PageID.FallbackClientsPrysm,
-			App: app,
-		},
-	}
-
-	All[config.PageID.FallbackClientsLighthouse] = &FallbackClientsLighthouse{
-		PageType: &PageType{
-			ID:  config.PageID.FallbackClientsLighthouse,
-			App: app,
-		},
-	}
-
-	All[config.PageID.FallbackClientsTeku] = &FallbackClientsTeku{
-		PageType: &PageType{
-			ID:  config.PageID.FallbackClientsTeku,
-			App: app,
-		},
-	}
-
-	All[config.PageID.Monitoring] = &Monitoring{
-		PageType: &PageType{
-			ID:  config.PageID.Monitoring,
-			App: app,
-		},
-	}
-
-	All[config.PageID.MEVBoost] = &MEVBoost{
-		PageType: &PageType{
-			ID:  config.PageID.MEVBoost,
-			App: app,
-		},
-	}
-
-	All[config.PageID.MEVBoostLocal] = &MEVBoostLocal{
-		PageType: &PageType{
-			ID:  config.PageID.MEVBoostLocal,
-			App: app,
-		},
-	}
-
-	All[config.PageID.MEVBoostExternal] = &MEVBoostExternal{
-		PageType: &PageType{
-			ID:  config.PageID.MEVBoostExternal,
-			App: app,
-		},
-	}
-
-	All[config.PageID.Confirmation] = &Confirmation{
-		PageType: &PageType{
-			ID:  config.PageID.Confirmation,
-			App: app,
-		},
-	}
+	All[config.PageID.Network] = &Network{PageType: &PageType{}}
+	All[config.PageID.EthClient] = &ETHClient{PageType: &PageType{}}
+	All[config.PageID.ExecutionClient] = &ExecutionClient{PageType: &PageType{}}
+	All[config.PageID.ExecutionClientExternal] = &ExecutionClientExternal{PageType: &PageType{}}
+	All[config.PageID.ExecutionClientExternalSelection] = &ExecutionClientExternalSelection{PageType: &PageType{}}
+	All[config.PageID.ConsensusClientExternalSelectedLighthouse] = &ConsensusClientExternalSelectedLighthouse{PageType: &PageType{}}
+	All[config.PageID.ConsensusClientExternalSelectedPrysm] = &ConsensusClientExternalSelectedPrysm{PageType: &PageType{}}
+	All[config.PageID.ConsensusClientExternalSelectedTeku] = &ConsensusClientExternalSelectedTeku{PageType: &PageType{}}
+	All[config.PageID.ConsensusClientSelection] = &ConsensusClientSelection{PageType: &PageType{}}
+	All[config.PageID.ConsensusClientGraffiti] = &ConsensusClientGraffiti{PageType: &PageType{}}
+	All[config.PageID.ConsensusClientCheckpointSync] = &ConsensusClientCheckpointSync{PageType: &PageType{}}
+	All[config.PageID.ConsensusClientDopelgangerProtection] = &ConsensusClientDopelgangerProtection{PageType: &PageType{}}
+	All[config.PageID.FallbackClients] = &FallbackClients{PageType: &PageType{}}
+	All[config.PageID.FallbackClientsPrysm] = &FallbackClientsPrysm{PageType: &PageType{}}
+	All[config.PageID.FallbackClientsLighthouse] = &FallbackClientsLighthouse{PageType: &PageType{}}
+	All[config.PageID.FallbackClientsTeku] = &FallbackClientsTeku{PageType: &PageType{}}
+	All[config.PageID.Monitoring] = &Monitoring{PageType: &PageType{}}
+	All[config.PageID.MEVBoost] = &MEVBoost{PageType: &PageType{}}
+	All[config.PageID.MEVBoostLocal] = &MEVBoostLocal{PageType: &PageType{}}
+	All[config.PageID.MEVBoostExternal] = &MEVBoostExternal{PageType: &PageType{}}
+	All[config.PageID.Confirmation] = &Confirmation{PageType: &PageType{}}
 
 	Pages = tview.NewPages()
 	for pageID, page := range All {
+		page.SetPageID(pageID)
+		page.SetApp(app)
 		Pages.AddPage(pageID, page.Page(), true, false)
 	}
 }

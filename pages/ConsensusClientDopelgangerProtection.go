@@ -16,8 +16,6 @@ type ConsensusClientDopelgangerProtection struct {
 }
 
 func (p *ConsensusClientDopelgangerProtection) Page() tview.Primitive {
-	p.PageType.ID = config.PageID.ConsensusClientDopelgangerProtection
-
 	left, buttons := components.BodyWithOptions(
 		`Your client comes packed with an awesome feature -
 Doppelganger Protection. It safeguards your validators

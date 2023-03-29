@@ -23,8 +23,6 @@ type ExecutionClient struct {
 }
 
 func (p *ExecutionClient) Page() tview.Primitive {
-	p.PageType.ID = config.PageID.ExecutionClient
-
 	p.titleTextView = tview.NewTextView()
 	p.descriptionTextView = tview.NewTextView()
 	p.currentValue = state.ExecutionClient.SelectedOption

@@ -18,8 +18,6 @@ type ExecutionClientExternal struct {
 }
 
 func (p *ExecutionClientExternal) Page() tview.Primitive {
-	p.PageType.ID = config.PageID.ExecutionClientExternal
-
 	form := components.Form().
 		AddInputField("HTTP-based RPC API", state.ExecutionClientExternal.HTTPBasedRpcApi, 0, nil, func(text string) {
 			state.ExecutionClientExternal.HTTPBasedRpcApi = text

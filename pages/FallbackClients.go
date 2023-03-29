@@ -16,8 +16,6 @@ type FallbackClients struct {
 }
 
 func (p *FallbackClients) Page() tview.Primitive {
-	p.PageType.ID = config.PageID.FallbackClients
-
 	body, buttons := components.BodyWithOptions(
 		`Your Stader Node is equipped with fallback clients feature!
 

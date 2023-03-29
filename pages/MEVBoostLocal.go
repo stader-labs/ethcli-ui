@@ -21,7 +21,6 @@ type MEVBoostLocal struct {
 }
 
 func (p *MEVBoostLocal) Page() tview.Primitive {
-	p.PageType.ID = config.PageID.MEVBoostLocal
 	p.titleTextView = tview.NewTextView()
 	p.descriptionTextView = tview.NewTextView()
 

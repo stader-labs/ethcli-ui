@@ -22,8 +22,6 @@ type ETHClient struct {
 
 func (p *ETHClient) Page() tview.Primitive {
 	cDescriptions := config.ETHClient.Descriptions
-	p.PageType.ID = config.PageID.EthClient
-
 	p.titleTextView = tview.NewTextView()
 	p.descriptionTextView = tview.NewTextView()
 

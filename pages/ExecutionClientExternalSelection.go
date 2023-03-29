@@ -18,8 +18,6 @@ type ExecutionClientExternalSelection struct {
 }
 
 func (p *ExecutionClientExternalSelection) Page() tview.Primitive {
-	p.PageType.ID = config.PageID.ExecutionClientExternalSelection
-
 	p.titleTextView = tview.NewTextView()
 	p.descriptionTextView = tview.NewTextView()
 
