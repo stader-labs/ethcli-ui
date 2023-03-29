@@ -20,8 +20,6 @@ type ConsensusClientExternalSelectedPrysm struct {
 }
 
 func (p *ConsensusClientExternalSelectedPrysm) Page() tview.Primitive {
-	p.PageType.ID = config.PageID.ConsensusClientExternalSelectedPrysm
-
 	form := components.Form().
 		AddInputField("HTTP URL", state.ConsensusClientExternalSelectedPrysm.HTTPUrl, 0, nil, func(text string) {
 			state.ConsensusClientExternalSelectedPrysm.HTTPUrl = text

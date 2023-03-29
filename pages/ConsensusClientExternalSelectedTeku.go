@@ -20,8 +20,6 @@ type ConsensusClientExternalSelectedTeku struct {
 }
 
 func (p *ConsensusClientExternalSelectedTeku) Page() tview.Primitive {
-	p.PageType.ID = config.PageID.ConsensusClientExternalSelectedTeku
-
 	form := components.Form().
 		AddInputField("HTTP URL", state.ConsensusClientExternalSelectedTeku.HTTPUrl, 0, nil, func(text string) {
 			state.ConsensusClientExternalSelectedTeku.HTTPUrl = text

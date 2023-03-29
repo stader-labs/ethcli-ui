@@ -16,8 +16,6 @@ type Confirmation struct {
 }
 
 func (n *Confirmation) Page() tview.Primitive {
-	n.PageType.ID = config.PageID.Confirmation
-
 	body, buttons := components.BodyWithOptions(
 		`Great job! You're all set to complete the
 configuration. Take a moment to review and adjust

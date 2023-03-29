@@ -16,8 +16,6 @@ type Monitoring struct {
 }
 
 func (n *Monitoring) Page() tview.Primitive {
-	n.PageType.ID = config.PageID.Monitoring
-
 	body, buttons := components.BodyWithOptions(
 		`Monitoring system will provide valuable insights into your hardware stats, such
 as CPU usage, RAM usage, and free disk space. Additionally, it will also monitor

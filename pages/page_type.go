@@ -6,6 +6,12 @@ import (
 )
 
 type PageInterface interface {
+	// These will be called during initialisation
+	// in pages/init.go
+	SetPageID(id string)
+	SetApp(app *tview.Application)
+
+	// These will be implemented by each page
 	Page() tview.Primitive
 	HandleEvents(event *tcell.EventKey) *tcell.EventKey
 	GetFirstElement() tview.Primitive
@@ -52,4 +58,12 @@ func (p *PageType) GetFirstElement() tview.Primitive {
 
 func (p *PageType) GoBack() {
 	log.Warnf("Implement GoBack: %s", p.ID)
+}
+
+func (p *PageType) SetPageID(id string) {
+	p.ID = id
+}
+
+func (p *PageType) SetApp(app *tview.Application) {
+	p.App = app
 }

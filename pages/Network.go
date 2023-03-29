@@ -18,13 +18,10 @@ type Network struct {
 	titleTextView       *tview.TextView
 	descriptionTextView *tview.TextView
 	rightSide           *tview.Flex
-	buttonLabels        map[string]string
 }
 
 func (n *Network) Page() tview.Primitive {
 	cDescriptions := config.Network.Descriptions
-
-	n.PageType.ID = config.PageID.Network
 
 	n.titleTextView = tview.NewTextView()
 	n.descriptionTextView = tview.NewTextView()

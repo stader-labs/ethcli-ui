@@ -23,8 +23,6 @@ type ConsensusClientSelection struct {
 }
 
 func (p *ConsensusClientSelection) Page() tview.Primitive {
-	p.PageType.ID = config.PageID.ConsensusClientSelection
-
 	p.titleTextView = tview.NewTextView()
 	p.descriptionTextView = tview.NewTextView()
 	p.currentValue = state.ConsensusClient.SelectionSelectedOption
