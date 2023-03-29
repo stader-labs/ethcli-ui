@@ -1,0 +1,79 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+
+      - name: Create tag
+        id: create_tag
+        run: |
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "Latest tag: $LATEST_TAG"
+          NEW_TAG=$(echo "$LATEST_TAG" | awk -F. '{ printf "v%d.%d.%d", $1, $2, $3+1 }')
+          echo "New tag: $NEW_TAG"
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git tag $NEW_TAG
+          git push origin $NEW_TAG
+          echo "::set-output name=tag::${NEW_TAG}"
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.create_tag.outputs.tag }}
+          release_name: Release ${{ steps.create_tag.outputs.tag }}
+          draft: false
+          prerelease: false
+
+      - name: Create build directory
+        run: mkdir build
+
+      - name: Build project (Linux)
+        env:
+          GOOS: linux
+          GOARCH: amd64
+        run: go build -o build/ethcli-ui-${{ env.GOOS }}-${{ env.GOARCH }}
+
+      - name: Build project (macOS, Intel)
+        env:
+          GOOS: darwin
+          GOARCH: amd64
+        run: go build -o build/ethcli-ui-${{ env.GOOS }}-${{ env.GOARCH }}
+
+      - name: Build project (macOS, M1)
+        env:
+          GOOS: darwin
+          GOARCH: arm64
+        run: go build -o build/ethcli-ui-${{ env.GOOS }}-${{ env.GOARCH }}
+
+      - name: Build project (Windows)
+        env:
+          GOOS: windows
+          GOARCH: amd64
+        run: go build -o build/ethcli-ui-${{ env.GOOS }}-${{ env.GOARCH }}.exe
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/*
+          tag: ${{ steps.create_tag.outputs.tag }}
+          overwrite: true
+          file_glob: true
+
