@@ -30,7 +30,7 @@ func Footer(App *tview.Application) tview.Primitive {
 			App.Stop()
 		})
 
-	openConfig := tview.NewButton("Open the Configuration Manager").
+	openConfig := tview.NewButton("Open the Configuration Settings").
 		SetStyle(btnStyle).
 		SetSelectedFunc(func() {
 			state.Confirmed = false
@@ -43,7 +43,7 @@ func Footer(App *tview.Application) tview.Primitive {
 		AddItem(emptyText(), 0, 1, false).
 		AddItem(saveNExitBtn, len(" Save and Exit "), 1, false).
 		AddItem(emptyText(), 3, 1, false).
-		AddItem(openConfig, len(" Open the Configuration Manager "), 1, false).
+		AddItem(openConfig, len(" Open the Configuration Settings "), 1, false).
 		AddItem(emptyText(), 0, 1, false)
 
 	footerActions := tview.NewFlex().
