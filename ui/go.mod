@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/stader-labs/ethcli-ui/configuration v0.0.0-20230412104132-f4eecaffdded
-	github.com/stader-labs/ethcli-ui/wizard v0.0.0-20230412104132-f4eecaffdded
+	github.com/stader-labs/ethcli-ui/wizard v0.0.0-20230412112245-1c2df98d7d7d
 )
 
 require (

@@ -22,6 +22,8 @@ github.com/stader-labs/ethcli-ui/configuration v0.0.0-20230412104132-f4eecaffdde
 github.com/stader-labs/ethcli-ui/configuration v0.0.0-20230412104132-f4eecaffdded/go.mod h1:1aWp76l573sAUYRVwu6nXnL9cSkU2PDdZmLZw7mZ+4U=
 github.com/stader-labs/ethcli-ui/wizard v0.0.0-20230412104132-f4eecaffdded h1:6Oxw8WKTf0+IsiF0NvBz3NilVVTPY4DmRWVE+BJcaXA=
 github.com/stader-labs/ethcli-ui/wizard v0.0.0-20230412104132-f4eecaffdded/go.mod h1:hsVgdTJijflYAKGDE8Io692K28QVyjh68JT45jrCD1M=
+github.com/stader-labs/ethcli-ui/wizard v0.0.0-20230412112245-1c2df98d7d7d h1:rdp6a0zKmsLnUw65NMw6w+6AyWjfirzPEa6oG87BsCU=
+github.com/stader-labs/ethcli-ui/wizard v0.0.0-20230412112245-1c2df98d7d7d/go.mod h1:hsVgdTJijflYAKGDE8Io692K28QVyjh68JT45jrCD1M=
 github.com/stretchr/testify v1.8.0 h1:pSgiaMZlXftHpm5L7V1+rVB+AZJydKsMxsQBIJw4PKk=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
 go.uber.org/atomic v1.10.0 h1:9qC72Qh0+3MqyJbAn8YU5xVq1frD8bn3JtD2oXtafVQ=
