@@ -13,7 +13,7 @@ require (
 	github.com/rivo/tview v0.0.0-20230406072732-e22ce9588bb4 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
 	github.com/stader-labs/ethcli-ui/configuration v0.0.0-20230412104132-f4eecaffdded // indirect
-	github.com/stader-labs/ethcli-ui/wizard v0.0.0-20230412104132-f4eecaffdded // indirect
+	github.com/stader-labs/ethcli-ui/wizard v0.0.0-20230412112245-1c2df98d7d7d // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.24.0 // indirect
