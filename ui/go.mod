@@ -3,8 +3,8 @@ module github.com/stader-labs/ethcli-ui/ui
 go 1.19
 
 require (
-	github.com/stader-labs/ethcli-ui/configuration v0.0.0-00010101000000-000000000000
-	github.com/stader-labs/ethcli-ui/wizard v0.0.0-00010101000000-000000000000
+	github.com/stader-labs/ethcli-ui/configuration v0.0.0-20230412083342-9409f8319e0f
+	github.com/stader-labs/ethcli-ui/wizard v0.0.0-20230412084952-460dc9bbbcdf
 )
 
 require (
@@ -22,9 +22,5 @@ require (
 	golang.org/x/term v0.7.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
 )
-
-replace github.com/stader-labs/ethcli-ui/wizard => ../wizard
-
-replace github.com/stader-labs/ethcli-ui/configuration => ../configuration
 
 replace github.com/rivo/tview => github.com/hamidraza/tview v0.0.0-20230406022610-62c55f74c35f

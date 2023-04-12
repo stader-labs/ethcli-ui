@@ -1,4 +1,4 @@
-name: Build
+name: Scan
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  build:
-    name: Build
+  scan:
+    name: scan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
