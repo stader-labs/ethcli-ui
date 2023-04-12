@@ -46,21 +46,9 @@ func (p *ConfigurationForm) Page() tview.Primitive {
 		AddItem(p.header, 3, 1, false).
 		AddItem(body, 0, 1, false).
 		AddItem(
-			components.Footer(
-				config.PageID.ConfigurationForm,
-				p.GoBack,
-				func() {
-					p.App.Stop()
-				},
-				func() {
-					state.Saved = true
-					p.App.Stop()
-				},
-				func() {
-					state.OpenWizard = false
-					p.App.Stop()
-				},
-			), 5, 1, false)
+			components.Footer(config.PageID.ConfigurationForm, p.App, p.GoBack),
+			5, 1, false,
+		)
 
 	return root
 }

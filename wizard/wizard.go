@@ -26,11 +26,11 @@ func Run(s *pages.SettingsType) (
 ) {
 	state.CurrentApp = tview.NewApplication().EnableMouse(true)
 	startPageID := config.PageID.Network
-	state.Confirmed = false
-	state.OpenConfigurationUI = false
 
 	if s != nil {
 		pages.SetSettings(*s)
+		state.Confirmed = false
+		state.OpenConfigurationUI = false
 	}
 
 	smallScreenAlert := components.Alert(

@@ -4,6 +4,7 @@ import (
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
 	"github.com/stader-labs/ethcli-ui/configuration/config"
+	"github.com/stader-labs/ethcli-ui/configuration/state"
 )
 
 func emptyText() tview.Primitive {
@@ -15,7 +16,7 @@ func emptyText() tview.Primitive {
 		SetTextStyle(textStyle)
 }
 
-func Footer(pageName string, onGoBack, onQuit, onSaveExit, onOpenConfig func()) tview.Primitive {
+func Footer(pageName string, app *tview.Application, onGoBack func()) tview.Primitive {
 
 	textStyle := tcell.StyleDefault.Background(tcell.ColorDarkSlateGray).
 		Foreground(tcell.ColorAntiqueWhite)
@@ -57,8 +58,12 @@ func Footer(pageName string, onGoBack, onQuit, onSaveExit, onOpenConfig func()) 
 	{
 		txt := "Ctrl+C: Quit without Saving"
 		btn := tview.NewButton(txt).SetStyle(textStyle).SetDisabledStyle(textStyle)
-		if onQuit != nil {
-			btn.SetStyle(textStyle.Underline(true)).SetSelectedFunc(onQuit)
+		if pageName != config.PageID.Categories {
+			btn.SetStyle(textStyle.Underline(true)).SetSelectedFunc(func() {
+				state.OpenWizard = false
+				state.Saved = false
+				app.Stop()
+			})
 		} else {
 			btn.SetDisabled(true)
 		}
@@ -82,10 +87,18 @@ func Footer(pageName string, onGoBack, onQuit, onSaveExit, onOpenConfig func()) 
 
 	saveNExitBtn := tview.NewButton("Save and Exit").
 		SetStyle(btnStyle).
-		SetSelectedFunc(onSaveExit)
+		SetSelectedFunc(func() {
+			state.OpenWizard = false
+			state.Saved = true
+			app.Stop()
+		})
 	openConfig := tview.NewButton("Open the Configuration Manager").
 		SetStyle(btnStyle).
-		SetSelectedFunc(onOpenConfig)
+		SetSelectedFunc(func() {
+			state.OpenWizard = true
+			state.Saved = false
+			app.Stop()
+		})
 
 	footerTopRow := tview.NewFlex().
 		SetDirection(tview.FlexColumn).

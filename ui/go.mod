@@ -3,8 +3,8 @@ module github.com/stader-labs/ethcli-ui/ui
 go 1.19
 
 require (
-	github.com/stader-labs/ethcli-ui/configuration v0.0.0-20230412083342-9409f8319e0f
-	github.com/stader-labs/ethcli-ui/wizard v0.0.0-20230412084952-460dc9bbbcdf
+	github.com/stader-labs/ethcli-ui/configuration v0.0.0-20230412104132-f4eecaffdded
+	github.com/stader-labs/ethcli-ui/wizard v0.0.0-20230412104132-f4eecaffdded
 )
 
 require (

@@ -57,23 +57,8 @@ func (p *Categories) Page() tview.Primitive {
 		AddItem(components.Header("Configuration Summary"), 3, 1, false).
 		AddItem(body, 0, 1, false).
 		AddItem(
-			components.Footer(
-				config.PageID.Categories,
-				nil,
-				func() {
-					p.App.Stop()
-				},
-				func() {
-					state.Saved = true
-					state.OpenWizard = false
-					p.App.Stop()
-				},
-				func() {
-					state.Saved = false
-					state.OpenWizard = true
-					p.App.Stop()
-				},
-			), 5, 1, false,
+			components.Footer(config.PageID.Categories, p.App, nil),
+			5, 1, false,
 		)
 
 	p.updateDescription()

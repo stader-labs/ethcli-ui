@@ -19,11 +19,11 @@ func Run(settings *map[string]interface{}) (
 	configurations *map[string]interface{},
 ) {
 	app := tview.NewApplication().EnableMouse(true)
-	state.Saved = false
-	state.OpenWizard = false
 
 	if settings != nil {
 		state.Configuration = *settings
+		state.Saved = false
+		state.OpenWizard = false
 	}
 
 	pages.Setup(app)
