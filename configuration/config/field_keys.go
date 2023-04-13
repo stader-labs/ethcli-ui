@@ -76,8 +76,9 @@ type FieldKeyType = struct {
 	E1ec_em_websocket_url string
 
 	// ETH2ConsensusClient
-	E2cc_preference       string
-	E2cc_consensus_client string
+	E2cc_preference          string
+	E2cc_lc_consensus_client string
+	E2cc_em_consensus_client string
 
 	E2cc_http_url                          string
 	E2cc_custom_graffiti                   string
