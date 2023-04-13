@@ -45,5 +45,5 @@ func Run(
 	wizardSettings *wpages.SettingsType,
 	configurationSettings *map[string]interface{},
 ) {
-	return handleUI("wizard", wSettings, cSettings)
+	return handleUI("configuration", wSettings, cSettings)
 }
