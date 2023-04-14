@@ -118,6 +118,18 @@ Default:`, descriptionSidebarWidth),
 	}
 }
 
+func makeHTTPField(key string) FormFieldType {
+	return FormFieldType{
+		Label: "HTTP URL",
+		Key:   key,
+		Type:  "text",
+		Description: utils.AddNewLines(`HTTP URL
+
+Please enter the HTTP API URL of your externally managed Prysm client.
+Note: When running this client on the same machine as the Stader Node, use your machine's LAN IP address instead of localhost or 127.0.0.1`, descriptionSidebarWidth),
+	}
+}
+
 func makeCustomGraffitiField(key string) FormFieldType {
 	return FormFieldType{
 		Label: "Custom Graffiti",
@@ -368,30 +380,23 @@ Default:`, descriptionSidebarWidth)})
 func makeConsensusExternalField(ccClient string) []FormFieldType {
 	FieldKey := GetFieldKey()
 
-	commonsField := []FormFieldType{
-		{
-			Label: "HTTP URL",
-			Key:   FieldKey.E2cc_em_http_url,
-			Type:  "text",
-			Description: utils.AddNewLines(`HTTP URL
-
-Please enter the HTTP API URL of your externally managed Prysm client.
-Note: When running this client on the same machine as the Stader Node, use your machine's LAN IP address instead of localhost or 127.0.0.1`, descriptionSidebarWidth),
-		},
-	}
+	var commonsField []FormFieldType
 
 	switch ccClient {
 	case "Prysm":
+		commonsField = append(commonsField, makeHTTPField(FieldKey.E2cc_em_http_prysm))
 		commonsField = append(commonsField, makeCustomGraffitiField(FieldKey.E2cc_em_custom_graffiti_prysm))
 		commonsField = append(commonsField, makeDoppelgängerField(FieldKey.E2cc_em_doppelganger_detection_prysm))
 		commonsField = append(commonsField, makeContainerTagField(FieldKey.E2cc_em_container_tag_prysm))
 		commonsField = append(commonsField, makeAdditionValidatorClientField(FieldKey.E2cc_em_container_tag_prysm))
 	case "Lighthouse":
+		commonsField = append(commonsField, makeHTTPField(FieldKey.E2cc_em_http_lighthouse))
 		commonsField = append(commonsField, makeCustomGraffitiField(FieldKey.E2cc_em_custom_graffiti_lighthouse))
 		commonsField = append(commonsField, makeDoppelgängerField(FieldKey.E2cc_em_doppelganger_detection_lighthouse))
 		commonsField = append(commonsField, makeContainerTagField(FieldKey.E2cc_em_container_tag_lighthouse))
 		commonsField = append(commonsField, makeAdditionValidatorClientField(FieldKey.E2cc_em_additional_client_flags_lighthouse))
 	case "Teku":
+		commonsField = append(commonsField, makeHTTPField(FieldKey.E2cc_em_http_teku))
 		commonsField = append(commonsField, makeCustomGraffitiField(FieldKey.E2cc_em_custom_graffiti_teku))
 		commonsField = append(commonsField, makeContainerTagField(FieldKey.E2cc_em_container_tag_teku))
 		commonsField = append(commonsField, makeAdditionValidatorClientField(FieldKey.E2cc_em_additional_client_flags_teku))
