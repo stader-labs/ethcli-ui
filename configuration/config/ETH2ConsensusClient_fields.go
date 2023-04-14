@@ -10,7 +10,7 @@ func init() {
 	locallyManagedFields := []FormFieldType{
 		{
 			Label: "Consensus client",
-			Key:   FieldKey.E2cc_consensus_client,
+			Key:   FieldKey.E2cc_lc_consensus_client,
 			Type:  "select",
 			Options: []string{
 				"Teku",
@@ -42,7 +42,7 @@ Prysm, an Ethereum proof-of-stake client written in Go, is developed by Prysmati
 	externallyManagedFields := []FormFieldType{
 		{
 			Label: "Consensus client",
-			Key:   FieldKey.E2cc_consensus_client,
+			Key:   FieldKey.E2cc_em_consensus_client,
 			Type:  "select",
 			Options: []string{
 				"Teku",
@@ -70,7 +70,7 @@ Besu, developed by ConsenSys and written in Java, is a comprehensive Ethereum pr
 	ConfigurationFields[Categories.Option.ETH2ConsensusClient] = []FormFieldType{
 		{
 			Label: "Consensus Client Preference",
-			Key:   FieldKey.E2cc_preference,
+			Key:   FieldKey.E1ec_execution_and_consensus_mode,
 			Type:  "select",
 			Options: []string{
 				"Locally Managed",

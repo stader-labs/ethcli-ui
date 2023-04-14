@@ -29,5 +29,5 @@ var (
 
 func init() {
 	FieldKey := config.GetFieldKey()
-	Configuration[FieldKey.E1ec_execution_client_mode] = "Locally Managed"
+	Configuration[FieldKey.E1ec_execution_and_consensus_mode] = "Locally Managed"
 }

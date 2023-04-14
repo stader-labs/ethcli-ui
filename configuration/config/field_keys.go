@@ -19,7 +19,7 @@ type FieldKeyType = struct {
 	Fr_archive_mode_ec_url string
 
 	// ETH1ExecutionClient
-	E1ec_execution_client_mode string
+	E1ec_execution_and_consensus_mode string
 
 	// ETH1ExecutionClient/Locally Managed
 	E1ec_lm_execution_client string
@@ -59,8 +59,8 @@ type FieldKeyType = struct {
 	E1ec_em_websocket_url string
 
 	// ETH2ConsensusClient
-	E2cc_preference       string
-	E2cc_consensus_client string
+	E2cc_lc_consensus_client string
+	E2cc_em_consensus_client string
 
 	E2cc_http_url                          string
 	E2cc_custom_graffiti                   string
