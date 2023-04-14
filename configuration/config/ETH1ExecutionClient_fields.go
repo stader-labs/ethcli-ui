@@ -8,7 +8,7 @@ func init() {
 	locallyManagedGethFields := []FormFieldType{
 		{
 			Label: "HTTP Port",
-			Key:   FieldKey.E1ec_lm_geth_http_port,
+			Key:   FieldKey.E1ec_lm_common_http_port,
 			Type:  "int",
 			Description: utils.AddNewLines(`HTTP Port
 		
@@ -17,7 +17,7 @@ Default: 8545`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Websocket Port",
-			Key:   FieldKey.E1ec_lm_geth_websocket_port,
+			Key:   FieldKey.E1ec_lm_common_websocket_port,
 			Type:  "int",
 			Description: utils.AddNewLines(`Websocket Port
 
@@ -26,7 +26,7 @@ Default: 8546`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Engine API port",
-			Key:   FieldKey.E1ec_lm_geth_engine_api_port,
+			Key:   FieldKey.E1ec_lm_common_engine_api_port,
 			Type:  "int",
 			Description: utils.AddNewLines(`Engine API port
 
@@ -35,7 +35,7 @@ Default: 8551`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Expose RPC port",
-			Key:   FieldKey.E1ec_lm_geth_expose_rpc_port,
+			Key:   FieldKey.E1ec_lm_common_expose_rpc_port,
 			Type:  "checkbox",
 			Description: utils.AddNewLines(`Expose RPC Ports
 
@@ -44,7 +44,7 @@ Default: False`, descriptionSidebarWidth),
 		},
 		{
 			Label: "P2P port",
-			Key:   FieldKey.E1ec_lm_geth_p2p_port,
+			Key:   FieldKey.E1ec_lm_common_p2p_port,
 			Type:  "int",
 			Description: utils.AddNewLines(`P2P port
 
@@ -53,7 +53,7 @@ Default: 30303`, descriptionSidebarWidth),
 		},
 		{
 			Label: "ETHStats Label",
-			Key:   FieldKey.E1ec_lm_geth_ethstats_label,
+			Key:   FieldKey.E1ec_lm_common_ethstats_label,
 			Type:  "text",
 			Description: utils.AddNewLines(`ETHStats Label
 
@@ -62,7 +62,7 @@ Default: ""`, descriptionSidebarWidth),
 		},
 		{
 			Label: "ETHStats Login",
-			Key:   FieldKey.E1ec_lm_geth_ethstats_login,
+			Key:   FieldKey.E1ec_lm_common_ethstats_login,
 			Type:  "text",
 			Description: utils.AddNewLines(`ETHStats Login
 
@@ -109,7 +109,7 @@ Are there any extra personalized terminal flags you intend to give to your ETH1 
 	locallyManagedNethermindFields := []FormFieldType{
 		{
 			Label: "HTTP Port",
-			Key:   FieldKey.E1ec_lm_nethermind_http_port,
+			Key:   FieldKey.E1ec_lm_common_http_port,
 			Type:  "int",
 			Description: utils.AddNewLines(`HTTP Port
 
@@ -118,7 +118,7 @@ Default: 8545`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Websocket Port",
-			Key:   FieldKey.E1ec_lm_nethermind_websocket_port,
+			Key:   FieldKey.E1ec_lm_common_websocket_port,
 			Type:  "int",
 			Description: utils.AddNewLines(`Websocket Port
 
@@ -126,7 +126,7 @@ Enter the port your Websocket RPC API should use`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Engine API port",
-			Key:   FieldKey.E1ec_lm_nethermind_engine_api_port,
+			Key:   FieldKey.E1ec_lm_common_engine_api_port,
 			Type:  "int",
 			Description: utils.AddNewLines(`Engine API port
 
@@ -135,7 +135,7 @@ Default: 8551`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Expose RPC port",
-			Key:   FieldKey.E1ec_lm_nethermind_expose_rpc_port,
+			Key:   FieldKey.E1ec_lm_common_expose_rpc_port,
 			Type:  "checkbox",
 			Description: utils.AddNewLines(`Expose RPC Ports
 
@@ -144,7 +144,7 @@ Default: False`, descriptionSidebarWidth),
 		},
 		{
 			Label: "P2P port",
-			Key:   FieldKey.E1ec_lm_nethermind_p2p_port,
+			Key:   FieldKey.E1ec_lm_common_p2p_port,
 			Type:  "int",
 			Description: utils.AddNewLines(`P2P port
 
@@ -153,7 +153,7 @@ Default: 30303`, descriptionSidebarWidth),
 		},
 		{
 			Label: "ETHStats Label",
-			Key:   FieldKey.E1ec_lm_nethermind_ethstats_label,
+			Key:   FieldKey.E1ec_lm_common_ethstats_label,
 			Type:  "text",
 			Description: utils.AddNewLines(`ETHStats Label
 
@@ -162,7 +162,7 @@ Default: ""`, descriptionSidebarWidth),
 		},
 		{
 			Label: "ETHStats Login",
-			Key:   FieldKey.E1ec_lm_nethermind_ethstats_login,
+			Key:   FieldKey.E1ec_lm_common_ethstats_login,
 			Type:  "text",
 			Description: utils.AddNewLines(`ETHStats Login
 
@@ -237,7 +237,7 @@ Default:`, descriptionSidebarWidth),
 	locallyManagedBesuFields := []FormFieldType{
 		{
 			Label: "HTTP Port",
-			Key:   FieldKey.E1ec_lm_besu_http_port,
+			Key:   FieldKey.E1ec_lm_common_http_port,
 			Type:  "int",
 			Description: utils.AddNewLines(`HTTP Port
 
@@ -246,7 +246,7 @@ Default: 8545`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Websocket port",
-			Key:   FieldKey.E1ec_lm_besu_websocket_port,
+			Key:   FieldKey.E1ec_lm_common_websocket_port,
 			Type:  "int",
 			Description: utils.AddNewLines(`Websocket port
 
@@ -255,7 +255,7 @@ Default: 8546`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Engine API port",
-			Key:   FieldKey.E1ec_lm_besu_engine_api_port,
+			Key:   FieldKey.E1ec_lm_common_engine_api_port,
 			Type:  "int",
 			Description: utils.AddNewLines(`Engine API port
 
@@ -264,7 +264,7 @@ Default: 8551`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Expose RPC ports",
-			Key:   FieldKey.E1ec_lm_besu_expose_rpc_ports,
+			Key:   FieldKey.E1ec_lm_common_expose_rpc_port,
 			Type:  "checkbox",
 			Description: utils.AddNewLines(`Expose RPC ports
 
@@ -273,7 +273,7 @@ Default: False`, descriptionSidebarWidth),
 		},
 		{
 			Label: "P2P port",
-			Key:   FieldKey.E1ec_lm_besu_p2p_port,
+			Key:   FieldKey.E1ec_lm_common_p2p_port,
 			Type:  "int",
 			Description: utils.AddNewLines(`P2P port
 
@@ -282,7 +282,7 @@ Default: 30303`, descriptionSidebarWidth),
 		},
 		{
 			Label: "ETHStats Label",
-			Key:   FieldKey.E1ec_lm_besu_ethstats_label,
+			Key:   FieldKey.E1ec_lm_common_ethstats_label,
 			Type:  "text",
 			Description: utils.AddNewLines(`Ethstats
 
@@ -291,7 +291,7 @@ Default:`, descriptionSidebarWidth),
 		},
 		{
 			Label: "ETHStats Login",
-			Key:   FieldKey.E1ec_lm_besu_ethstats_login,
+			Key:   FieldKey.E1ec_lm_common_ethstats_login,
 			Type:  "text",
 			Description: utils.AddNewLines(`ETHStats Login
 

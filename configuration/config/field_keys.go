@@ -23,32 +23,22 @@ type FieldKeyType = struct {
 
 	// ETH1ExecutionClient/Locally Managed
 	E1ec_lm_execution_client string
-	E1ec_lm_http_port        string
-	E1ec_lm_websocket_port   string
-	E1ec_lm_expose_rpc_port  string
-	E1ec_lm_p2p_port         string
 
 	// ETH1ExecutionClient/Locally Managed/Geth
-	E1ec_lm_geth_http_port        string
-	E1ec_lm_geth_websocket_port   string
-	E1ec_lm_geth_p2p_port         string
-	E1ec_lm_geth_engine_api_port  string
-	E1ec_lm_geth_expose_rpc_port  string
-	E1ec_lm_geth_ethstats_label   string
-	E1ec_lm_geth_ethstats_login   string
 	E1ec_lm_geth_cache_size       string
 	E1ec_lm_geth_max_peers        string
 	E1ec_lm_geth_container_tag    string
 	E1ec_lm_geth_additional_flags string
 
+	E1ec_lm_common_http_port       string
+	E1ec_lm_common_websocket_port  string
+	E1ec_lm_common_engine_api_port string
+	E1ec_lm_common_expose_rpc_port string
+	E1ec_lm_common_p2p_port        string
+	E1ec_lm_common_ethstats_label  string
+	E1ec_lm_common_ethstats_login  string
+
 	// ETH1ExecutionClient/Locally Managed/Nethermind
-	E1ec_lm_nethermind_http_port          string
-	E1ec_lm_nethermind_websocket_port     string
-	E1ec_lm_nethermind_engine_api_port    string
-	E1ec_lm_nethermind_expose_rpc_port    string
-	E1ec_lm_nethermind_p2p_port           string
-	E1ec_lm_nethermind_ethstats_label     string
-	E1ec_lm_nethermind_ethstats_login     string
 	E1ec_lm_nethermind_cache_size         string
 	E1ec_lm_nethermind_max_peers          string
 	E1ec_lm_nethermind_pruning_cache_size string
@@ -58,13 +48,6 @@ type FieldKeyType = struct {
 	E1ec_lm_nethermind_additional_flags   string
 
 	// ETH1ExecutionClient/Locally Managed/Besu
-	E1ec_lm_besu_http_port                    string
-	E1ec_lm_besu_websocket_port               string
-	E1ec_lm_besu_engine_api_port              string
-	E1ec_lm_besu_expose_rpc_ports             string
-	E1ec_lm_besu_p2p_port                     string
-	E1ec_lm_besu_ethstats_label               string
-	E1ec_lm_besu_ethstats_login               string
 	E1ec_lm_besu_jvm_heap_size                string
 	E1ec_lm_besu_max_peers                    string
 	E1ec_lm_besu_in_memory_pruning_cache_size string
@@ -133,7 +116,9 @@ type FieldKeyType = struct {
 	E2cc_em_additional_client_flags_prysm      string
 	E2cc_em_additional_client_flags_lighthouse string
 	E2cc_em_additional_client_flags_teku       string
-	E2cc_em_http_url                           string
+	E2cc_em_http_teku                          string
+	E2cc_em_http_prysm                         string
+	E2cc_em_http_lighthouse                    string
 
 	// FallBackClients
 	Fc_use_fallback_clients string
