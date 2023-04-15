@@ -76,6 +76,13 @@ func getTextField(field config.FormFieldType) fieldReturnType {
 		SetLabel(field.Label).
 		SetFieldWidth(0)
 
+	if field.MaxChars > 0 {
+		inputField.SetFieldWidth(field.MaxChars + 2)
+		inputField.SetAcceptanceFunc(func(textToCheck string, lastChar rune) bool {
+			return len(textToCheck) <= field.MaxChars
+		})
+	}
+
 	value, ok := state.Configuration[field.Key]
 	if ok {
 		valueString, err := utils.InterfaceToString(value)

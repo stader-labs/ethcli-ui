@@ -46,6 +46,12 @@ Please enter the URLs of the HTTP APIs for your fallback clients.
 Note: When running this client on the same machine as the Stader Node, use your machine's LAN IP address instead of localhost or 127.0.0.1.
 Default:`, descriptionSidebarWidth),
 					},
+					{
+						Label:       "Beacon Node JSON-RPC URL",
+						Key:         FieldKey.Fc_true_beacon_node_json_rpc_url,
+						Type:        "text",
+						Description: utils.AddNewLines(`Beacon Node JSON-RPC URL`, descriptionSidebarWidth),
+					},
 				},
 			},
 		},

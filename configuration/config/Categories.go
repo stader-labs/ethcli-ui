@@ -28,7 +28,9 @@ func init() {
 		
 Choose this option to set up the
 preferences for the Stader Node`,
-		Categories.Option.FeeAndReward: `Choose this option to customize
+		Categories.Option.FeeAndReward: `Fee and Reward
+
+Choose this option to customize
 the transaction fee and reward parameters.`,
 		Categories.Option.ETH1ExecutionClient: `ETH1 - Execution Client
 		

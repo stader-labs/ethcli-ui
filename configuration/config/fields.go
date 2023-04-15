@@ -6,6 +6,7 @@ type FormFieldType struct {
 	Type               string
 	Readonly           bool
 	Hidden             bool
+	MaxChars           int
 	Options            []string
 	OptionDescriptions map[string]string
 	Description        string

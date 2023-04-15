@@ -64,6 +64,22 @@ func Run(s *pages.SettingsType) (
 	allPages := pages.Pages
 
 	state.CurrentApp.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
+		key := event.Key()
+
+		if key == tcell.KeyCtrlS {
+			state.Confirmed = true
+			state.OpenConfigurationUI = false
+			state.CurrentApp.Stop()
+			return nil
+		}
+
+		if key == tcell.KeyCtrlU {
+			state.Confirmed = false
+			state.OpenConfigurationUI = true
+			state.CurrentApp.Stop()
+			return nil
+		}
+
 		pageName, _ := allPages.GetFrontPage()
 		newEvent := pages.All[pageName].HandleEvents(event)
 		return newEvent

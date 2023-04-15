@@ -85,14 +85,17 @@ func Footer(pageName string, app *tview.Application, onGoBack func()) tview.Prim
 
 	footerActions.AddItem(emptyText(), 0, 1, false)
 
-	saveNExitBtn := tview.NewButton("Save and Exit").
+	saveNExitTxt := "Save and Exit (Ctrl+S)"
+	saveNExitBtn := tview.NewButton(saveNExitTxt).
 		SetStyle(btnStyle).
 		SetSelectedFunc(func() {
 			state.OpenWizard = false
 			state.Saved = true
 			app.Stop()
 		})
-	openConfig := tview.NewButton("Open the Configuration Manager").
+
+	openConfigTxt := "Open the Configuration Manager (Ctrl+U)"
+	openConfig := tview.NewButton(openConfigTxt).
 		SetStyle(btnStyle).
 		SetSelectedFunc(func() {
 			state.OpenWizard = true
@@ -103,9 +106,9 @@ func Footer(pageName string, app *tview.Application, onGoBack func()) tview.Prim
 	footerTopRow := tview.NewFlex().
 		SetDirection(tview.FlexColumn).
 		AddItem(emptyText(), 0, 1, false).
-		AddItem(saveNExitBtn, len(" Save and Exit "), 1, false).
+		AddItem(saveNExitBtn, len(saveNExitTxt)+2, 1, false).
 		AddItem(emptyText(), 3, 1, false).
-		AddItem(openConfig, len(" Open the Configuration Manager "), 1, false).
+		AddItem(openConfig, len(openConfigTxt)+2, 1, false).
 		AddItem(emptyText(), 0, 1, false)
 
 	footer.AddItem(emptyText(), 1, 1, false).

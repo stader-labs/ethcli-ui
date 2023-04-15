@@ -15,14 +15,15 @@ func emptyText() tview.Primitive {
 	return utils.CenterText("").SetTextStyle(textStyle)
 }
 
-func Footer(App *tview.Application) tview.Primitive {
+func Footer(App *tview.Application) *tview.Flex {
 	textStyle := tcell.StyleDefault.Background(tcell.ColorDarkSlateGray).
 		Foreground(tcell.ColorAntiqueWhite)
 
 	btnStyle := tcell.StyleDefault.Background(tcell.ColorGray).
 		Foreground(tcell.ColorAntiqueWhite)
 
-	saveNExitBtn := tview.NewButton("Save and Exit").
+	saveNExitTxt := "Save and Exit (Ctrl+S)"
+	saveNExitBtn := tview.NewButton(saveNExitTxt).
 		SetStyle(btnStyle).
 		SetSelectedFunc(func() {
 			state.Confirmed = true
@@ -30,7 +31,8 @@ func Footer(App *tview.Application) tview.Primitive {
 			App.Stop()
 		})
 
-	openConfig := tview.NewButton("Open the Configuration Settings").
+	openConfigTxt := "Open the Configuration Settings (Ctrl+U)"
+	openConfigBtn := tview.NewButton(openConfigTxt).
 		SetStyle(btnStyle).
 		SetSelectedFunc(func() {
 			state.Confirmed = false
@@ -41,9 +43,9 @@ func Footer(App *tview.Application) tview.Primitive {
 	footerTopRow := tview.NewFlex().
 		SetDirection(tview.FlexColumn).
 		AddItem(emptyText(), 0, 1, false).
-		AddItem(saveNExitBtn, len(" Save and Exit "), 1, false).
+		AddItem(saveNExitBtn, len(saveNExitTxt)+2, 1, false).
 		AddItem(emptyText(), 3, 1, false).
-		AddItem(openConfig, len(" Open the Configuration Settings "), 1, false).
+		AddItem(openConfigBtn, len(openConfigTxt)+2, 1, false).
 		AddItem(emptyText(), 0, 1, false)
 
 	footerActions := tview.NewFlex().

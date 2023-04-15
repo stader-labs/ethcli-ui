@@ -144,7 +144,7 @@ Please enter other flags you might use in conjunction with your MEV-Boost to act
 				"Profile mode",
 				"Relay mode",
 			},
-			Description: utils.AddNewLines(`Profile mode
+			Description: utils.AddNewLines(`Selection Mode
 
 Choose how the Terminal User Interface displays your alternatives for activating MEV relays.`, descriptionSidebarWidth),
 			OptionDescriptions: map[string]string{
@@ -164,49 +164,74 @@ Choose this to display each relay and activate them selectively if you already h
 
 	externallyManagedFields := []FormFieldType{
 		{
-			Label: "External URL",
+			Label: "MEV URL",
 			Key:   FieldKey.Mev_boost_em_external_url,
 			Type:  "text",
-			Description: utils.AddNewLines(`External URL
+			Description: utils.AddNewLines(`MEV URL
 			
-Please enter the URL of your MEV-Boost.`, descriptionSidebarWidth),
+Enter the externally managed MEV Boost client URL`, descriptionSidebarWidth),
 		},
 	}
 
 	ConfigurationFields[Categories.Option.MEVBoost] = []FormFieldType{
 		{
-			Label: "Enable MEV-Boost",
-			Key:   FieldKey.Mev_boost_enabled,
-			Type:  "checkbox",
-			Description: utils.AddNewLines(`Enable MEV-Boost.
-			
-MEV-Boost gives your validator the opportunity to link up with relays that act as a go-between for you and experienced block builders. These experts are able to hunt out and make use of MEV openings, and in return for your services, could give you a fair reward that is often more than what you could have made on your own.
-Default: True`, descriptionSidebarWidth),
-			Children: map[string][]FormFieldType{
-				"true": {
-					{
-						Label: "MEV-Boost Mode",
-						Key:   FieldKey.Mev_boost_mode,
-						Type:  "select",
-						Options: []string{
-							"Locally Managed",
-							"Externally Managed",
-						},
-						OptionDescriptions: map[string]string{
-							"Locally Managed": utils.AddNewLines(`Locally Managed
+			Label: "MEV-Boost Mode",
+			Key:   FieldKey.Mev_boost_mode,
+			Type:  "select",
+			Options: []string{
+				"Locally Managed",
+				"Externally Managed",
+			},
+			OptionDescriptions: map[string]string{
+				"Locally Managed": utils.AddNewLines(`Locally Managed
 
 Choose this option if you would like Stader Node to take care of the MEV Boost client for you`, descriptionSidebarWidth),
-							"Externally Managed": utils.AddNewLines(`Externally Managed
+				"Externally Managed": utils.AddNewLines(`Externally Managed
 
 Choose this option if you would like to manage the MEV Boost client yourself`, descriptionSidebarWidth),
-						},
-						Children: map[string][]FormFieldType{
-							"Locally Managed":    locallyManagedFields,
-							"Externally Managed": externallyManagedFields,
-						},
-					},
-				},
+			},
+			Children: map[string][]FormFieldType{
+				"Locally Managed":    locallyManagedFields,
+				"Externally Managed": externallyManagedFields,
 			},
 		},
 	}
+
+	// 	ConfigurationFields[Categories.Option.MEVBoost] = []FormFieldType{
+	// 		{
+	// 			Label: "Enable MEV-Boost",
+	// 			Key:   FieldKey.Mev_boost_enabled,
+	// 			Type:  "checkbox",
+	// 			Description: utils.AddNewLines(`Enable MEV-Boost.
+
+	// MEV-Boost gives your validator the opportunity to link up with relays that act as a go-between for you and experienced block builders. These experts are able to hunt out and make use of MEV openings, and in return for your services, could give you a fair reward that is often more than what you could have made on your own.
+	// Default: True`, descriptionSidebarWidth),
+	// 			Children: map[string][]FormFieldType{
+	// 				"true": {
+	// 					{
+	// 						Label: "MEV-Boost Mode",
+	// 						Key:   FieldKey.Mev_boost_mode,
+	// 						Type:  "select",
+	// 						Options: []string{
+	// 							"Locally Managed",
+	// 							"Externally Managed",
+	// 						},
+	// 						OptionDescriptions: map[string]string{
+	// 							"Locally Managed": utils.AddNewLines(`Locally Managed
+
+	// Choose this option if you would like Stader Node to take care of the MEV Boost client for you`, descriptionSidebarWidth),
+	// 							"Externally Managed": utils.AddNewLines(`Externally Managed
+
+	// Choose this option if you would like to manage the MEV Boost client yourself`, descriptionSidebarWidth),
+	//
+	//						},
+	//						Children: map[string][]FormFieldType{
+	//							"Locally Managed":    locallyManagedFields,
+	//							"Externally Managed": externallyManagedFields,
+	//						},
+	//					},
+	//				},
+	//			},
+	//		},
+	//	}
 }

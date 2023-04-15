@@ -404,7 +404,7 @@ Enter the HTTP-based RPC API URL for your current external client. Remember to u
 
 	ConfigurationFields[Categories.Option.ETH1ExecutionClient] = []FormFieldType{
 		{
-			Label: "Execution client mode",
+			Label: "Execution client Preference",
 			Key:   FieldKey.E1ec_execution_and_consensus_mode,
 			Type:  "select",
 			Options: []string{

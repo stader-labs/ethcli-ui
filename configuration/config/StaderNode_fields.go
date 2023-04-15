@@ -10,7 +10,7 @@ func init() {
 			Type:  "select",
 			Options: []string{
 				"Goerli Testnet",
-				"Ethereum Mainnet",
+				// "Ethereum Mainnet",
 			},
 			OptionDescriptions: map[string]string{
 				"Goerli Testnet": `Goerli
@@ -20,12 +20,12 @@ and zero-cost environment environment to
 executing Stader Node operations. By
 choosing this network, you can create
 Demo validators using testnet ETH.`,
-				"Ethereum Mainnet": `Ethereum Mainnet
+				// 				"Ethereum Mainnet": `Ethereum Mainnet
 
-Opt for Ethereum primary network,
-employing real ETH to perform real
-transactions and to create genuine
-validators on the network.`,
+				// Opt for Ethereum primary network,
+				// employing real ETH to perform real
+				// transactions and to create genuine
+				// validators on the network.`,
 			},
 			Description: `Node Network
 

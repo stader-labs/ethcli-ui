@@ -34,6 +34,21 @@ func Run(settings *map[string]interface{}) (
 	app.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
 		pageId, page := pages.Pages.GetFrontPage()
 		var newEvent *tcell.EventKey
+		key := event.Key()
+
+		if key == tcell.KeyCtrlS {
+			state.Saved = true
+			state.OpenWizard = false
+			app.Stop()
+			return nil
+		}
+
+		if key == tcell.KeyCtrlU {
+			state.Saved = false
+			state.OpenWizard = true
+			app.Stop()
+			return nil
+		}
 
 		if page.HasFocus() {
 			newEvent = pages.All[pageId].HandleEvents(event)

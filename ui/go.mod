@@ -24,3 +24,7 @@ require (
 )
 
 replace github.com/rivo/tview => github.com/hamidraza/tview v0.0.0-20230406022610-62c55f74c35f
+
+replace github.com/stader-labs/ethcli-ui/configuration => ../configuration
+
+replace github.com/stader-labs/ethcli-ui/wizard => ../wizard

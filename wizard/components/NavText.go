@@ -14,7 +14,7 @@ func NavText(text string, selected bool) *tview.TextView {
 		Foreground(tcell.ColorAntiqueWhite)
 
 	selectedNavStyle := tcell.StyleDefault.
-		Background(tcell.ColorForestGreen).
+		Background(tcell.ColorAntiqueWhite).
 		Foreground(tcell.ColorBlack)
 
 	navItem := tview.NewTextView().

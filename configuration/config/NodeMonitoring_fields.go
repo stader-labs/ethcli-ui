@@ -15,10 +15,10 @@ func init() {
 Choose this option to activate Oracle DAO metric tracking, including balance submission participation and prices.`, descriptionSidebarWidth),
 		},
 		{
-			Label: "Execution Client Metrics Port 9105",
+			Label: "Execution Client Metrics Port",
 			Key:   FieldKey.Nm_execution_client_metrics_port,
 			Type:  "int",
-			Description: utils.AddNewLines(`Execution Client Metrics Port 9105
+			Description: utils.AddNewLines(`Execution Client Metrics Port
 
 			Enter the port your ETH1- Execution Client should use for the API.
 Default: 9105`, descriptionSidebarWidth),
@@ -33,10 +33,10 @@ Enter the port your Beacon node should use for the API.
 Default: 9100`, descriptionSidebarWidth),
 		},
 		{
-			Label: "Validator Client Metrics Port 9101",
+			Label: "Validator Client Metrics Port",
 			Key:   FieldKey.Nm_validator_client_metrics_port,
 			Type:  "int",
-			Description: utils.AddNewLines(`Validator Client Metrics Port 9101
+			Description: utils.AddNewLines(`Validator Client Metrics Port
 
 Enter the port your Validator Client should use for the API.
 Default: 9101`, descriptionSidebarWidth),

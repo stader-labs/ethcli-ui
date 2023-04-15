@@ -18,9 +18,9 @@ func init() {
 				"Nimbus",
 				"Prysm",
 			},
-			Description: utils.AddNewLines(`Execution Client
+			Description: utils.AddNewLines(`ETH 2 - Consensus Client
 
-Choose the ETH 1 - Execution Client that you wish to use.`, descriptionSidebarWidth),
+Choose the ETH 2 - Consensus Client that you wish to use.`, descriptionSidebarWidth),
 			OptionDescriptions: map[string]string{
 				"Teku": utils.AddNewLines(`Teku
 
@@ -49,9 +49,9 @@ Prysm, an Ethereum proof-of-stake client written in Go, is developed by Prysmati
 				"Lighthouse",
 				"Prysm",
 			},
-			Description: utils.AddNewLines(`Execution Client
+			Description: utils.AddNewLines(`Consensus Client
 
-Choose the ETH 1 - Execution Client that you wish to use.`, descriptionSidebarWidth),
+Choose the ETH 2 - Consensus Client that you manage externally.`, descriptionSidebarWidth),
 			OptionDescriptions: map[string]string{
 				"Teku": utils.AddNewLines(`Teku
 
@@ -76,9 +76,10 @@ Besu, developed by ConsenSys and written in Java, is a comprehensive Ethereum pr
 				"Locally Managed",
 				"Externally Managed",
 			},
-			Description: utils.AddNewLines(`Execution Client
+			Description: utils.AddNewLines(`Consensus Client Preference
 
-Choose the ETH 1 - Execution Client that you wish to use.`, descriptionSidebarWidth),
+Select your preferred method for managing your Consensus Client.
+Default: Locally Managed`, descriptionSidebarWidth),
 			OptionDescriptions: map[string]string{
 				"Locally Managed": utils.AddNewLines(`Locally Managed
 	
@@ -106,6 +107,7 @@ Please specify your ETH2 - Consensus client peer limit. The number can be decrea
 Default: 100 `, descriptionSidebarWidth),
 	}
 }
+
 func makeContainerTagField(key string) FormFieldType {
 	return FormFieldType{
 		Label: "Container Tag",
@@ -132,9 +134,10 @@ Note: When running this client on the same machine as the Stader Node, use your 
 
 func makeCustomGraffitiField(key string) FormFieldType {
 	return FormFieldType{
-		Label: "Custom Graffiti",
-		Key:   key,
-		Type:  "text",
+		Label:    "Custom Graffiti",
+		Key:      key,
+		Type:     "text",
+		MaxChars: 16,
 		Description: utils.AddNewLines(`Custom Graffiti
 
 Want to add a personal touch to your proposed blocks? You have the option to add a short custom message, or "graffiti", of up to 16 characters to each block proposed by your validators.
@@ -245,21 +248,21 @@ func appendFieldLightHouse(commonsField []FormFieldType) []FormFieldType {
 			Label: "Container Tag",
 			Key:   FieldKey.E2cc_lc_container_tag_lighthouse,
 			Type:  "text",
-			Description: utils.AddNewLines(` Container Tag
+			Description: utils.AddNewLines(`Container Tag
 Please enter the label you wish to use on Docker Hub for the Lighthouse container.
 Default:`, descriptionSidebarWidth),
 		}, FormFieldType{
 			Label: "Additional Beacon Node Flags",
 			Key:   FieldKey.E2cc_lc_additional_beacon_node_flags_lighthouse,
 			Type:  "text",
-			Description: utils.AddNewLines(` Additional Beacon Node Flags
+			Description: utils.AddNewLines(`Additional Beacon Node Flags
 Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Beacon Node to activate added settings that the Stader Node configuration overlooks.
 Default:`, descriptionSidebarWidth),
 		}, FormFieldType{
 			Label: "Additional Validator Client Flags",
 			Key:   FieldKey.E2cc_lc_additional_client_flags_lighthouse,
 			Type:  "text",
-			Description: utils.AddNewLines(` Additional Validator Client Flags
+			Description: utils.AddNewLines(`Additional Validator Client Flags
 Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Validator Node to activate added settings that the Stader Node configuration overlooks.
 Default:`, descriptionSidebarWidth),
 		})
@@ -274,14 +277,14 @@ func appendFieldNimbus(commonsField []FormFieldType) []FormFieldType {
 		Label: "Container Tag",
 		Key:   FieldKey.E2cc_lc_container_tag_nimbus,
 		Type:  "text",
-		Description: utils.AddNewLines(` Container Tag
+		Description: utils.AddNewLines(`Container Tag
 Please enter the label you wish to use on Docker Hub for the Nimbus container.
 Default:`, descriptionSidebarWidth),
 	}, FormFieldType{
 		Label: "Additional Flags",
 		Key:   FieldKey.E2cc_lc_additional_flags_nimbus,
 		Type:  "text",
-		Description: utils.AddNewLines(` Additional Flags
+		Description: utils.AddNewLines(`Additional Flags
 Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Beacon Node to activate added settings that the Stader Node configuration overlooks.
 Default:`, descriptionSidebarWidth)},
 	)
@@ -321,19 +324,25 @@ Default:`, descriptionSidebarWidth),
 		Label: "Validator Client Container Tag",
 		Key:   FieldKey.E2cc_lc_validator_client_container_tag_prysm,
 		Type:  "text",
-		Description: utils.AddNewLines(`Please enter the label you wish to use on Docker Hub for the Prysm Validator Node container.
+		Description: utils.AddNewLines(`Validator Client Container Tag
+
+Please enter the label you wish to use on Docker Hub for the Prysm Validator Node container.
 Default:`, descriptionSidebarWidth),
 	}, FormFieldType{
 		Label: "Additional Beacon Node Flags",
 		Key:   FieldKey.E2cc_lc_additional_beacon_node_flags_prysm,
 		Type:  "text",
-		Description: utils.AddNewLines(`Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Beacon Node to activate added settings that the Stader Node configuration overlooks.
+		Description: utils.AddNewLines(`Additional Beacon Node Flags
+
+Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Beacon Node to activate added settings that the Stader Node configuration overlooks.
 Default:`, descriptionSidebarWidth),
 	}, FormFieldType{
 		Label: "Additional Validator client Flags",
 		Key:   FieldKey.E2cc_lc_additional_client_flags_prysm,
 		Type:  "text",
-		Description: utils.AddNewLines(`Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Validator Node to activate added settings that the Stader Node configuration overlooks.
+		Description: utils.AddNewLines(`Additional Validator client Flags
+
+Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Validator Node to activate added settings that the Stader Node configuration overlooks.
 Default:`, descriptionSidebarWidth),
 	})
 
@@ -349,28 +358,39 @@ func appendFieldTeku(commonsField []FormFieldType) []FormFieldType { //JVM Heap 
 			Label: "JVM Heap Size",
 			Key:   FieldKey.E2cc_lc_jvm_heap_size,
 			Type:  "int",
-			Description: utils.AddNewLines(` JVM Heap Size
+			Description: utils.AddNewLines(`JVM Heap Size
 The upper threshold of the RAM, expressed in MB, that the JVM in Teku should restrict itself to. Lowering this value would prompt Teku to consume less RAM, although it would inevitably exceed this cap. If you prefer an automatic allocation, input 0.
 Default: 2048`, descriptionSidebarWidth),
-		}, makeMaxPeerField(FieldKey.E2cc_lc_max_peer_teku), FormFieldType{
+		},
+		makeMaxPeerField(FieldKey.E2cc_lc_max_peer_teku),
+		FormFieldType{
+			Label: "Enable Archive mode",
+			Key:   FieldKey.E2cc_lc_enable_archive_mode_teku,
+			Type:  "checkbox",
+			Description: utils.AddNewLines(`Enable Archive mode
+Enabling Archive Mode triggers Teku to operate in "archival" mode, allowing it to replicate the state of the Beacon chain for a preceding block. This feature is essential for producing the Merkle rewards tree manually. If you are confident that you will never have to manually create a tree, you can opt-out of the archival mode.
+Default: False`, descriptionSidebarWidth),
+		},
+		FormFieldType{
 			Label: "Container Tag",
 			Key:   FieldKey.E2cc_lc_container_tag_teku,
 			Type:  "text",
-			Description: utils.AddNewLines(` Container Tag
+			Description: utils.AddNewLines(`Container Tag
 Please enter the label you wish to use on Docker Hub for the Nimbus container.
 Default:`, descriptionSidebarWidth),
-		}, FormFieldType{
+		},
+		FormFieldType{
 			Label: "Additional Beacon Node Flags",
 			Key:   FieldKey.E2cc_lc_additional_beacon_node_flags_teku,
 			Type:  "text",
-			Description: utils.AddNewLines(` Additional Beacon Node Flags
+			Description: utils.AddNewLines(`Additional Beacon Node Flags
 Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Beacon Node to activate added settings that the Stader Node configuration overlooks.
 Default:`, descriptionSidebarWidth)},
 		FormFieldType{
 			Label: "Additional Validator Client Flags",
 			Key:   FieldKey.E2cc_lc_additional_client_flags_teku,
 			Type:  "text",
-			Description: utils.AddNewLines(` Additional Validator Client Flags
+			Description: utils.AddNewLines(`Additional Validator Client Flags
 Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Validator Node to activate added settings that the Stader Node configuration overlooks.
 Default:`, descriptionSidebarWidth)})
 

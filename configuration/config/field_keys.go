@@ -100,6 +100,7 @@ type FieldKeyType = struct {
 
 	// ETH2ConsensusClient | Local |Teku
 	E2cc_lc_jvm_heap_size                     string
+	E2cc_lc_enable_archive_mode_teku          string
 	E2cc_lc_container_tag_teku                string
 	E2cc_lc_additional_beacon_node_flags_teku string
 	E2cc_lc_additional_client_flags_teku      string
@@ -124,9 +125,10 @@ type FieldKeyType = struct {
 	Fc_use_fallback_clients string
 
 	// FallBackClients/true
-	Fc_true_reconnect_delay      string
-	Fc_true_execution_client_url string
-	Fc_true_beacon_node_url      string
+	Fc_true_reconnect_delay          string
+	Fc_true_execution_client_url     string
+	Fc_true_beacon_node_url          string
+	Fc_true_beacon_node_json_rpc_url string
 
 	// MEV Boost
 	Mev_boost_enabled        string
