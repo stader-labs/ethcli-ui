@@ -174,9 +174,10 @@ func makeConsensusLocalManagerClientField(ccClient string) []FormFieldType {
 
 	commonsField := []FormFieldType{
 		{
-			Label: "Consensus Graffiti",
-			Key:   FieldKey.E2cc_lc_common_graffiti,
-			Type:  "text",
+			Label:    "Consensus Graffiti",
+			Key:      FieldKey.E2cc_lc_common_graffiti,
+			Type:     "text",
+			MaxChars: 16,
 			Description: utils.AddNewLines(`Consensus Graffiti
 Want to add a personal touch to your proposed blocks? You have the option to add a short custom message, or "graffiti", of up to 16 characters to each block proposed by your validators.
 Default: Stader`, descriptionSidebarWidth),
