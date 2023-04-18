@@ -14,6 +14,9 @@ func ChangePage(nextPage string, app *tview.Application) {
 	Pages.SwitchToPage(nextPage)
 	pageInstance := All[nextPage]
 	firstElement := pageInstance.GetFirstElement()
+	if firstElement == nil {
+		firstElement = Pages
+	}
 	app.SetFocus(firstElement)
 	pageInstance.OnResume()
 }
@@ -115,6 +118,17 @@ func getFields(configFields []config.FormFieldType) []fieldReturnType {
 
 	items := []fieldReturnType{}
 	for _, field := range configFields {
+		if field.Hidden {
+			continue
+		}
+
+		if field.IsFieldVisible != nil {
+			show := field.IsFieldVisible(state.Configuration)
+			if !show {
+				continue
+			}
+		}
+
 		switch field.Type {
 		case "select":
 			items = append(items, getSelectField(field))

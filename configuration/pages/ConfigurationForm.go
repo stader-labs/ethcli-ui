@@ -145,6 +145,8 @@ func (p *ConfigurationForm) OnResume() {
 func (p *ConfigurationForm) GoBack() {
 	log.Infof("Going back to [%s]", config.PageID.Categories)
 	ChangePage(config.PageID.Categories, p.App)
+	fieldKeys := config.GetFieldKey()
+	state.Configuration[fieldKeys.App___selected_category] = ""
 }
 
 func (p *ConfigurationForm) GetFirstElement() tview.Primitive {

@@ -60,11 +60,12 @@ func Footer(App *tview.Application) *tview.Flex {
 	}
 
 	{
+		txt := "Tab/Arrow keys: Navigate"
 		btn := tview.NewTextView().
-			SetText("Arrow keys: Navigate").
+			SetText(txt).
 			SetTextStyle(textStyle)
 		footerActions.AddItem(emptyText(), 3, 1, false)
-		footerActions.AddItem(btn, 20, 1, false)
+		footerActions.AddItem(btn, len(txt), 1, false)
 	}
 
 	{
@@ -76,11 +77,15 @@ func Footer(App *tview.Application) *tview.Flex {
 	}
 
 	{
-		btn := tview.NewTextView().
-			SetText("Ctrl+C: Quit without Saving").
-			SetTextStyle(textStyle)
+		txt := "Ctrl+C: Quit without Saving"
+		btn := tview.NewButton(txt).SetStyle(textStyle)
+		btn.SetStyle(textStyle.Underline(true)).SetSelectedFunc(func() {
+			state.OpenConfigurationUI = false
+			state.Confirmed = false
+			App.Stop()
+		})
 		footerActions.AddItem(emptyText(), 3, 1, false)
-		footerActions.AddItem(btn, 30, 1, false)
+		footerActions.AddItem(btn, len(txt), 1, false)
 	}
 
 	footerActions.AddItem(emptyText(), 0, 1, false)

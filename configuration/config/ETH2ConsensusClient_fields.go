@@ -97,6 +97,14 @@ Choose this option if you prefer to use an existing client that you are already 
 }
 
 func makeMaxPeerField(key string) FormFieldType {
+	FieldKey := GetFieldKey()
+	defaultValue := "100"
+	if key == FieldKey.E2cc_lc_max_peer_lighthouse {
+		defaultValue = "80"
+	} else if key == FieldKey.E2cc_lc_max_peer_prysm {
+		defaultValue = "50"
+	}
+
 	return FormFieldType{
 		Label: "Max Peers",
 		Key:   key,
@@ -104,7 +112,7 @@ func makeMaxPeerField(key string) FormFieldType {
 		Description: utils.AddNewLines(`Max Peers
 
 Please specify your ETH2 - Consensus client peer limit. The number can be decreased to enhance performance on systems with limited specs.
-Default: 100 `, descriptionSidebarWidth),
+Default: `+defaultValue, descriptionSidebarWidth),
 	}
 }
 
@@ -244,7 +252,9 @@ Default - True`, descriptionSidebarWidth),
 func appendFieldLightHouse(commonsField []FormFieldType) []FormFieldType {
 	FieldKey := GetFieldKey()
 
-	commonsField = append(commonsField, makeMaxPeerField(FieldKey.E2cc_lc_max_peer_lighthouse),
+	commonsField = append(
+		commonsField,
+		makeMaxPeerField(FieldKey.E2cc_lc_max_peer_lighthouse),
 		FormFieldType{
 			Label: "Container Tag",
 			Key:   FieldKey.E2cc_lc_container_tag_lighthouse,
@@ -252,21 +262,24 @@ func appendFieldLightHouse(commonsField []FormFieldType) []FormFieldType {
 			Description: utils.AddNewLines(`Container Tag
 Please enter the label you wish to use on Docker Hub for the Lighthouse container.
 Default:`, descriptionSidebarWidth),
-		}, FormFieldType{
+		},
+		FormFieldType{
 			Label: "Additional Beacon Node Flags",
 			Key:   FieldKey.E2cc_lc_additional_beacon_node_flags_lighthouse,
 			Type:  "text",
 			Description: utils.AddNewLines(`Additional Beacon Node Flags
 Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Beacon Node to activate added settings that the Stader Node configuration overlooks.
 Default:`, descriptionSidebarWidth),
-		}, FormFieldType{
+		},
+		FormFieldType{
 			Label: "Additional Validator Client Flags",
 			Key:   FieldKey.E2cc_lc_additional_client_flags_lighthouse,
 			Type:  "text",
 			Description: utils.AddNewLines(`Additional Validator Client Flags
 Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Validator Node to activate added settings that the Stader Node configuration overlooks.
 Default:`, descriptionSidebarWidth),
-		})
+		},
+	)
 
 	return commonsField
 }

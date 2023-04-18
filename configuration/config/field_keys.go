@@ -5,6 +5,9 @@ import (
 )
 
 type FieldKeyType = struct {
+	// App specific, shouldn't be used outside of this package
+	App___selected_category string
+
 	Sn_node_network     string
 	Sn_project_title    string
 	Sn_storage_location string

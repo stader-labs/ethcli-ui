@@ -122,7 +122,8 @@ Default: 8545`, descriptionSidebarWidth),
 			Type:  "int",
 			Description: utils.AddNewLines(`Websocket Port
 
-Enter the port your Websocket RPC API should use`, descriptionSidebarWidth),
+Enter the port your Websocket RPC API should use
+Default: 8546`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Engine API port",
@@ -158,7 +159,7 @@ Default: 30303`, descriptionSidebarWidth),
 			Description: utils.AddNewLines(`ETHStats Label
 
 Please provide the label of your choice if you wish to share your Execution Client's statistics on https://ethstats.net/
-Default: ""`, descriptionSidebarWidth),
+Default: 8546`, descriptionSidebarWidth),
 		},
 		{
 			Label: "ETHStats Login",
@@ -411,7 +412,9 @@ Enter the HTTP-based RPC API URL for your current external client. Remember to u
 				"Locally Managed",
 				"Externally Managed",
 			},
-			Description: `Select your preferred method for
+			Description: `Execution client Preference
+
+Select your preferred method for
 managing your Execution Client.
 
 Default: Locally Managed`,

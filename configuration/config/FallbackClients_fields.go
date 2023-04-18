@@ -51,6 +51,9 @@ Default:`, descriptionSidebarWidth),
 						Key:         FieldKey.Fc_true_beacon_node_json_rpc_url,
 						Type:        "text",
 						Description: utils.AddNewLines(`Beacon Node JSON-RPC URL`, descriptionSidebarWidth),
+						IsFieldVisible: func(c map[string]interface{}) bool {
+							return c[FieldKey.E2cc_lc_consensus_client] == "Prysm"
+						},
 					},
 				},
 			},

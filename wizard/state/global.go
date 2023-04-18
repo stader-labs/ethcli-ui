@@ -9,6 +9,8 @@ import (
 var (
 	CurrentApp *tview.Application
 
+	StartPageID string
+
 	// If user successfully completed the Wizard or not
 	// Initialised with false, and becomes true on Confirmation page
 	Confirmed bool

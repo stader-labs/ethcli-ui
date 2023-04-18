@@ -34,14 +34,13 @@ Choose this option to customize
 the transaction fee and reward parameters.`,
 		Categories.Option.ETH1ExecutionClient: `ETH1 - Execution Client
 		
-Execution Client description: Please
-indicate your preferred Execution
+Please indicate your preferred Execution
 client and adjust its configurations
 accordingly.`,
 		Categories.Option.ETH2ConsensusClient: `ETH2 - Consensus Client
 		
 Please indicate your preferred
-Execution client and adjust its
+Consensus client and adjust its
 configurations accordingly.`,
 		Categories.Option.FallbackClients: `Fallback Clients
 		
@@ -58,8 +57,9 @@ functioning properly.`,
 		
 Please choose this option to customize
 the settings of MEV-Boost, providing
-Validators with MEV earnings.Note:
-Refer https://writings.flashbots.net/
+Validators with MEV earnings.
+
+Note: Refer https://writings.flashbots.net/
 writings/why-run-mevboost/ for further
 insights into MEV, MEV-Boost and
 Flashbots.`,

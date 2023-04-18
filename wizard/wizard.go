@@ -25,7 +25,6 @@ func Run(s *pages.SettingsType) (
 	settings *pages.SettingsType,
 ) {
 	state.CurrentApp = tview.NewApplication().EnableMouse(true)
-	startPageID := config.PageID.Network
 
 	if s != nil {
 		pages.SetSettings(*s)
@@ -85,6 +84,10 @@ func Run(s *pages.SettingsType) (
 		return newEvent
 	})
 
+	startPageID := config.PageID.Network
+	if state.StartPageID != "" {
+		startPageID = state.StartPageID
+	}
 	pages.ChangePage(startPageID)
 	firstElement := pages.All[startPageID].GetFirstElement()
 

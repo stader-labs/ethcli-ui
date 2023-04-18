@@ -6,14 +6,14 @@ func init() {
 	FieldKey := GetFieldKey()
 
 	metricsFields := []FormFieldType{
-		{
-			Label: "Enable Oracle DAO Metrics",
-			Key:   FieldKey.Nm_enable_oracle_dao_metrics,
-			Type:  "checkbox",
-			Description: utils.AddNewLines(`Enable Oracle DAO Metrics
+		// 		{
+		// 			Label: "Enable Oracle DAO Metrics",
+		// 			Key:   FieldKey.Nm_enable_oracle_dao_metrics,
+		// 			Type:  "checkbox",
+		// 			Description: utils.AddNewLines(`Enable Oracle DAO Metrics
 
-Choose this option to activate Oracle DAO metric tracking, including balance submission participation and prices.`, descriptionSidebarWidth),
-		},
+		// Choose this option to activate Oracle DAO metric tracking, including balance submission participation and prices.`, descriptionSidebarWidth),
+		// 		},
 		{
 			Label: "Execution Client Metrics Port",
 			Key:   FieldKey.Nm_execution_client_metrics_port,

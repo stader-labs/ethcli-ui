@@ -27,64 +27,6 @@ func Footer(pageName string, app *tview.Application, onGoBack func()) tview.Prim
 	footer := tview.NewFlex().
 		SetDirection(tview.FlexRow)
 
-	footerActions := tview.NewFlex().
-		SetDirection(tview.FlexColumn)
-	footerActions.AddItem(emptyText(), 0, 1, false)
-
-	{
-		txt := "Arrow keys: Navigate"
-		if pageName == config.PageID.ConfigurationForm {
-			txt = "Tab: Navigate fields"
-		}
-
-		footerActions.AddItem(
-			tview.NewTextView().
-				SetText(txt).
-				SetTextStyle(textStyle),
-			len(txt), 1, false,
-		).AddItem(emptyText(), 3, 1, false)
-	}
-
-	{
-		txt := "Enter: Select"
-		footerActions.AddItem(
-			tview.NewTextView().
-				SetText(txt).
-				SetTextStyle(textStyle),
-			len(txt), 1, false,
-		).AddItem(emptyText(), 3, 1, false)
-	}
-
-	{
-		txt := "Ctrl+C: Quit without Saving"
-		btn := tview.NewButton(txt).SetStyle(textStyle).SetDisabledStyle(textStyle)
-		if pageName != config.PageID.Categories {
-			btn.SetStyle(textStyle.Underline(true)).SetSelectedFunc(func() {
-				state.OpenWizard = false
-				state.Saved = false
-				app.Stop()
-			})
-		} else {
-			btn.SetDisabled(true)
-		}
-		footerActions.AddItem(btn, len(txt), 1, false)
-	}
-
-	if pageName == config.PageID.ConfigurationForm {
-		footerActions.AddItem(emptyText(), 3, 1, false)
-		backTxt := "Esc: Go back"
-		footerActions.AddItem(
-			tview.NewButton(backTxt).
-				SetStyle(textStyle.Underline(true)).
-				SetSelectedFunc(onGoBack),
-			len(backTxt), 1, false,
-		)
-
-		footerActions.AddItem(emptyText(), 3, 1, false)
-	}
-
-	footerActions.AddItem(emptyText(), 0, 1, false)
-
 	saveNExitTxt := "Save and Exit (Ctrl+S)"
 	saveNExitBtn := tview.NewButton(saveNExitTxt).
 		SetStyle(btnStyle).
@@ -110,6 +52,56 @@ func Footer(pageName string, app *tview.Application, onGoBack func()) tview.Prim
 		AddItem(emptyText(), 3, 1, false).
 		AddItem(openConfig, len(openConfigTxt)+2, 1, false).
 		AddItem(emptyText(), 0, 1, false)
+
+	footerActions := tview.NewFlex().
+		SetDirection(tview.FlexColumn)
+	footerActions.AddItem(emptyText(), 0, 1, false)
+
+	{
+		txt := "Tab/Arrow keys: Navigate"
+		footerActions.AddItem(
+			tview.NewTextView().
+				SetText(txt).
+				SetTextStyle(textStyle),
+			len(txt), 1, false,
+		).AddItem(emptyText(), 3, 1, false)
+	}
+
+	{
+		txt := "Enter: Select"
+		footerActions.AddItem(
+			tview.NewTextView().
+				SetText(txt).
+				SetTextStyle(textStyle),
+			len(txt), 1, false,
+		).AddItem(emptyText(), 3, 1, false)
+	}
+
+	{
+		txt := "Ctrl+C: Quit without Saving"
+		btn := tview.NewButton(txt).SetStyle(textStyle).SetDisabledStyle(textStyle)
+		btn.SetStyle(textStyle.Underline(true)).SetSelectedFunc(func() {
+			state.OpenWizard = false
+			state.Saved = false
+			app.Stop()
+		})
+		footerActions.AddItem(btn, len(txt), 1, false)
+	}
+
+	if pageName != config.PageID.Categories {
+		footerActions.AddItem(emptyText(), 3, 1, false)
+		backTxt := "Esc: Go back"
+		footerActions.AddItem(
+			tview.NewButton(backTxt).
+				SetStyle(textStyle.Underline(true)).
+				SetSelectedFunc(onGoBack),
+			len(backTxt), 1, false,
+		)
+
+		footerActions.AddItem(emptyText(), 3, 1, false)
+	}
+
+	footerActions.AddItem(emptyText(), 0, 1, false)
 
 	footer.AddItem(emptyText(), 1, 1, false).
 		AddItem(footerTopRow, 0, 1, false).

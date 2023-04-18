@@ -29,6 +29,8 @@ var (
 
 func init() {
 	FieldKey := config.GetFieldKey()
+	Configuration[FieldKey.App___selected_category] = ""
+
 	Configuration[FieldKey.E1ec_execution_and_consensus_mode] = "Locally Managed"
 	Configuration[FieldKey.Sn_node_network] = "Goerli Testnet"
 	Configuration[FieldKey.Mev_boost_enabled] = true
