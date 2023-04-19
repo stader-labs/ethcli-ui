@@ -54,14 +54,11 @@ Prysm, an Ethereum proof-of-stake client written in Go, is developed by Prysmati
 Choose the ETH 2 - Consensus Client that you manage externally.`, descriptionSidebarWidth),
 			OptionDescriptions: map[string]string{
 				"Teku": utils.AddNewLines(`Teku
-
-One of the most popular software clients maintained by the Ethereum Foundation, Geth is an open source CLI developed in the Go Programming Language. It is designed to be flexible and customizable, and it supports a wide range of functionalities such as secure key management, consensus mechanisms etc.`, descriptionSidebarWidth),
+Choose this option if you wish to use Teku as your externally manager ETH 2 - Consensus Client.`, descriptionSidebarWidth),
 				"Lighthouse": utils.AddNewLines(`Lighthouse
-
-One of the most popular software clients maintained by the Ethereum Foundation, Geth is an open source CLI developed in the Go Programming Language. It is designed to be flexible and customizable, and it supports a wide range of functionalities such as secure key management, consensus mechanisms etc.`, descriptionSidebarWidth),
+Choose this option if you wish to use Lighthouse as your externally manager ETH 2 - Consensus Client.`, descriptionSidebarWidth),
 				"Prysm": utils.AddNewLines(`Prysm
-
-Besu, developed by ConsenSys and written in Java, is a comprehensive Ethereum protocol client. It utilizes an innovative storage system called "Bonsai Trees" to store its chain data effectively, enabling it to retrieve historical block states without the need for pruning.`, descriptionSidebarWidth),
+Choose this option if you wish to use Prysm as your externally manager ETH 2 - Consensus Client.`, descriptionSidebarWidth),
 			},
 			Children: makeExternalChildren(),
 		},
@@ -117,14 +114,28 @@ Default: `+defaultValue, descriptionSidebarWidth),
 }
 
 func makeContainerTagField(key string) FormFieldType {
-	return FormFieldType{
-		Label: "Container Tag",
-		Key:   key,
-		Type:  "text",
-		Description: utils.AddNewLines(`Container Tag
-
+	fieldKey := GetFieldKey()
+	description := ""
+	switch key {
+	case fieldKey.E2cc_em_container_tag_prysm:
+		description = utils.AddNewLines(`Container tag
 Please enter the label you wish to use on Docker Hub for the Prysm container. The label will be utilized for the Validator Client that Stader manages with your validator keys.
-Default:`, descriptionSidebarWidth),
+Default:`, descriptionSidebarWidth)
+	case fieldKey.E2cc_em_container_tag_lighthouse:
+		description = utils.AddNewLines(`Container tag
+Please enter the label you wish to use on Docker Hub for the Lighthouse container. The label will be utilized for the Validator Client that Stader manages with your validator keys.
+Default:`, descriptionSidebarWidth)
+	case fieldKey.E2cc_em_container_tag_teku:
+		description = utils.AddNewLines(`Container tag
+Please enter the label you wish to use on Docker Hub for the Teku container. The label will be utilized for the Validator Client that Stader manages with your validator keys.
+Default:`, descriptionSidebarWidth)
+	}
+
+	return FormFieldType{
+		Label:       "Container Tag",
+		Key:         key,
+		Type:        "text",
+		Description: description,
 	}
 }
 
@@ -137,6 +148,17 @@ func makeHTTPField(key string) FormFieldType {
 
 Please enter the HTTP API URL of your externally managed Prysm client.
 Note: When running this client on the same machine as the Stader Node, use your machine's LAN IP address instead of localhost or 127.0.0.1`, descriptionSidebarWidth),
+	}
+}
+
+func makeJSONRPCField(key string) FormFieldType {
+	return FormFieldType{
+		Label: "JSON-RPC URL",
+		Key:   key,
+		Type:  "text",
+		Description: utils.AddNewLines(`JSON-RPC URL
+Please enter the JSON-RPC URL of your externally managed Prysm client.
+Note: When running this client on the same machine as the Stader Node, use your machine's LAN IP address instead of localhost or 127.0.0.1.Default`, descriptionSidebarWidth),
 	}
 }
 
@@ -260,7 +282,7 @@ func appendFieldLightHouse(commonsField []FormFieldType) []FormFieldType {
 			Key:   FieldKey.E2cc_lc_container_tag_lighthouse,
 			Type:  "text",
 			Description: utils.AddNewLines(`Container Tag
-Please enter the label you wish to use on Docker Hub for the Lighthouse container.
+Please enter the label you wish to use on Docker Hub for the Lighthouse container. The label will be utilized for the Validator Client that Stader manages with your validator keys.
 Default:`, descriptionSidebarWidth),
 		},
 		FormFieldType{
@@ -287,20 +309,25 @@ Default:`, descriptionSidebarWidth),
 func appendFieldNimbus(commonsField []FormFieldType) []FormFieldType {
 	FieldKey := GetFieldKey()
 
-	commonsField = append(commonsField, makeMaxPeerField(FieldKey.E2cc_lc_max_peer_nimbus), FormFieldType{
-		Label: "Container Tag",
-		Key:   FieldKey.E2cc_lc_container_tag_nimbus,
-		Type:  "text",
-		Description: utils.AddNewLines(`Container Tag
+	commonsField = append(
+		commonsField,
+		makeMaxPeerField(FieldKey.E2cc_lc_max_peer_nimbus),
+		FormFieldType{
+			Label: "Container Tag",
+			Key:   FieldKey.E2cc_lc_container_tag_nimbus,
+			Type:  "text",
+			Description: utils.AddNewLines(`Container Tag
 Please enter the label you wish to use on Docker Hub for the Nimbus container.
 Default:`, descriptionSidebarWidth),
-	}, FormFieldType{
-		Label: "Additional Flags",
-		Key:   FieldKey.E2cc_lc_additional_flags_nimbus,
-		Type:  "text",
-		Description: utils.AddNewLines(`Additional Flags
+		},
+		FormFieldType{
+			Label: "Additional Flags",
+			Key:   FieldKey.E2cc_lc_additional_flags_nimbus,
+			Type:  "text",
+			Description: utils.AddNewLines(`Additional Flags
 Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Beacon Node to activate added settings that the Stader Node configuration overlooks.
-Default:`, descriptionSidebarWidth)},
+Default:`, descriptionSidebarWidth),
+		},
 	)
 
 	return commonsField
@@ -310,55 +337,63 @@ func appendFieldPrysm(commonsField []FormFieldType) []FormFieldType {
 	FieldKey := GetFieldKey()
 
 	commonsField = append(commonsField, makeMaxPeerField(FieldKey.E2cc_lc_max_peer_prysm))
-	commonsField = append(commonsField, FormFieldType{
-		Label: "RPC Port",
-		Key:   FieldKey.E2cc_lc_rpc_port_prysm,
-		Type:  "int",
-		Description: utils.AddNewLines(`RPC Port
+	commonsField = append(
+		commonsField,
+		FormFieldType{
+			Label: "RPC Port",
+			Key:   FieldKey.E2cc_lc_rpc_port_prysm,
+			Type:  "int",
+			Description: utils.AddNewLines(`RPC Port
 
 Please enter the port on which Prysm should run its JSON-RPC API.
 Default: 5053`, descriptionSidebarWidth),
-	}, FormFieldType{
-		Label: "Expose RPC Port",
-		Key:   FieldKey.E2cc_lc_expose_rpc_port_prysm,
-		Type:  "checkbox",
-		Description: utils.AddNewLines(`Expose RPC Port
+		},
+		FormFieldType{
+			Label: "Expose RPC Port",
+			Key:   FieldKey.E2cc_lc_expose_rpc_port_prysm,
+			Type:  "checkbox",
+			Description: utils.AddNewLines(`Expose RPC Port
 
 Choose this option to make the RPC ports visible on your local network, granting access to your Consensus Client's RPC endpoint for other local devices.
 Default: False`, descriptionSidebarWidth),
-	}, FormFieldType{
-		Label: "Beacon Node Container Tag",
-		Key:   FieldKey.E2cc_lc_beacon_container_tag_prysm,
-		Type:  "text",
-		Description: utils.AddNewLines(`Beacon Node Container Tag
+		},
+		FormFieldType{
+			Label: "Beacon Node Container Tag",
+			Key:   FieldKey.E2cc_lc_beacon_container_tag_prysm,
+			Type:  "text",
+			Description: utils.AddNewLines(`Beacon Node Container Tag
 
 Please enter the label you wish to use on Docker Hub for the Prysm Beacon Node container.
 Default:`, descriptionSidebarWidth),
-	}, FormFieldType{
-		Label: "Validator Client Container Tag",
-		Key:   FieldKey.E2cc_lc_validator_client_container_tag_prysm,
-		Type:  "text",
-		Description: utils.AddNewLines(`Validator Client Container Tag
+		},
+		FormFieldType{
+			Label: "Validator Client Container Tag",
+			Key:   FieldKey.E2cc_lc_validator_client_container_tag_prysm,
+			Type:  "text",
+			Description: utils.AddNewLines(`Validator Client Container Tag
 
 Please enter the label you wish to use on Docker Hub for the Prysm Validator Node container.
 Default:`, descriptionSidebarWidth),
-	}, FormFieldType{
-		Label: "Additional Beacon Node Flags",
-		Key:   FieldKey.E2cc_lc_additional_beacon_node_flags_prysm,
-		Type:  "text",
-		Description: utils.AddNewLines(`Additional Beacon Node Flags
+		},
+		FormFieldType{
+			Label: "Additional Beacon Node Flags",
+			Key:   FieldKey.E2cc_lc_additional_beacon_node_flags_prysm,
+			Type:  "text",
+			Description: utils.AddNewLines(`Additional Beacon Node Flags
 
 Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Beacon Node to activate added settings that the Stader Node configuration overlooks.
 Default:`, descriptionSidebarWidth),
-	}, FormFieldType{
-		Label: "Additional Validator client Flags",
-		Key:   FieldKey.E2cc_lc_additional_client_flags_prysm,
-		Type:  "text",
-		Description: utils.AddNewLines(`Additional Validator client Flags
+		},
+		FormFieldType{
+			Label: "Additional Validator client Flags",
+			Key:   FieldKey.E2cc_lc_additional_client_flags_prysm,
+			Type:  "text",
+			Description: utils.AddNewLines(`Additional Validator client Flags
 
 Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Validator Node to activate added settings that the Stader Node configuration overlooks.
 Default:`, descriptionSidebarWidth),
-	})
+		},
+	)
 
 	//
 	return commonsField
@@ -390,7 +425,7 @@ Default: False`, descriptionSidebarWidth),
 			Key:   FieldKey.E2cc_lc_container_tag_teku,
 			Type:  "text",
 			Description: utils.AddNewLines(`Container Tag
-Please enter the label you wish to use on Docker Hub for the Nimbus container.
+Please enter the label you wish to use on Docker Hub for the Teku container. The label will be utilized for the Validator Client that Stader manages with your validator keys.
 Default:`, descriptionSidebarWidth),
 		},
 		FormFieldType{
@@ -419,6 +454,7 @@ func makeConsensusExternalField(ccClient string) []FormFieldType {
 	switch ccClient {
 	case "Prysm":
 		commonsField = append(commonsField, makeHTTPField(FieldKey.E2cc_em_http_prysm))
+		commonsField = append(commonsField, makeJSONRPCField(FieldKey.E2cc_em_json_rpc_prysm))
 		commonsField = append(commonsField, makeCustomGraffitiField(FieldKey.E2cc_em_custom_graffiti_prysm))
 		commonsField = append(commonsField, makeDoppelgängerField(FieldKey.E2cc_em_doppelganger_detection_prysm))
 		commonsField = append(commonsField, makeContainerTagField(FieldKey.E2cc_em_container_tag_prysm))

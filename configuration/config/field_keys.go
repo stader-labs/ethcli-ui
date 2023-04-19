@@ -122,6 +122,7 @@ type FieldKeyType = struct {
 	E2cc_em_additional_client_flags_teku       string
 	E2cc_em_http_teku                          string
 	E2cc_em_http_prysm                         string
+	E2cc_em_json_rpc_prysm                     string
 	E2cc_em_http_lighthouse                    string
 
 	// FallBackClients
@@ -164,23 +165,28 @@ type FieldKeyType = struct {
 	Mev_boost_rm_additional_flags            string
 
 	// Node Monitoring
-	Nm_enable_metrics                string
-	Nm_enable_oracle_dao_metrics     string
-	Nm_execution_client_metrics_port string
-	Nm_beacon_node_metrics_port      string
-	Nm_validator_client_metrics_port string
-	Nm_node_metrics_port             string
-	Nm_exporter_metrics_port         string
-	Nm_guardian_oracle_port          string
-	Nm_grafana_port                  string
-	Nm_grafana_container_tag         string
-	Nm_prometheus_port               string
-	Nm_expose_prometheus_port        string
-	Nm_prometheus_container_tag      string
-	Nm_additional_prometheus_flags   string
-	Nm_allow_root_filesystem_access  string
-	Nm_exporter_container_tag        string
-	Nm_additional_exporter_flags     string
+	Nm_enable_metrics                  string
+	Nm_enable_oracle_dao_metrics       string
+	Nm_execution_client_metrics_port   string
+	Nm_beacon_node_metrics_port        string
+	Nm_validator_client_metrics_port   string
+	Nm_node_metrics_port               string
+	Nm_exporter_metrics_port           string
+	Nm_guardian_oracle_port            string
+	Nm_grafana_port                    string
+	Nm_grafana_container_tag           string
+	Nm_prometheus_port                 string
+	Nm_expose_prometheus_port          string
+	Nm_prometheus_container_tag        string
+	Nm_additional_prometheus_flags     string
+	Nm_allow_root_filesystem_access    string
+	Nm_exporter_container_tag          string
+	Nm_additional_exporter_flags       string
+	Nm_enable_beaconchain_node_metrics string
+
+	// Node Monitoring / Enable Beaconchain Node Metrics / true
+	Nm_beaconchain_api_key                   string
+	Nm_beaconchain_node_metrics_machine_name string
 }
 
 func GetFieldKey() FieldKeyType {

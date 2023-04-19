@@ -158,8 +158,7 @@ Default: 30303`, descriptionSidebarWidth),
 			Type:  "text",
 			Description: utils.AddNewLines(`ETHStats Label
 
-Please provide the label of your choice if you wish to share your Execution Client's statistics on https://ethstats.net/
-Default: 8546`, descriptionSidebarWidth),
+Please provide the label of your choice if you wish to share your Execution Client's statistics on https://ethstats.net/`, descriptionSidebarWidth),
 		},
 		{
 			Label: "ETHStats Login",

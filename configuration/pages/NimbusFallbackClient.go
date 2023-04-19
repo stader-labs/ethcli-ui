@@ -15,7 +15,7 @@ type NimbusFallbackClient struct {
 
 func (p *NimbusFallbackClient) Page() tview.Primitive {
 
-	message := utils.AddNewLines("\nNimbus Fallback Client is not yet implemented.", 98)
+	message := utils.AddNewLines("\nYour ETH2 - Consensus client is Numbus which is not equipped with fallback clients feature.", 98)
 
 	body := tview.NewFlex().
 		SetDirection(tview.FlexColumn).

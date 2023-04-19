@@ -42,15 +42,17 @@ Default:`, descriptionSidebarWidth),
 						Type:  "text",
 						Description: utils.AddNewLines(`Beacon Node URL
 
-Please enter the URLs of the HTTP APIs for your fallback clients.
-Note: When running this client on the same machine as the Stader Node, use your machine's LAN IP address instead of localhost or 127.0.0.1.
-Default:`, descriptionSidebarWidth),
+Please enter the URLs of the HTTP Beacon APIs for your fallback clients.
+Note: When running this client on the same machine as the Stader Node, use your machine's LAN IP address instead of localhost or 127.0.0.1.`, descriptionSidebarWidth),
 					},
 					{
-						Label:       "Beacon Node JSON-RPC URL",
-						Key:         FieldKey.Fc_true_beacon_node_json_rpc_url,
-						Type:        "text",
-						Description: utils.AddNewLines(`Beacon Node JSON-RPC URL`, descriptionSidebarWidth),
+						Label: "Beacon Node JSON-RPC URL",
+						Key:   FieldKey.Fc_true_beacon_node_json_rpc_url,
+						Type:  "text",
+						Description: utils.AddNewLines(`Beacon Node JSON-RPC URL
+
+Please enter the JSON-RPC API endpoint for your fallback clients.
+Note: When running this client on the same machine as the Stader Node, use your machine's LAN IP address instead of localhost or 127.0.0.1.`, descriptionSidebarWidth),
 						IsFieldVisible: func(c map[string]interface{}) bool {
 							return c[FieldKey.E2cc_lc_consensus_client] == "Prysm"
 						},

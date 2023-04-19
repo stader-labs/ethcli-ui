@@ -182,13 +182,16 @@ Enter the externally managed MEV Boost client URL`, descriptionSidebarWidth),
 				"Locally Managed",
 				"Externally Managed",
 			},
+			Description: utils.AddNewLines(`MEV-Boost Mode
+			
+Would you prefer Stader Node to manage your MEV-Boost (Locally Managed), or would you like to handle it yourself (Externally Managed)?`, descriptionSidebarWidth),
 			OptionDescriptions: map[string]string{
 				"Locally Managed": utils.AddNewLines(`Locally Managed
 
 Choose this option if you would like Stader Node to take care of the MEV Boost client for you`, descriptionSidebarWidth),
 				"Externally Managed": utils.AddNewLines(`Externally Managed
 
-Choose this option if you would like to manage the MEV Boost client yourself`, descriptionSidebarWidth),
+Choose this option if you would like to utilize an existing MEV-Boost client that you already manage.`, descriptionSidebarWidth),
 			},
 			Children: map[string][]FormFieldType{
 				"Locally Managed":    locallyManagedFields,
@@ -196,42 +199,4 @@ Choose this option if you would like to manage the MEV Boost client yourself`, d
 			},
 		},
 	}
-
-	// 	ConfigurationFields[Categories.Option.MEVBoost] = []FormFieldType{
-	// 		{
-	// 			Label: "Enable MEV-Boost",
-	// 			Key:   FieldKey.Mev_boost_enabled,
-	// 			Type:  "checkbox",
-	// 			Description: utils.AddNewLines(`Enable MEV-Boost.
-
-	// MEV-Boost gives your validator the opportunity to link up with relays that act as a go-between for you and experienced block builders. These experts are able to hunt out and make use of MEV openings, and in return for your services, could give you a fair reward that is often more than what you could have made on your own.
-	// Default: True`, descriptionSidebarWidth),
-	// 			Children: map[string][]FormFieldType{
-	// 				"true": {
-	// 					{
-	// 						Label: "MEV-Boost Mode",
-	// 						Key:   FieldKey.Mev_boost_mode,
-	// 						Type:  "select",
-	// 						Options: []string{
-	// 							"Locally Managed",
-	// 							"Externally Managed",
-	// 						},
-	// 						OptionDescriptions: map[string]string{
-	// 							"Locally Managed": utils.AddNewLines(`Locally Managed
-
-	// Choose this option if you would like Stader Node to take care of the MEV Boost client for you`, descriptionSidebarWidth),
-	// 							"Externally Managed": utils.AddNewLines(`Externally Managed
-
-	// Choose this option if you would like to manage the MEV Boost client yourself`, descriptionSidebarWidth),
-	//
-	//						},
-	//						Children: map[string][]FormFieldType{
-	//							"Locally Managed":    locallyManagedFields,
-	//							"Externally Managed": externallyManagedFields,
-	//						},
-	//					},
-	//				},
-	//			},
-	//		},
-	//	}
 }
