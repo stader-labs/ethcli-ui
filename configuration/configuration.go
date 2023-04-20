@@ -54,7 +54,7 @@ func Run(settings *map[string]interface{}) (
 
 	pages.Setup(app)
 	rootPageID := config.PageID.Categories
-	selectedCat := state.Configuration[fieldKeys.App___selected_category].(string)
+	selectedCat, _ := state.Configuration[fieldKeys.App___selected_category].(string)
 	if selectedCat != "" {
 		state.Categories.Option.Selected = selectedCat
 		rootPageID = config.PageID.ConfigurationForm
