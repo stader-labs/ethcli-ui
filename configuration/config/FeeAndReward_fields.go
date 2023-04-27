@@ -25,7 +25,7 @@ Default: 0`, descriptionSidebarWidth),
 
 This value represents the additional amount you are willing to pay for your transaction beyond the network's essential transaction fee. The higher the value, the faster the block inclusion, as you will provide more ETH to validators for incorporating your transaction.
 It is important to note that you must set a Priority Fee higher than zero and ensure that the "Maximum Fee Limit" you have set is enough to match the current estimated transaction fee on the network.
-Default:`, descriptionSidebarWidth),
+Default: 2`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Archive-mode EC URL",

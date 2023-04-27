@@ -51,32 +51,31 @@ Default: False`, descriptionSidebarWidth),
 Enter the port number that the Execution Client will use for P2P communication with other blockchain nodes.
 Default: 30303`, descriptionSidebarWidth),
 		},
-		{
-			Label: "ETHStats Label",
-			Key:   FieldKey.E1ec_lm_common_ethstats_label,
-			Type:  "text",
-			Description: utils.AddNewLines(`ETHStats Label
+		// 		{
+		// 			Label: "ETHStats Label",
+		// 			Key:   FieldKey.E1ec_lm_common_ethstats_label,
+		// 			Type:  "text",
+		// 			Description: utils.AddNewLines(`ETHStats Label
 
-Please provide the label of your choice if you wish to share your Execution Client's statistics on https://ethstats.net/
-Default: ""`, descriptionSidebarWidth),
-		},
-		{
-			Label: "ETHStats Login",
-			Key:   FieldKey.E1ec_lm_common_ethstats_login,
-			Type:  "text",
-			Description: utils.AddNewLines(`ETHStats Login
+		// Please provide the label of your choice if you wish to share your Execution Client's statistics on https://ethstats.net/
+		// Default: ""`, descriptionSidebarWidth),
+		// 		},
+		// 		{
+		// 			Label: "ETHStats Login",
+		// 			Key:   FieldKey.E1ec_lm_common_ethstats_login,
+		// 			Type:  "text",
+		// 			Description: utils.AddNewLines(`ETHStats Login
 
-Please provide a login you plan to use if you wish to share your Execution Client's statistics on https://ethstats.net/
-Default:`, descriptionSidebarWidth),
-		},
+		// Please provide a login you plan to use if you wish to share your Execution Client's statistics on https://ethstats.net/
+		// Default:`, descriptionSidebarWidth),
+		// 		},
 		{
 			Label: "Cache Size (in MB)",
 			Key:   FieldKey.E1ec_lm_geth_cache_size,
 			Type:  "int",
 			Description: utils.AddNewLines(`Cache Size (in MB)
 
-Specify the desired cache size for your ETH1 - Execution Client. The present value is determined by the overall amount of RAM on your system, but you have the option to modify it manually. Note that a higher cache size will result in a slower rise in disk space usage and will reduce the frequency at which pruning is required.
-Default: 256`, descriptionSidebarWidth),
+Specify the desired cache size for your ETH1 - Execution Client. The present value is determined by the overall amount of RAM on your system, but you have the option to modify it manually. Note that a higher cache size will result in a slower rise in disk space usage and will reduce the frequency at which pruning is required.`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Max Peers",
@@ -85,7 +84,7 @@ Default: 256`, descriptionSidebarWidth),
 			Description: utils.AddNewLines(`Max Peers
 
 Please specify your ETH1 - Execution client peer limit. The number can be decreased to enhance performance on systems with limited specs. However, We suggest you to keep it at at least 12.
-Default: 25`, descriptionSidebarWidth),
+Default: 50`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Container tag",
@@ -152,31 +151,30 @@ Default: False`, descriptionSidebarWidth),
 Enter the port number that the Execution Client will use for P2P communication with other blockchain nodes.
 Default: 30303`, descriptionSidebarWidth),
 		},
-		{
-			Label: "ETHStats Label",
-			Key:   FieldKey.E1ec_lm_common_ethstats_label,
-			Type:  "text",
-			Description: utils.AddNewLines(`ETHStats Label
+		// 		{
+		// 			Label: "ETHStats Label",
+		// 			Key:   FieldKey.E1ec_lm_common_ethstats_label,
+		// 			Type:  "text",
+		// 			Description: utils.AddNewLines(`ETHStats Label
 
-Please provide the label of your choice if you wish to share your Execution Client's statistics on https://ethstats.net/`, descriptionSidebarWidth),
-		},
-		{
-			Label: "ETHStats Login",
-			Key:   FieldKey.E1ec_lm_common_ethstats_login,
-			Type:  "text",
-			Description: utils.AddNewLines(`ETHStats Login
+		// Please provide the label of your choice if you wish to share your Execution Client's statistics on https://ethstats.net/`, descriptionSidebarWidth),
+		// 		},
+		// 		{
+		// 			Label: "ETHStats Login",
+		// 			Key:   FieldKey.E1ec_lm_common_ethstats_login,
+		// 			Type:  "text",
+		// 			Description: utils.AddNewLines(`ETHStats Login
 
-Please provide a login you plan to use if you wish to share your Execution Client's statistics on https://ethstats.net/
-Default:`, descriptionSidebarWidth),
-		},
+		// Please provide a login you plan to use if you wish to share your Execution Client's statistics on https://ethstats.net/
+		// Default:`, descriptionSidebarWidth),
+		// 		},
 		{
 			Label: "Cache Size (in MB)",
 			Key:   FieldKey.E1ec_lm_nethermind_cache_size,
 			Type:  "int",
 			Description: utils.AddNewLines(`Cache Size (in MB)
 
-Specify the desired cache size for your ETH1 - Execution Client. The present value is determined by the overall amount of RAM on your system, but you have the option to modify it manually. Note that a higher cache size will result in a slower rise in disk space usage and will reduce the frequency at which pruning is required.
-Default: 256`, descriptionSidebarWidth),
+Specify the desired cache size for your ETH1 - Execution Client. The present value is determined by the overall amount of RAM on your system, but you have the option to modify it manually. Note that a higher cache size will result in a slower rise in disk space usage and will reduce the frequency at which pruning is required.`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Max Peers",
@@ -185,7 +183,7 @@ Default: 256`, descriptionSidebarWidth),
 			Description: utils.AddNewLines(`Max Peers
 
 Please specify your ETH1 - Execution client peer limit. The number can be decreased to enhance performance on systems with limited specs. However, We suggest you to keep it at at least 12.
-Default: 25`, descriptionSidebarWidth),
+Default: 50`, descriptionSidebarWidth),
 		},
 		{
 			Label: "In-Memory Pruning Cache Size",
@@ -229,8 +227,7 @@ Default:`, descriptionSidebarWidth),
 			Type:  "text",
 			Description: utils.AddNewLines(`Additional flags
 
-Are there any extra personalized terminal flags you intend to give to your ETH1 - Execution Client, in order to make use of supplementary configurations that are not covered by the Stader Node's setup?
-Default:`, descriptionSidebarWidth),
+Are there any extra personalized terminal flags you intend to give to your ETH1 - Execution Client, in order to make use of supplementary configurations that are not covered by the Stader Node's setup?`, descriptionSidebarWidth),
 		},
 	}
 
@@ -280,24 +277,24 @@ Default: False`, descriptionSidebarWidth),
 Enter the port number that the Execution Client will use for P2P communication with other blockchain nodes.
 Default: 30303`, descriptionSidebarWidth),
 		},
-		{
-			Label: "ETHStats Label",
-			Key:   FieldKey.E1ec_lm_common_ethstats_label,
-			Type:  "text",
-			Description: utils.AddNewLines(`Ethstats
+		// 		{
+		// 			Label: "ETHStats Label",
+		// 			Key:   FieldKey.E1ec_lm_common_ethstats_label,
+		// 			Type:  "text",
+		// 			Description: utils.AddNewLines(`Ethstats
 
-Please provide the label of your choice if you wish to share your Execution Client's statistics on https://ethstats.net/
-Default:`, descriptionSidebarWidth),
-		},
-		{
-			Label: "ETHStats Login",
-			Key:   FieldKey.E1ec_lm_common_ethstats_login,
-			Type:  "text",
-			Description: utils.AddNewLines(`ETHStats Login
+		// Please provide the label of your choice if you wish to share your Execution Client's statistics on https://ethstats.net/
+		// Default:`, descriptionSidebarWidth),
+		// 		},
+		// 		{
+		// 			Label: "ETHStats Login",
+		// 			Key:   FieldKey.E1ec_lm_common_ethstats_login,
+		// 			Type:  "text",
+		// 			Description: utils.AddNewLines(`ETHStats Login
 
-Please provide a login you plan to use if you wish to share your Execution Client's statistics on https://ethstats.net/
-Default:`, descriptionSidebarWidth),
-		},
+		// Please provide a login you plan to use if you wish to share your Execution Client's statistics on https://ethstats.net/
+		// Default:`, descriptionSidebarWidth),
+		// 		},
 		{
 			Label: "JVM Heap Size",
 			Key:   FieldKey.E1ec_lm_besu_jvm_heap_size,
@@ -340,8 +337,7 @@ Default:`, descriptionSidebarWidth),
 			Type:  "text",
 			Description: utils.AddNewLines(`Additional flags
 
-Are there any extra personalized terminal flags you intend to give to your ETH1 - Execution Client, in order to make use of supplementary configurations that are not covered by the Stader Node's setup?
-Default:`, descriptionSidebarWidth),
+Are there any extra personalized terminal flags you intend to give to your ETH1 - Execution Client, in order to make use of supplementary configurations that are not covered by the Stader Node's setup?`, descriptionSidebarWidth),
 		},
 	}
 

@@ -1,6 +1,7 @@
 package components
 
 import (
+	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
 	"github.com/stader-labs/ethcli-ui/wizard/logger"
 )
@@ -28,6 +29,14 @@ func Alert(
 				action()
 			}
 		})
+
+	modal.SetBackgroundColor(tcell.ColorAntiqueWhite)
+	modal.SetTextColor(tcell.ColorBlack)
+	modal.SetButtonBackgroundColor(tcell.ColorBlack)
+	modal.SetButtonTextColor(tcell.ColorForestGreen)
+	modal.Frame.SetBorderColor(tcell.ColorBlack)
+	// modal.Frame.SetTitle(" Alert ")
+	// modal.Frame.SetTitleColor(tcell.ColorBlack)
 
 	return modal
 }

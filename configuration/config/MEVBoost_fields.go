@@ -85,18 +85,18 @@ Activate bloxRoute Max Profit relay which is not in accordance with regulations 
 Activate Blocknative relay which is in accordance with regulations and permits sandwich attack.`, descriptionSidebarWidth),
 		},
 		{
-			Label: "Enable Eden Network",
+			Label: "Enable Eden",
 			Key:   FieldKey.Mev_boost_rm_enable_eden_network,
 			Type:  "checkbox",
-			Description: utils.AddNewLines(`Enable Eden Network
+			Description: utils.AddNewLines(`Enable Eden
 
 Activate Eden Network relay which is in accordance with regulations and permits sandwich attack.`, descriptionSidebarWidth),
 		},
 		{
-			Label: "Enable Ultra Sound",
+			Label: "Enable Ultrasound",
 			Key:   FieldKey.Mev_boost_rm_enable_ultra_sound,
 			Type:  "checkbox",
-			Description: utils.AddNewLines(`Enable Ultra Sound
+			Description: utils.AddNewLines(`Enable Ultrasound
 
 Activate Ultra Sound relay which is not in accordance with regulations and permits sandwich attack.`, descriptionSidebarWidth),
 		},
@@ -141,23 +141,23 @@ Please enter other flags you might use in conjunction with your MEV-Boost to act
 			Key:   FieldKey.Mev_boost_lm_selection_mode,
 			Type:  "select",
 			Options: []string{
-				"Profile mode",
-				"Relay mode",
+				"Standard Mode",
+				"Custom Mode",
 			},
 			Description: utils.AddNewLines(`Selection Mode
 
 Choose how the Terminal User Interface displays your alternatives for activating MEV relays.`, descriptionSidebarWidth),
 			OptionDescriptions: map[string]string{
-				"Profile mode": utils.AddNewLines(`Profile mode
+				"Standard Mode": utils.AddNewLines(`Standard Mode
 
 Choose this to group the relays based on whether they are subject to regulation and if they are susceptible to sandwich attacks. You can use this if you need to identify the kind of relay you wish to use without going through all of them one by one.`, descriptionSidebarWidth),
-				"Relay mode": utils.AddNewLines(`Relay mode
+				"Custom Mode": utils.AddNewLines(`Custom Mode
 
 Choose this to display each relay and activate them selectively if you already have the knowledge of relays. Use this if you want to gain further insight into the relays and utilize them accordingly.`, descriptionSidebarWidth),
 			},
 			Children: map[string][]FormFieldType{
-				"Profile mode": profileModeFields,
-				"Relay mode":   relayModeFields,
+				"Standard Mode": profileModeFields,
+				"Custom Mode":   relayModeFields,
 			},
 		},
 	}

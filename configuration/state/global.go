@@ -32,6 +32,9 @@ func init() {
 	Configuration[FieldKey.App___selected_category] = ""
 
 	Configuration[FieldKey.E1ec_execution_and_consensus_mode] = "Locally Managed"
+	Configuration[FieldKey.E1ec_lm_geth_max_peers] = 50
+	Configuration[FieldKey.E1ec_lm_nethermind_max_peers] = 50
+
 	Configuration[FieldKey.Sn_node_network] = "Goerli Testnet"
 	Configuration[FieldKey.Mev_boost_enabled] = true
 
@@ -39,4 +42,6 @@ func init() {
 	Configuration[FieldKey.Nm_beacon_node_metrics_port] = 9100
 	Configuration[FieldKey.Nm_validator_client_metrics_port] = 9101
 	Configuration[FieldKey.Nm_node_metrics_port] = 9102
+
+	Configuration[FieldKey.Fr_priority_fee] = 2
 }

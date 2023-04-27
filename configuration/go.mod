@@ -6,6 +6,7 @@ require (
 	github.com/gdamore/tcell/v2 v2.6.0
 	github.com/rivo/tview v0.0.0-20230325211341-281d14d896d7
 	go.uber.org/zap v1.24.0
+	golang.org/x/term v0.5.0
 )
 
 require (
@@ -16,8 +17,7 @@ require (
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
 	golang.org/x/sys v0.5.0 // indirect
-	golang.org/x/term v0.5.0 // indirect
 	golang.org/x/text v0.7.0 // indirect
 )
 
-replace github.com/rivo/tview => github.com/hamidraza/tview v0.0.0-20230406022610-62c55f74c35f
+replace github.com/rivo/tview => github.com/hamidraza/tview v1.0.0
