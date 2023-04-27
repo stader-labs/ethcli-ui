@@ -66,14 +66,14 @@ Please enter other flags you might use in conjunction with your MEV-Boost to act
 			Type:  "checkbox",
 			Description: utils.AddNewLines(`Enable Flashbots
 
-Activate Flashbot relay which is in accordance with regulations and permits sandwich attach`, descriptionSidebarWidth),
+Activate Flashbot relay which is in accordance with regulations and permits sandwich attack`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Enable bloXroute Regulated",
 			Key:   FieldKey.Mev_boost_rm_enable_bloXroute_regulated,
 			Type:  "checkbox",
 			Description: utils.AddNewLines(`Enable bloXroute Regulated
-Activate bloXroute Regulated relay which is in accordance with regulations and permits sandwich attach`, descriptionSidebarWidth),
+Activate bloXroute Regulated relay which is in accordance with regulations and permits sandwich attack`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Enable Blocknative",
@@ -81,7 +81,7 @@ Activate bloXroute Regulated relay which is in accordance with regulations and p
 			Type:  "checkbox",
 			Description: utils.AddNewLines(`Enable Blocknative
 
-Activate Blocknative relay which is in accordance with regulations and permits sandwich attach`, descriptionSidebarWidth),
+Activate Blocknative relay which is in accordance with regulations and permits sandwich attack`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Enable Eden",
@@ -89,7 +89,7 @@ Activate Blocknative relay which is in accordance with regulations and permits s
 			Type:  "checkbox",
 			Description: utils.AddNewLines(`Enable Eden
 
-Activate Eden Network relay which is in accordance with regulations and permits sandwich attach`, descriptionSidebarWidth),
+Activate Eden Network relay which is in accordance with regulations and permits sandwich attack`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Enable bloXroute Max Profit",
@@ -105,7 +105,7 @@ Activate Eden Network relay which is in accordance with regulations and permits 
 			Type:  "checkbox",
 			Description: utils.AddNewLines(`Enable bloXroute Ethical
 
-Activate bloXroute Ethical relay which is not in accordance with regulations and does not permits sandwich attach`, descriptionSidebarWidth),
+Activate bloXroute Ethical relay which is not in accordance with regulations and does not permits sandwich attack`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Enable Ultrasound",
@@ -113,7 +113,7 @@ Activate bloXroute Ethical relay which is not in accordance with regulations and
 			Type:  "checkbox",
 			Description: utils.AddNewLines(`Enable Ultrasound
 
-Activate Ultra Sound Ethical relay which is not in accordance with regulations and permits sandwich attach`, descriptionSidebarWidth),
+Activate Ultra Sound Ethical relay which is not in accordance with regulations and permits sandwich attack`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Port",

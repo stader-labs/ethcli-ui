@@ -91,9 +91,9 @@ func (p *ExecutionClient) onSumit(option string) {
 
 	alert := components.Alert(
 		fmt.Sprintf("%s has been designated as your execution client based on system-recommendation", recommendedLabel),
-		[]string{"OK"},
+		[]string{"DONE"},
 		map[string]func(){
-			"OK": func() {
+			"DONE": func() {
 				state.ExecutionClient.SelectedOption = recommendedValue
 				p.updateRightSidebar(recommendedValue)
 				p.App.SetRoot(Pages, true)
