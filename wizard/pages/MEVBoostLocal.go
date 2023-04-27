@@ -61,34 +61,24 @@ leave both options unchecked.`
 		AddItem(formWrap, 0, 1, false).
 		AddItem(nil, 0, 1, false)
 
-	unregulatedTextView := tview.NewTextView().SetText(`Unregulated
+	unregulatedTextView := tview.NewTextView().SetText(utils.AddNewLines(`Unregulated
+Choose this option to activate relays that don't adhere to any sanctions lists and won't censor transactions. Unregulated (All MEV Types) permits for all forms of MEV, including sandwich attacks (except bloxRoute Ethical) .
+Relays: bloXroute Ethical, Ultra Sound and bloXroute Max Profit `, 56))
 
-Choose this option to activate relays that don't adhere to
-any sanctions lists and won't censor transactions.
-Unregulated (All MEV Types) permits for all forms of MEV,
-including sandwich attacks.
+	unregulatedTextViewHeight := 10
 
-Relays: Ultra Sound and bloXroute Max Profit`)
+	regulatedTextView := tview.NewTextView().SetText(utils.AddNewLines(`Regulated
+Choose this option to activate relays that adhere to government regulations such as OFAC sanctions. "Regulated (All MEV Types)" permits all forms of MEV, including sandwich attacks.
+Relays: Blocknative, bloXroute Regulated, Flashbots and Eden Network.`, 56))
 
-	unregulatedTextViewHeight := 8
-
-	regulatedTextView := tview.NewTextView().SetText(`Regulated
-	
-Choose this option to activate relays that adhere to
-government regulations such as OFAC sanctions. "Regulated
-(All MEV Types)" permits all forms of MEV, including
-sandwich attacks.
-
-Relays: Blocknative, Flashbots and Eden Network.`)
-
-	regulatedTextViewHeight := 8
+	regulatedTextViewHeight := 10
 
 	p.rightSide = tview.NewFlex().
 		SetDirection(tview.FlexRow).
 		AddItem(nil, 0, 1, false).
-		AddItem(unregulatedTextView, unregulatedTextViewHeight, 1, false).
-		AddItem(nil, 3, 1, false).
 		AddItem(regulatedTextView, regulatedTextViewHeight, 1, false).
+		AddItem(nil, 3, 1, false).
+		AddItem(unregulatedTextView, unregulatedTextViewHeight, 1, false).
 		AddItem(nil, 0, 1, false)
 
 	body := tview.NewFlex().

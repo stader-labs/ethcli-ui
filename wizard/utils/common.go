@@ -3,6 +3,7 @@ package utils
 import (
 	"fmt"
 	"math/rand"
+	"strings"
 	"time"
 )
 
@@ -80,4 +81,41 @@ func GetRandomItem(options []string, valueToIgnore string) string {
 		}
 	}
 	return item
+}
+
+func AddNewLines(text string, charLimit int) string {
+	var result strings.Builder
+	lines := strings.Split(text, "\n")
+
+	for lineIdx, line := range lines {
+		words := strings.Fields(line)
+		var currentLine strings.Builder
+
+		for _, word := range words {
+			if currentLine.Len()+len(word) > charLimit {
+				if result.Len() > 0 {
+					result.WriteString("\n")
+				}
+				result.WriteString(currentLine.String())
+				currentLine.Reset()
+			} else if currentLine.Len() > 0 {
+				currentLine.WriteString(" ")
+			}
+
+			currentLine.WriteString(word)
+		}
+
+		if currentLine.Len() > 0 {
+			if result.Len() > 0 && lineIdx > 0 {
+				result.WriteString("\n")
+			}
+			result.WriteString(currentLine.String())
+		}
+
+		if lineIdx < len(lines)-1 {
+			result.WriteString("\n")
+		}
+	}
+
+	return result.String()
 }
