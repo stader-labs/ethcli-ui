@@ -314,13 +314,13 @@ Please specify your ETH1 - Execution client peer limit. The number can be decrea
 Default: 25.`, descriptionSidebarWidth),
 		},
 		{
-			Label: "In-Memory Pruning Cache Size",
-			Key:   FieldKey.E1ec_lm_besu_in_memory_pruning_cache_size,
+			Label: "Historical block replay limit",
+			Key:   FieldKey.E1ec_lm_besu_historical_block_replay_limit,
 			Type:  "int",
-			Description: utils.AddNewLines(`In-Memory Pruning Cache Size
+			Description: utils.AddNewLines(`Historical block replay limit
 
-Please specify your ETH1 - Execution client peer limit. The number can be decreased to enhance performance on systems with limited specs. However, We suggest you to keep it at at least 12.
-Default: 25`, descriptionSidebarWidth),
+The replay limit determines how many blocks can be replayed, i.e., how far back Besu can go since it can revisit any past block on the chain by replaying all previous blocks until reaching the target. Keep in mind that during a replay, normal Execution client processing is halted and replaying a state from a distant past may take Besu several minutes to rebuild the state.
+Default: 512`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Container tag",
