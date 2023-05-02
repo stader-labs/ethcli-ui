@@ -51,11 +51,11 @@ type FieldKeyType = struct {
 	E1ec_lm_nethermind_additional_flags   string
 
 	// ETH1ExecutionClient/Locally Managed/Besu
-	E1ec_lm_besu_jvm_heap_size                string
-	E1ec_lm_besu_max_peers                    string
-	E1ec_lm_besu_in_memory_pruning_cache_size string
-	E1ec_lm_besu_container_tag                string
-	E1ec_lm_besu_additional_flags             string
+	E1ec_lm_besu_jvm_heap_size                 string
+	E1ec_lm_besu_max_peers                     string
+	E1ec_lm_besu_historical_block_replay_limit string
+	E1ec_lm_besu_container_tag                 string
+	E1ec_lm_besu_additional_flags              string
 
 	// ETH1ExecutionClient/Externally Managed
 	E1ec_em_http_url      string
