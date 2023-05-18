@@ -10,12 +10,14 @@ import (
 	"github.com/stader-labs/ethcli-ui/wizard/logger"
 	"github.com/stader-labs/ethcli-ui/wizard/pages"
 	"github.com/stader-labs/ethcli-ui/wizard/state"
-	"golang.org/x/term"
 )
 
 var (
 	log = logger.Log
 )
+
+var previousWidth int
+var previousHeight int
 
 // Run starts the app
 // If settings is nil, it will start the app with default settings
@@ -25,7 +27,6 @@ func Run(s *pages.SettingsType) (
 	settings *pages.SettingsType,
 ) {
 	state.CurrentApp = tview.NewApplication().EnableMouse(true)
-
 	if s != nil {
 		pages.SetSettings(*s)
 		state.Confirmed = false
@@ -43,21 +44,10 @@ func Run(s *pages.SettingsType) (
 		nil,
 	)
 
-	w, h, err := term.GetSize(0)
-	if err != nil {
-		log.Error("Error getting terminal size")
-		ps := pages.GetSettings()
-		return state.Confirmed, state.OpenConfigurationUI, &ps
-	}
-
-	log.Infof("Terminal size is %d x %d", w, h)
-	if w < 150 || h < 40 {
-		state.CurrentApp.
-			SetRoot(smallScreenAlert, true).
-			Run()
-		ps := pages.GetSettings()
-		return state.Confirmed, state.OpenConfigurationUI, &ps
-	}
+	// Create the main grid
+	grid := tview.NewGrid().
+		SetColumns(1, 0, 1).   // 1-unit border
+		SetRows(1, 1, 1, 0, 1) // Also 1-unit border
 
 	pages.Setup(state.CurrentApp)
 	allPages := pages.Pages
@@ -92,7 +82,27 @@ func Run(s *pages.SettingsType) (
 	firstElement := pages.All[startPageID].GetFirstElement()
 
 	log.Info("Starting app")
-	appErr := state.CurrentApp.SetRoot(allPages, true).SetFocus(firstElement).Run()
+	// Set up the resize warning
+	state.CurrentApp.SetBeforeDrawFunc(func(screen tcell.Screen) bool {
+		x, y := screen.Size()
+
+		if x == previousWidth && y == previousHeight {
+			return false
+		}
+		if x < 112 || y < 32 {
+			grid.RemoveItem(allPages)
+			grid.AddItem(smallScreenAlert, 3, 1, 1, 1, 0, 0, false)
+		} else {
+			grid.RemoveItem(smallScreenAlert)
+			grid.AddItem(allPages, 3, 1, 1, 1, 0, 0, true)
+		}
+
+		previousWidth = x
+		previousHeight = y
+		return false
+	})
+	grid.AddItem(allPages, 3, 1, 1, 1, 0, 0, true)
+	appErr := state.CurrentApp.SetRoot(grid, true).SetFocus(firstElement).Run()
 
 	if appErr != nil {
 		panic("Error running app")

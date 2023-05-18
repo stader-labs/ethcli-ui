@@ -8,11 +8,12 @@ import (
 	"github.com/stader-labs/ethcli-ui/configuration/logger"
 	"github.com/stader-labs/ethcli-ui/configuration/pages"
 	"github.com/stader-labs/ethcli-ui/configuration/state"
-	"golang.org/x/term"
 )
 
 var (
-	log = logger.Log
+	log            = logger.Log
+	previousWidth  int
+	previousHeight int
 )
 
 func Run(settings *map[string]interface{}) (
@@ -28,6 +29,10 @@ func Run(settings *map[string]interface{}) (
 		state.Saved = false
 		state.OpenWizard = false
 	}
+	// Create the main grid
+	grid := tview.NewGrid().
+		SetColumns(1, 0, 1).   // 1-unit border
+		SetRows(1, 1, 1, 0, 1) // Also 1-unit border
 
 	smallScreenAlert := components.Alert(
 		`Greetings! It seems that your terminal may not be large enough to run the service configuration app. To ensure proper functionality, please resize your terminal window to a larger size. This will allow you to view the app as intended and make any necessary configurations`,
@@ -39,18 +44,6 @@ func Run(settings *map[string]interface{}) (
 		},
 		nil,
 	)
-
-	w, h, err := term.GetSize(0)
-	if err != nil {
-		log.Error("Error getting terminal size")
-		return state.Saved, state.OpenWizard, &state.Configuration
-	}
-
-	log.Infof("Terminal size is %d x %d", w, h)
-	if w < 150 || h < 40 {
-		app.SetRoot(smallScreenAlert, true).Run()
-		return state.Saved, state.OpenWizard, &state.Configuration
-	}
 
 	pages.Setup(app)
 	rootPageID := config.PageID.Categories
@@ -98,8 +91,25 @@ func Run(settings *map[string]interface{}) (
 
 		return newEvent
 	})
+	app.SetBeforeDrawFunc(func(screen tcell.Screen) bool {
+		x, y := screen.Size()
 
-	if err := app.SetRoot(pages.Pages, true).SetFocus(firstElement).Run(); err != nil {
+		if x == previousWidth && y == previousHeight {
+			return false
+		}
+		if x < 112 || y < 32 {
+			grid.RemoveItem(pages.Pages)
+			grid.AddItem(smallScreenAlert, 3, 1, 1, 1, 0, 0, false)
+		} else {
+			grid.RemoveItem(smallScreenAlert)
+			grid.AddItem(pages.Pages, 3, 1, 1, 1, 0, 0, true)
+		}
+
+		previousWidth = x
+		previousHeight = y
+		return false
+	})
+	if err := app.SetRoot(grid, true).SetFocus(firstElement).Run(); err != nil {
 		log.Fatal(err)
 	}
 
