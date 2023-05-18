@@ -84,12 +84,12 @@ func Run(s *pages.SettingsType) (
 	log.Info("Starting app")
 	// Set up the resize warning
 	state.CurrentApp.SetBeforeDrawFunc(func(screen tcell.Screen) bool {
-		x, y := screen.Size()
+		w, h := screen.Size()
 
-		if x == previousWidth && y == previousHeight {
+		if w == previousWidth && h == previousHeight {
 			return false
 		}
-		if x < 112 || y < 32 {
+		if w < 150 || h < 40 {
 			grid.RemoveItem(allPages)
 			grid.AddItem(smallScreenAlert, 3, 1, 1, 1, 0, 0, false)
 		} else {
@@ -97,8 +97,8 @@ func Run(s *pages.SettingsType) (
 			grid.AddItem(allPages, 3, 1, 1, 1, 0, 0, true)
 		}
 
-		previousWidth = x
-		previousHeight = y
+		previousWidth = w
+		previousHeight = h
 		return false
 	})
 	grid.AddItem(allPages, 3, 1, 1, 1, 0, 0, true)
