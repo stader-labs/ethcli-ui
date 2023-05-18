@@ -92,12 +92,12 @@ func Run(settings *map[string]interface{}) (
 		return newEvent
 	})
 	app.SetBeforeDrawFunc(func(screen tcell.Screen) bool {
-		x, y := screen.Size()
+		w, h := screen.Size()
 
-		if x == previousWidth && y == previousHeight {
+		if w == previousWidth && h == previousHeight {
 			return false
 		}
-		if x < 112 || y < 32 {
+		if w < 150 || h < 40 {
 			grid.RemoveItem(pages.Pages)
 			grid.AddItem(smallScreenAlert, 3, 1, 1, 1, 0, 0, false)
 		} else {
@@ -105,8 +105,8 @@ func Run(settings *map[string]interface{}) (
 			grid.AddItem(pages.Pages, 3, 1, 1, 1, 0, 0, true)
 		}
 
-		previousWidth = x
-		previousHeight = y
+		previousWidth = w
+		previousHeight = h
 		return false
 	})
 	if err := app.SetRoot(grid, true).SetFocus(firstElement).Run(); err != nil {
