@@ -61,7 +61,7 @@ func (p *ConfigurationForm) addFormItemEvents(fr fieldReturnType) {
 			state.Configuration[fr.info.Key] = text
 			p.updateDescription(fr.info)
 			if fr.info.Children != nil && len(fr.info.Children) > 0 {
-				p.updateForm()
+				p.updateForm(fr.info.Label)
 			}
 		})
 
@@ -97,7 +97,7 @@ func (p *ConfigurationForm) addFormItemEvents(fr fieldReturnType) {
 				state.Configuration[fr.info.Key] = checked
 
 				if fr.info.Children != nil && len(fr.info.Children) > 0 {
-					p.updateForm()
+					p.updateForm("")
 				}
 			}).
 			SetFocusFunc(func() {
@@ -112,7 +112,7 @@ func (p *ConfigurationForm) updateDescription(fr config.FormFieldType) {
 	p.descriptionView.SetText(desc)
 }
 
-func (p *ConfigurationForm) updateForm() {
+func (p *ConfigurationForm) updateForm(focusLabel string) {
 	p.form.Clear(true)
 	log.Infof("Updating form for [%s]", state.Categories.Option.Selected)
 	pageFields, ok := config.ConfigurationFields[state.Categories.Option.Selected]
@@ -128,6 +128,10 @@ func (p *ConfigurationForm) updateForm() {
 	} else {
 		log.Errorf("No fields found for [%s]", state.Categories.Option.Selected)
 	}
+
+	newFocusIndex := p.form.GetFormItemIndex(focusLabel)
+
+	p.form.SetFocus(newFocusIndex)
 	p.App.SetFocus(p.form)
 }
 
@@ -139,7 +143,7 @@ func (p *ConfigurationForm) OnResume() {
 	p.descriptionView.SetText("")
 	log.Infof("OnResume: [%s]", config.PageID.ConfigurationForm)
 	p.header.SetText(fmt.Sprintf("\nConfiguration Summary > %s", state.Categories.Option.Selected))
-	p.updateForm()
+	p.updateForm("")
 }
 
 func (p *ConfigurationForm) GoBack() {
