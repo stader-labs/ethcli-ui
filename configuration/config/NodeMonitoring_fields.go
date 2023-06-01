@@ -51,6 +51,14 @@ Default: 9101`, descriptionSidebarWidth),
 Default: 9102`, descriptionSidebarWidth),
 		},
 		{
+			Label: "External Exporter",
+			Key:   FieldKey.Nm_external_node_exporter,
+			Type:  "checkbox",
+			Description: utils.AddNewLines(`External Exporter
+Set this value to true to not running node exporter container
+			`, descriptionSidebarWidth),
+		},
+		{
 			Label: "Exporter Metrics Port",
 			Key:   FieldKey.Nm_exporter_metrics_port,
 			Type:  "int",
@@ -67,6 +75,13 @@ Default: 9103`, descriptionSidebarWidth),
 
 Enter the port your Guardian Oracle Container should use for the API.
 Default: 9104`, descriptionSidebarWidth),
+		},
+		{
+			Label: "External Grafana",
+			Key:   FieldKey.Nm_external_grafana,
+			Type:  "checkbox",
+			Description: utils.AddNewLines(`External grafana
+Set this value to true to not running node grafana container`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Grafana Port",

@@ -186,6 +186,9 @@ type FieldKeyType = struct {
 	Nm_additional_exporter_flags       string
 	Nm_enable_beaconchain_node_metrics string
 
+	Nm_external_grafana       string
+	Nm_external_node_exporter string
+
 	// Node Monitoring / Enable Beaconchain Node Metrics / true
 	Nm_beaconchain_api_key                   string
 	Nm_beaconchain_node_metrics_machine_name string
