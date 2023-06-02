@@ -10,7 +10,7 @@ func init() {
 			Type:  "select",
 			Options: []string{
 				"Goerli Testnet",
-				// "Ethereum Mainnet",
+				"Ethereum Mainnet",
 			},
 			OptionDescriptions: map[string]string{
 				"Goerli Testnet": `Goerli

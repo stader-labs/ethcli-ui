@@ -109,6 +109,7 @@ func Run(settings *map[string]interface{}) (
 		previousHeight = h
 		return false
 	})
+	grid.AddItem(pages.Pages, 3, 1, 1, 1, 0, 0, true)
 	if err := app.SetRoot(grid, true).SetFocus(firstElement).Run(); err != nil {
 		log.Fatal(err)
 	}
