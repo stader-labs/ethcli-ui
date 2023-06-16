@@ -43,7 +43,8 @@ func (p *MEVBoostExternal) Page() tview.Primitive {
 		AddItem(form, 60, 1, false).
 		AddItem(nil, 0, 1, false)
 
-	bodyText := utils.AddNewLines(`Read the MEV profile description and select the one you wish to activate. Please note that it is mandatory for node operators to choose an MEV option`, 38)
+	bodyText := `Enter the externally managed MEV Boost client URL
+	e.g. http://192.168.1.46:18550`
 
 	bodyTextHeight := strings.Count(bodyText, "\n") + 1
 
