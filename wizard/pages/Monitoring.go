@@ -21,8 +21,7 @@ func (n *Monitoring) Page() tview.Primitive {
 as CPU usage, RAM usage, and free disk space. Additionally, it will also monitor
 your validator stats and ETH rewards, among other things. 
 
-Please note that none of this information will not be transmitted to any distant
-server for examination - purely for your consumption on your node.
+Please note that none of this information will be transmitted to any distant server for examination. This is purely for your consumption on your node.
 		
 Are you interested in enabling Monitoring system?`,
 		config.Monitoring.Options,
