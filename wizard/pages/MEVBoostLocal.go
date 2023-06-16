@@ -43,7 +43,8 @@ func (p *MEVBoostLocal) Page() tview.Primitive {
 		AddItem(form, 60, 1, false).
 		AddItem(nil, 0, 1, false)
 
-	bodyText := utils.AddNewLines(`Read the MEV profile description and select the one you wish to activate. Please note that it is mandatory for node operators to choose an MEV option`, 38)
+	bodyText := `Read the MEV profile description and select the one you wish to activate. 
+Please note that it is mandatory for node operators to choose an MEV option`
 
 	bodyTextHeight := strings.Count(bodyText, "\n") + 1
 
