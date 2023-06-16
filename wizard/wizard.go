@@ -49,6 +49,7 @@ func Run(s *pages.SettingsType) (
 		SetColumns(1, 0, 1).   // 1-unit border
 		SetRows(1, 1, 1, 0, 1) // Also 1-unit border
 
+	pages.Version = s.Version
 	pages.Setup(state.CurrentApp)
 	allPages := pages.Pages
 

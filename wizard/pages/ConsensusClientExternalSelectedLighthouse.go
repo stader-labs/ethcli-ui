@@ -81,7 +81,7 @@ localhost or 127.0.0.1.`
 
 	return tview.NewFlex().
 		SetDirection(tview.FlexRow).
-		AddItem(components.Header(), 3, 1, false).
+		AddItem(components.Header(Version), 3, 1, false).
 		AddItem(components.Nav(config.TopNav.ConsensusClient), 3, 1, false).
 		AddItem(p.body, 0, 1, false).
 		AddItem(components.Footer(p.App), 5, 1, false)

@@ -21,7 +21,7 @@ func (p *Dummy) Page() tview.Primitive {
 
 	return tview.NewFlex().
 		SetDirection(tview.FlexRow).
-		AddItem(components.Header(), 3, 1, false).
+		AddItem(components.Header(Version), 3, 1, false).
 		AddItem(components.Nav(pageName), 3, 1, false).
 		AddItem(body, 0, 1, false).
 		AddItem(components.Footer(p.App), 5, 1, false)
