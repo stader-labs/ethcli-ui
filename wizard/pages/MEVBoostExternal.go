@@ -43,10 +43,7 @@ func (p *MEVBoostExternal) Page() tview.Primitive {
 		AddItem(form, 60, 1, false).
 		AddItem(nil, 0, 1, false)
 
-	bodyText := `Read the MEV profile description and select the
-one you wish to activate. If you're not
-interested in using MEV-Boost at this time,
-leave both options unchecked.`
+	bodyText := utils.AddNewLines(`Read the MEV profile description and select the one you wish to activate. Please note that it is mandatory for node operators to choose an MEV option`, 38)
 
 	bodyTextHeight := strings.Count(bodyText, "\n") + 1
 
@@ -88,7 +85,7 @@ leave both options unchecked.`
 
 	return tview.NewFlex().
 		SetDirection(tview.FlexRow).
-		AddItem(components.Header(), 3, 1, false).
+		AddItem(components.Header(Version), 3, 1, false).
 		AddItem(components.Nav(config.TopNav.MEVBoost), 3, 1, false).
 		AddItem(body, 0, 1, false).
 		AddItem(components.Footer(p.App), 5, 1, false)

@@ -8,9 +8,10 @@ import (
 )
 
 var (
-	All   = map[string]PageInterface{}
-	Pages *tview.Pages
-	log   = logger.Log
+	All     = map[string]PageInterface{}
+	Pages   *tview.Pages
+	log     = logger.Log
+	Version string
 )
 
 // TODO: This is a bit of a mess, I'm sure there's a better way to do this.

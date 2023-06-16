@@ -137,6 +137,7 @@ type ExecutionClientSettingsType struct {
 type SettingsType struct {
 	// Confirmed                bool                        `json:"confirmed"`
 	// OpenConfigurationUI      bool                        `json:"openConfigurationUI"`
+	Version                  string                      `json:"-"`
 	Network                  string                      `json:"network"`
 	EthClient                string                      `json:"ethClient"`
 	ExecutionClient          ExecutionClientSettingsType `json:"executionClient"`
