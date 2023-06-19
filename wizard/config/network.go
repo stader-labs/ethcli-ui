@@ -30,16 +30,16 @@ func init() {
 
 	Network.Descriptions = map[string]string{
 		Network.Option.EthereumMainnet: `Ethereum Mainnet is the primary
-		production network of Ethereum.
-		Running a Stader Node takes some
-		know-how and resources, but it
-		also offers significant rewards
-		and benefits for those who
-		contribute to the network's
-		security and scalability. If
-		you're ready to take on this
-		challenge, Ethereum Mainnet
-		welcomes you!`,
+production network of Ethereum.
+Running a Stader Node takes some
+know-how and resources, but it
+also offers significant rewards
+and benefits for those who
+contribute to the network's
+security and scalability. If
+you're ready to take on this
+challenge, Ethereum Mainnet
+welcomes you!`,
 		Network.Option.GoerliTestnet: `Goerli is a test network that provides
 a secure and zero-cost environment for
 executing Stader Node operations. By
