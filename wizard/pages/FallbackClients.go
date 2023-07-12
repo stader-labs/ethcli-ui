@@ -51,8 +51,10 @@ func (p *FallbackClients) onSumit(option string) {
 			ChangePage(config.PageID.FallbackClientsLighthouse)
 		} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Teku {
 			ChangePage(config.PageID.FallbackClientsTeku)
+		} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Nimbus {
+			ChangePage(config.PageID.FallbackClientsNimbus)
 		} else {
-			// Skip for all others (for our case, skip for only Nimbus)
+			// Skip for all others
 			ChangePage(config.PageID.Monitoring)
 		}
 	} else {

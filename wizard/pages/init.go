@@ -31,6 +31,8 @@ func Setup(app *tview.Application) {
 	All[config.PageID.ConsensusClientDopelgangerProtection] = &ConsensusClientDopelgangerProtection{PageType: &PageType{}}
 	All[config.PageID.FallbackClients] = &FallbackClients{PageType: &PageType{}}
 	All[config.PageID.FallbackClientsPrysm] = &FallbackClientsPrysm{PageType: &PageType{}}
+	All[config.PageID.FallbackClientsNimbus] = &FallbackClientsNimbus{PageType: &PageType{}}
+
 	All[config.PageID.FallbackClientsLighthouse] = &FallbackClientsLighthouse{PageType: &PageType{}}
 	All[config.PageID.FallbackClientsTeku] = &FallbackClientsTeku{PageType: &PageType{}}
 	All[config.PageID.Monitoring] = &Monitoring{PageType: &PageType{}}
