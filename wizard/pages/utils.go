@@ -117,11 +117,17 @@ type FallbackClientsTekuType struct {
 	BeaconNodeHttpUrl  string `json:"beaconNodeHttpUrl"`
 }
 
+type FallbackClientsNimbusType struct {
+	ExecutionClientUrl string `json:"executionClientUrl"`
+	BeaconNodeHttpUrl  string `json:"beaconNodeHttpUrl"`
+}
+
 type FallbackClientsSettingsType struct {
 	SelectionOption string                        `json:"selectionOption"`
 	Lighthouse      FallbackClientsLighthouseType `json:"lighthouse"`
 	Prysm           FallbackClientsPrysmType      `json:"prysm"`
 	Teku            FallbackClientsTekuType       `json:"teku"`
+	Nimbus          FallbackClientsNimbusType     `json:"nimbus"`
 }
 
 type ExecutionClientExternalType struct {
@@ -202,6 +208,10 @@ func GetSettings() SettingsType {
 				ExecutionClientUrl: state.FallbackClientsTeku.ExecutionClientUrl,
 				BeaconNodeHttpUrl:  state.FallbackClientsTeku.BeaconNodeHttpUrl,
 			},
+			Nimbus: FallbackClientsNimbusType{
+				ExecutionClientUrl: state.FallbackClientsNimbus.ExecutionClientUrl,
+				BeaconNodeHttpUrl:  state.FallbackClientsNimbus.BeaconNodeHttpUrl,
+			},
 		},
 	}
 
@@ -243,10 +253,17 @@ func SetSettings(settings SettingsType) {
 	state.MEVBoostLocal.Unregulated = settings.MEVBoostLocalUnregulated
 
 	state.FallbackClients.SelectedOption = settings.FallbackClients.SelectionOption
+
 	state.FallbackClientsLighthouse.ExecutionClientUrl = settings.FallbackClients.Lighthouse.ExecutionClientUrl
 	state.FallbackClientsLighthouse.BeaconNodeHttpUrl = settings.FallbackClients.Lighthouse.BeaconNodeHttpUrl
+
 	state.FallbackClientsPrysm.ExecutionClientUrl = settings.FallbackClients.Prysm.ExecutionClientUrl
 	state.FallbackClientsPrysm.BeaconNodeHttpUrl = settings.FallbackClients.Prysm.BeaconNodeHttpUrl
 	state.FallbackClientsPrysm.BeaconNodeJsonRpcpUrl = settings.FallbackClients.Prysm.BeaconNodeJsonRpcpUrl
+
 	state.FallbackClientsTeku.ExecutionClientUrl = settings.FallbackClients.Teku.ExecutionClientUrl
+	state.FallbackClientsTeku.BeaconNodeHttpUrl = settings.FallbackClients.Teku.BeaconNodeHttpUrl
+
+	state.FallbackClientsNimbus.ExecutionClientUrl = settings.FallbackClients.Teku.ExecutionClientUrl
+	state.FallbackClientsNimbus.BeaconNodeHttpUrl = settings.FallbackClients.Teku.BeaconNodeHttpUrl
 }

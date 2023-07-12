@@ -116,6 +116,14 @@ var (
 		BeaconNodeHttpUrl:  "",
 	}
 
+	FallbackClientsNimbus = struct {
+		ExecutionClientUrl string
+		BeaconNodeHttpUrl  string
+	}{
+		ExecutionClientUrl: "",
+		BeaconNodeHttpUrl:  "",
+	}
+
 	Monitoring = struct {
 		SelectedOption string
 	}{

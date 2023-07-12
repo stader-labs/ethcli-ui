@@ -17,7 +17,6 @@ var (
 func Setup(app *tview.Application) {
 	All[config.PageID.Categories] = &Categories{PageType: &PageType{}}
 	All[config.PageID.ConfigurationForm] = &ConfigurationForm{PageType: &PageType{}}
-	All[config.PageID.NimbusFallbackClient] = &NimbusFallbackClient{PageType: &PageType{}}
 
 	Pages = tview.NewPages()
 	for pageID, page := range All {

@@ -89,12 +89,6 @@ func (p *Categories) selectOption(option string) {
 func (p *Categories) onSubmit(option string) {
 
 	fieldKeys := config.GetFieldKey()
-	if option == config.Categories.Option.FallbackClients {
-		if state.Configuration[fieldKeys.E2cc_lc_consensus_client] == "Nimbus" {
-			ChangePage(config.PageID.NimbusFallbackClient, p.App)
-			return
-		}
-	}
 
 	p.selectOption(option)
 	p.updateDescription()
