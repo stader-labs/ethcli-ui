@@ -42,21 +42,36 @@ So, do you want to set up a fallback client pair?`,
 func (p *FallbackClients) onSumit(option string) {
 	log.Infof("Selected option: [%s] to [%s]", state.FallbackClients.SelectedOption, option)
 	state.FallbackClients.SelectedOption = option
-	// ChangePage(config.PageID.FallbackClients)
 
 	if state.FallbackClients.SelectedOption == config.FallbackClients.Option.Yes {
-		if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Prysm {
-			ChangePage(config.PageID.FallbackClientsPrysm)
-		} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.LightHouse {
-			ChangePage(config.PageID.FallbackClientsLighthouse)
-		} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Teku {
-			ChangePage(config.PageID.FallbackClientsTeku)
-		} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Nimbus {
-			ChangePage(config.PageID.FallbackClientsNimbus)
-		} else {
-			// Skip for all others
-			ChangePage(config.PageID.Monitoring)
+
+		switch state.ETHClient.SelectedOption {
+		case config.ETHClient.Option.LocallyManaged:
+			if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Prysm {
+				ChangePage(config.PageID.FallbackClientsPrysm)
+			} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.LightHouse {
+				ChangePage(config.PageID.FallbackClientsLighthouse)
+			} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Teku {
+				ChangePage(config.PageID.FallbackClientsTeku)
+			} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Nimbus {
+				ChangePage(config.PageID.FallbackClientsNimbus)
+			} else {
+				// Skip for all others
+				ChangePage(config.PageID.Monitoring)
+			}
+		default:
+			if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Teku {
+				ChangePage(config.PageID.FallbackClientsTeku)
+			} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Lighthouse {
+				ChangePage(config.PageID.FallbackClientsLighthouse)
+			} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Prysm {
+				ChangePage(config.PageID.FallbackClientsPrysm)
+			} else {
+				// Skip for all others
+				ChangePage(config.PageID.Monitoring)
+			}
 		}
+
 	} else {
 		ChangePage(config.PageID.Monitoring)
 	}
