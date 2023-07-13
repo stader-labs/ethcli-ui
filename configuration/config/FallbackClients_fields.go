@@ -1,6 +1,10 @@
 package config
 
-import "github.com/stader-labs/ethcli-ui/configuration/utils"
+import (
+	"strings"
+
+	"github.com/stader-labs/ethcli-ui/configuration/utils"
+)
 
 func init() {
 	FieldKey := GetFieldKey()
@@ -54,7 +58,7 @@ Note: When running this client on the same machine as the Stader Node, use your 
 Please enter the JSON-RPC API endpoint for your fallback clients.
 Note: When running this client on the same machine as the Stader Node, use your machine's LAN IP address instead of localhost or 127.0.0.1.`, descriptionSidebarWidth),
 						IsFieldVisible: func(c map[string]interface{}) bool {
-							return c[FieldKey.E2cc_lc_consensus_client] == "Prysm"
+							return strings.ToLower(c[FieldKey.E2cc_lc_consensus_client].(string)) == "prysm"
 						},
 					},
 				},

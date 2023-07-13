@@ -17,6 +17,7 @@ var PageID = struct {
 	FallbackClientsPrysm                      string
 	FallbackClientsLighthouse                 string
 	FallbackClientsTeku                       string
+	FallbackClientsNimbus                     string
 	Monitoring                                string
 	MEVBoost                                  string
 	MEVBoostLocal                             string
@@ -39,6 +40,7 @@ var PageID = struct {
 	FallbackClientsPrysm:                      "fallback_clients_prysm",
 	FallbackClientsLighthouse:                 "fallback_clients_lighthouse",
 	FallbackClientsTeku:                       "fallback_clients_teku",
+	FallbackClientsNimbus:                     "fallback_clients_nimbus",
 	Monitoring:                                "monitoring",
 	MEVBoost:                                  "mev_boost",
 	MEVBoostLocal:                             "mev_boost_local",

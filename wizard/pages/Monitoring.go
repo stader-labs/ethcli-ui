@@ -69,7 +69,7 @@ func (n *Monitoring) GoBack() {
 		} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Teku {
 			nextPage = pid.FallbackClientsTeku
 		} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Nimbus {
-			nextPage = pid.ConsensusClientDopelgangerProtection
+			nextPage = pid.FallbackClientsNimbus
 		} else {
 			nextPage = pid.FallbackClients
 		}

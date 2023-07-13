@@ -1,9 +1,8 @@
 package config
 
 type pageIDType struct {
-	Categories           string
-	ConfigurationForm    string
-	NimbusFallbackClient string
+	Categories        string
+	ConfigurationForm string
 }
 
 type categoriesOptionType struct {
