@@ -358,10 +358,19 @@ Default:`, descriptionSidebarWidth),
 		},
 		FormFieldType{
 			Label: "Additional Flags",
-			Key:   FieldKey.E2cc_lc_additional_flags_lodestar,
+			Key:   FieldKey.E2cc_lc_additional_beacon_node_flags_lodestar,
 			Type:  "text",
 			Description: utils.AddNewLines(`Additional Flags
 Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Beacon Node to activate added settings that the Stader Node configuration overlooks.
+Default:`, descriptionSidebarWidth),
+		},
+		FormFieldType{
+			Label: "Additional Validator client Flags",
+			Key:   FieldKey.E2cc_lc_additional_client_flags_lodestar,
+			Type:  "text",
+			Description: utils.AddNewLines(`Additional Validator client Flags
+
+Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Validator Node to activate added settings that the Stader Node configuration overlooks.
 Default:`, descriptionSidebarWidth),
 		},
 	)

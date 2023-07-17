@@ -127,8 +127,9 @@ type FieldKeyType = struct {
 	E2cc_em_http_lighthouse                    string
 
 	// ETH2ConsensusClient | Local | Lodestar
-	E2cc_lc_container_tag_lodestar    string
-	E2cc_lc_additional_flags_lodestar string
+	E2cc_lc_container_tag_lodestar                string
+	E2cc_lc_additional_beacon_node_flags_lodestar string
+	E2cc_lc_additional_client_flags_lodestar      string
 
 	// ETH2ConsensusClient | External | Lodestar lodestar
 	E2cc_em_custom_graffiti_lodestar         string
