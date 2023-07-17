@@ -6,6 +6,7 @@ type CCSelectionOption struct {
 	Nimbus            string
 	Prysm             string
 	Teku              string
+	Lodestar          string
 }
 
 type CCDopelgangerProtectionOption struct {
@@ -52,6 +53,7 @@ var ConsensusClient = struct {
 				Nimbus:            "nimbus",
 				Prysm:             "prysm",
 				Teku:              "teku",
+				Lodestar:          "lodestar",
 			},
 		},
 		Graffiti: CSStageForm{
@@ -94,6 +96,7 @@ func init() {
 		ConsensusClient.Stage.Selection.Option.Nimbus,
 		ConsensusClient.Stage.Selection.Option.Prysm,
 		ConsensusClient.Stage.Selection.Option.Teku,
+		ConsensusClient.Stage.Selection.Option.Lodestar,
 	}
 
 	ConsensusClient.Stage.Selection.OptionLabels = map[string]string{
@@ -102,6 +105,7 @@ func init() {
 		ConsensusClient.Stage.Selection.Option.Nimbus:            "Nimbus",
 		ConsensusClient.Stage.Selection.Option.Prysm:             "Prysm",
 		ConsensusClient.Stage.Selection.Option.Teku:              "Teku",
+		ConsensusClient.Stage.Selection.Option.Lodestar:          "Lodestar",
 	}
 
 	ConsensusClient.Stage.Selection.Descriptions = map[string]string{
@@ -156,5 +160,18 @@ RAM, it may not perform as well as you'd
 like. We recommend considering a lighter
 client option instead to ensure optimal
 performance.`,
+		ConsensusClient.Stage.Selection.Option.Lodestar: `Lodestar is the 
+fifth open-source 
+Ethereum consensus client. 
+It is written in Typescript 
+maintained by ChainSafe Systems. 
+
+Lodestar, their flagship product, 
+is a production-capable
+Beacon Chain and Validator 
+Client uniquely situated as 
+the go-to for researchers and 
+developers for rapid prototyping 
+and browser usage.`,
 	}
 }

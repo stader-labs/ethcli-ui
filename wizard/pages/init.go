@@ -25,6 +25,7 @@ func Setup(app *tview.Application) {
 	All[config.PageID.ConsensusClientExternalSelectedLighthouse] = &ConsensusClientExternalSelectedLighthouse{PageType: &PageType{}}
 	All[config.PageID.ConsensusClientExternalSelectedPrysm] = &ConsensusClientExternalSelectedPrysm{PageType: &PageType{}}
 	All[config.PageID.ConsensusClientExternalSelectedTeku] = &ConsensusClientExternalSelectedTeku{PageType: &PageType{}}
+	All[config.PageID.ConsensusClientExternalSelectedLodestar] = &ConsensusClientExternalSelectedLodestar{PageType: &PageType{}}
 	All[config.PageID.ConsensusClientSelection] = &ConsensusClientSelection{PageType: &PageType{}}
 	All[config.PageID.ConsensusClientGraffiti] = &ConsensusClientGraffiti{PageType: &PageType{}}
 	All[config.PageID.ConsensusClientCheckpointSync] = &ConsensusClientCheckpointSync{PageType: &PageType{}}
