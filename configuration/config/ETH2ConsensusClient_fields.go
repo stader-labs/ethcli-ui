@@ -17,6 +17,7 @@ func init() {
 				"Lighthouse",
 				"Nimbus",
 				"Prysm",
+				"Lodestar",
 			},
 			Description: utils.AddNewLines(`ETH 2 - Consensus Client
 
@@ -34,6 +35,9 @@ Nimbus is an Ethereum consensus client that prioritizes minimal resource usage, 
 				"Prysm": utils.AddNewLines(`Prysm
 
 Prysm, an Ethereum proof-of-stake client written in Go, is developed by Prysmatic Labs. It prioritizes usability, security and reliability in the implementation of its consensus protocol.`, descriptionSidebarWidth),
+				"Lodestar": utils.AddNewLines(`"Lodestar
+
+Lodestar is the fifth open-source Ethereum consensus client. It is written in Typescript maintained by ChainSafe Systems. Lodestar, their flagship product, is a production-capable Beacon Chain and Validator Client uniquely situated as the go-to for researchers and developers for rapid prototyping and browser usage.",`, descriptionSidebarWidth),
 			},
 			Children: makeLocalManagerChildren(),
 		},
@@ -48,6 +52,7 @@ Prysm, an Ethereum proof-of-stake client written in Go, is developed by Prysmati
 				"Teku",
 				"Lighthouse",
 				"Prysm",
+				"Lodestar",
 			},
 			Description: utils.AddNewLines(`Consensus Client
 
@@ -59,6 +64,8 @@ Choose this option if you wish to use Teku as your externally manager ETH 2 - Co
 Choose this option if you wish to use Lighthouse as your externally manager ETH 2 - Consensus Client.`, descriptionSidebarWidth),
 				"Prysm": utils.AddNewLines(`Prysm
 Choose this option if you wish to use Prysm as your externally manager ETH 2 - Consensus Client.`, descriptionSidebarWidth),
+				"Lodestar": utils.AddNewLines(`Lodestar
+Choose this option if you wish to use Lodestar as your externally manager ETH 2 - Consensus Client.`, descriptionSidebarWidth),
 			},
 			Children: makeExternalChildren(),
 		},
@@ -98,7 +105,7 @@ func makeMaxPeerField(key string) FormFieldType {
 	defaultValue := "100"
 	if key == FieldKey.E2cc_lc_max_peer_lighthouse {
 		defaultValue = "80"
-	} else if key == FieldKey.E2cc_lc_max_peer_prysm {
+	} else if key == FieldKey.E2cc_lc_max_peer_prysm || key == FieldKey.E2cc_lc_max_peer_lodestar {
 		defaultValue = "50"
 	}
 
@@ -265,6 +272,8 @@ Default - True`, descriptionSidebarWidth),
 		commonsField = appendFieldPrysm(commonsField)
 	case "Teku":
 		commonsField = appendFieldTeku(commonsField)
+	case "Lodestar":
+		commonsField = appendFieldLodestar(commonsField)
 	default:
 	}
 
@@ -323,6 +332,33 @@ Default:`, descriptionSidebarWidth),
 		FormFieldType{
 			Label: "Additional Flags",
 			Key:   FieldKey.E2cc_lc_additional_flags_nimbus,
+			Type:  "text",
+			Description: utils.AddNewLines(`Additional Flags
+Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Beacon Node to activate added settings that the Stader Node configuration overlooks.
+Default:`, descriptionSidebarWidth),
+		},
+	)
+
+	return commonsField
+}
+
+func appendFieldLodestar(commonsField []FormFieldType) []FormFieldType {
+	FieldKey := GetFieldKey()
+
+	commonsField = append(
+		commonsField,
+		makeMaxPeerField(FieldKey.E2cc_lc_max_peer_lodestar),
+		FormFieldType{
+			Label: "Container Tag",
+			Key:   FieldKey.E2cc_lc_container_tag_lodestar,
+			Type:  "text",
+			Description: utils.AddNewLines(`Container Tag
+Please enter the label you wish to use on Docker Hub for the Lodestar container.
+Default:`, descriptionSidebarWidth),
+		},
+		FormFieldType{
+			Label: "Additional Flags",
+			Key:   FieldKey.E2cc_lc_additional_flags_lodestar,
 			Type:  "text",
 			Description: utils.AddNewLines(`Additional Flags
 Please enter other flags you might use in conjunction with your ETH2 - Consensus Client Beacon Node to activate added settings that the Stader Node configuration overlooks.
@@ -470,6 +506,12 @@ func makeConsensusExternalField(ccClient string) []FormFieldType {
 		commonsField = append(commonsField, makeCustomGraffitiField(FieldKey.E2cc_em_custom_graffiti_teku))
 		commonsField = append(commonsField, makeContainerTagField(FieldKey.E2cc_em_container_tag_teku))
 		commonsField = append(commonsField, makeAdditionValidatorClientField(FieldKey.E2cc_em_additional_client_flags_teku))
+	case "Lodestar":
+		commonsField = append(commonsField, makeHTTPField(FieldKey.E2cc_em_http_lodestar))
+		commonsField = append(commonsField, makeCustomGraffitiField(FieldKey.E2cc_em_custom_graffiti_lodestar))
+		commonsField = append(commonsField, makeDoppelgängerField(FieldKey.E2cc_em_doppelganger_detection_lodestar))
+		commonsField = append(commonsField, makeContainerTagField(FieldKey.E2cc_em_container_tag_lodestar))
+		commonsField = append(commonsField, makeAdditionValidatorClientField(FieldKey.E2cc_em_additional_client_flags_lodestar))
 	}
 
 	return commonsField
@@ -480,12 +522,13 @@ func makeLocalManagerChildren() map[string][]FormFieldType {
 	locallyManagedNimbusFields := makeConsensusLocalManagerClientField("Nimbus")
 	locallyManagedPrysmFields := makeConsensusLocalManagerClientField("Prysm")
 	locallyManagedTekuFields := makeConsensusLocalManagerClientField("Teku")
-
+	locallyManagedLodestarFields := makeConsensusLocalManagerClientField("Lodestar")
 	return map[string][]FormFieldType{
 		"Lighthouse": locallyManagedLightHourseFields,
 		"Nimbus":     locallyManagedNimbusFields,
 		"Prysm":      locallyManagedPrysmFields,
 		"Teku":       locallyManagedTekuFields,
+		"Lodestar":   locallyManagedLodestarFields,
 	}
 }
 
@@ -493,10 +536,12 @@ func makeExternalChildren() map[string][]FormFieldType {
 	locallyManagedLightHourseFields := makeConsensusExternalField("Lighthouse")
 	locallyManagedPrysmFields := makeConsensusExternalField("Prysm")
 	locallyManagedTekuFields := makeConsensusExternalField("Teku")
+	locallyManagedLodestarFields := makeConsensusExternalField("Lodestar")
 
 	return map[string][]FormFieldType{
 		"Lighthouse": locallyManagedLightHourseFields,
 		"Prysm":      locallyManagedPrysmFields,
 		"Teku":       locallyManagedTekuFields,
+		"Lodestar":   locallyManagedLodestarFields,
 	}
 }
