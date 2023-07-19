@@ -77,6 +77,10 @@ type ConsensusClientExternalSelectedLighthouseType struct {
 	HTTPUrl string `json:"httpUrl"`
 }
 
+type ConsensusClientExternalSelectedNimbusType struct {
+	HTTPUrl string `json:"httpUrl"`
+}
+
 type ConsensusClientExternalSelectedPrysmType struct {
 	HTTPUrl    string `json:"httpUrl"`
 	JSONRpcUrl string `json:"jsonRpcUrl"`
@@ -88,6 +92,7 @@ type ConsensusClientExternalSelectedTekuType struct {
 
 type ConsensusClientExternalType struct {
 	Lighthouse ConsensusClientExternalSelectedLighthouseType `json:"lighthouse"`
+	Nimbus     ConsensusClientExternalSelectedNimbusType     `json:"nimbus"`
 	Prysm      ConsensusClientExternalSelectedPrysmType      `json:"prysm"`
 	Teku       ConsensusClientExternalSelectedTekuType       `json:"teku"`
 }
@@ -179,6 +184,9 @@ func GetSettings() SettingsType {
 				Lighthouse: ConsensusClientExternalSelectedLighthouseType{
 					HTTPUrl: state.ConsensusClientExternalSelectedLighthouse.HTTPUrl,
 				},
+				Nimbus: ConsensusClientExternalSelectedNimbusType{
+					HTTPUrl: state.ConsensusClientExternalSelectedNimbus.HTTPUrl,
+				},
 				Prysm: ConsensusClientExternalSelectedPrysmType{
 					HTTPUrl:    state.ConsensusClientExternalSelectedPrysm.HTTPUrl,
 					JSONRpcUrl: state.ConsensusClientExternalSelectedPrysm.JSONRpcUrl,
@@ -239,6 +247,7 @@ func SetSettings(settings SettingsType) {
 
 	state.ConsensusClientExternalSelection.SelectedOption = settings.ConsensusClient.ExternalSelection
 	state.ConsensusClientExternalSelectedLighthouse.HTTPUrl = settings.ConsensusClient.External.Lighthouse.HTTPUrl
+	state.ConsensusClientExternalSelectedNimbus.HTTPUrl = settings.ConsensusClient.External.Nimbus.HTTPUrl
 	state.ConsensusClientExternalSelectedPrysm.HTTPUrl = settings.ConsensusClient.External.Prysm.HTTPUrl
 	state.ConsensusClientExternalSelectedPrysm.JSONRpcUrl = settings.ConsensusClient.External.Prysm.JSONRpcUrl
 	state.ConsensusClientExternalSelectedTeku.HTTPUrl = settings.ConsensusClient.External.Teku.HTTPUrl

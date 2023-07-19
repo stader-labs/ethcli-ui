@@ -47,6 +47,7 @@ Prysm, an Ethereum proof-of-stake client written in Go, is developed by Prysmati
 			Options: []string{
 				"Teku",
 				"Lighthouse",
+				"Nimbus",
 				"Prysm",
 			},
 			Description: utils.AddNewLines(`Consensus Client
@@ -59,6 +60,8 @@ Choose this option if you wish to use Teku as your externally manager ETH 2 - Co
 Choose this option if you wish to use Lighthouse as your externally manager ETH 2 - Consensus Client.`, descriptionSidebarWidth),
 				"Prysm": utils.AddNewLines(`Prysm
 Choose this option if you wish to use Prysm as your externally manager ETH 2 - Consensus Client.`, descriptionSidebarWidth),
+				"Nimbus": utils.AddNewLines(`Nimbus
+Choose this option if you wish to use Nimbus as your externally manager ETH 2 - Consensus Client.`, descriptionSidebarWidth),
 			},
 			Children: makeExternalChildren(),
 		},
@@ -465,6 +468,12 @@ func makeConsensusExternalField(ccClient string) []FormFieldType {
 		commonsField = append(commonsField, makeDoppelgängerField(FieldKey.E2cc_em_doppelganger_detection_lighthouse))
 		commonsField = append(commonsField, makeContainerTagField(FieldKey.E2cc_em_container_tag_lighthouse))
 		commonsField = append(commonsField, makeAdditionValidatorClientField(FieldKey.E2cc_em_additional_client_flags_lighthouse))
+	case "Nimbus":
+		commonsField = append(commonsField, makeHTTPField(FieldKey.E2cc_em_http_nimbus))
+		commonsField = append(commonsField, makeCustomGraffitiField(FieldKey.E2cc_em_custom_graffiti_nimbus))
+		commonsField = append(commonsField, makeDoppelgängerField(FieldKey.E2cc_em_doppelganger_detection_nimbus))
+		commonsField = append(commonsField, makeContainerTagField(FieldKey.E2cc_em_container_tag_nimbus))
+		commonsField = append(commonsField, makeAdditionValidatorClientField(FieldKey.E2cc_em_additional_client_flags_nimbus))
 	case "Teku":
 		commonsField = append(commonsField, makeHTTPField(FieldKey.E2cc_em_http_teku))
 		commonsField = append(commonsField, makeCustomGraffitiField(FieldKey.E2cc_em_custom_graffiti_teku))
@@ -493,9 +502,11 @@ func makeExternalChildren() map[string][]FormFieldType {
 	locallyManagedLightHourseFields := makeConsensusExternalField("Lighthouse")
 	locallyManagedPrysmFields := makeConsensusExternalField("Prysm")
 	locallyManagedTekuFields := makeConsensusExternalField("Teku")
+	locallyManagedNimbusFields := makeConsensusExternalField("Nimbus")
 
 	return map[string][]FormFieldType{
 		"Lighthouse": locallyManagedLightHourseFields,
+		"Nimbus":     locallyManagedNimbusFields,
 		"Prysm":      locallyManagedPrysmFields,
 		"Teku":       locallyManagedTekuFields,
 	}

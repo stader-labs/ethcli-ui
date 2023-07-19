@@ -102,6 +102,8 @@ func (p *ConsensusClientGraffiti) GoBack() {
 			nextPage = config.PageID.ConsensusClientExternalSelectedLighthouse
 		} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Prysm {
 			nextPage = config.PageID.ConsensusClientExternalSelectedPrysm
+		} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Nimbus {
+			nextPage = config.PageID.ConsensusClientExternalSelectedNimbus
 		}
 	}
 	ChangePage(nextPage)
