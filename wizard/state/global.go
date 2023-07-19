@@ -70,6 +70,12 @@ var (
 		HTTPUrl: "",
 	}
 
+	ConsensusClientExternalSelectedNimbus = struct {
+		HTTPUrl string
+	}{
+		HTTPUrl: "",
+	}
+
 	ConsensusClientExternalSelectedPrysm = struct {
 		HTTPUrl    string
 		JSONRpcUrl string

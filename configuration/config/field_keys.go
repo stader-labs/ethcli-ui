@@ -111,19 +111,24 @@ type FieldKeyType = struct {
 	// ETH2ConsensusClient |External
 	E2cc_em_custom_graffiti_teku               string
 	E2cc_em_custom_graffiti_lighthouse         string
+	E2cc_em_custom_graffiti_nimbus             string
 	E2cc_em_custom_graffiti_prysm              string
 	E2cc_em_doppelganger_detection_lighthouse  string
+	E2cc_em_doppelganger_detection_nimbus      string
 	E2cc_em_doppelganger_detection_prysm       string
 	E2cc_em_container_tag_prysm                string
 	E2cc_em_container_tag_lighthouse           string
+	E2cc_em_container_tag_nimbus               string
 	E2cc_em_container_tag_teku                 string
 	E2cc_em_additional_client_flags_prysm      string
 	E2cc_em_additional_client_flags_lighthouse string
+	E2cc_em_additional_client_flags_nimbus     string
 	E2cc_em_additional_client_flags_teku       string
 	E2cc_em_http_teku                          string
 	E2cc_em_http_prysm                         string
 	E2cc_em_json_rpc_prysm                     string
 	E2cc_em_http_lighthouse                    string
+	E2cc_em_http_nimbus                        string
 
 	// FallBackClients
 	Fc_use_fallback_clients string
