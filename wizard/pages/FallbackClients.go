@@ -59,13 +59,15 @@ func (p *FallbackClients) onSumit(option string) {
 				// Skip for all others
 				ChangePage(config.PageID.Monitoring)
 			}
-		default:
+		case config.ETHClient.Option.ExternallyManaged:
 			if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Teku {
 				ChangePage(config.PageID.FallbackClientsTeku)
 			} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Lighthouse {
 				ChangePage(config.PageID.FallbackClientsLighthouse)
 			} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Prysm {
 				ChangePage(config.PageID.FallbackClientsPrysm)
+			} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClient.Stage.Selection.Option.Nimbus {
+				ChangePage(config.PageID.FallbackClientsNimbus)
 			} else {
 				// Skip for all others
 				ChangePage(config.PageID.Monitoring)

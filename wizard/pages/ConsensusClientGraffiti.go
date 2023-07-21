@@ -95,17 +95,23 @@ func (p *ConsensusClientGraffiti) onSumit() {
 
 func (p *ConsensusClientGraffiti) GoBack() {
 	nextPage := config.PageID.ConsensusClientSelection
-	if state.ETHClient.SelectedOption == config.ETHClient.Option.ExternallyManaged {
-		if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Teku {
+
+	switch state.ETHClient.SelectedOption {
+	case config.ETHClient.Option.LocallyManaged:
+		nextPage = config.PageID.ConsensusClientSelection
+	case config.ETHClient.Option.ExternallyManaged:
+		selectedOption := state.ConsensusClientExternalSelection.SelectedOption
+		if selectedOption == config.ConsensusClientExternalSelection.Option.Teku {
 			nextPage = config.PageID.ConsensusClientExternalSelectedTeku
-		} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Lighthouse {
+		} else if selectedOption == config.ConsensusClientExternalSelection.Option.Lighthouse {
 			nextPage = config.PageID.ConsensusClientExternalSelectedLighthouse
-		} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Prysm {
+		} else if selectedOption == config.ConsensusClientExternalSelection.Option.Prysm {
 			nextPage = config.PageID.ConsensusClientExternalSelectedPrysm
-		} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Nimbus {
+		} else if selectedOption == config.ConsensusClientExternalSelection.Option.Nimbus {
 			nextPage = config.PageID.ConsensusClientExternalSelectedNimbus
 		}
 	}
+
 	ChangePage(nextPage)
 }
 
