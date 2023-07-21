@@ -148,7 +148,7 @@ func (p *ExecutionClient) HandleEvents(event *tcell.EventKey) *tcell.EventKey {
 }
 
 func (p *ExecutionClient) GetFirstElement() tview.Primitive {
-	fb := p.buttons[p.currentValue]
+	fb := p.buttons[state.ExecutionClient.SelectedOption]
 	log.Infof("%s GetFirstElement: [%s]", p.ID, fb.GetLabel())
 	return fb
 }

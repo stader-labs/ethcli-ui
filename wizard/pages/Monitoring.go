@@ -62,16 +62,31 @@ func (n *Monitoring) GoBack() {
 	nextPage := ""
 	pid := config.PageID
 	if state.FallbackClients.SelectedOption == config.FallbackClients.Option.Yes {
-		if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Prysm {
-			nextPage = pid.FallbackClientsPrysm
-		} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.LightHouse {
-			nextPage = pid.FallbackClientsLighthouse
-		} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Teku {
-			nextPage = pid.FallbackClientsTeku
-		} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Nimbus {
-			nextPage = pid.FallbackClientsNimbus
-		} else {
-			nextPage = pid.FallbackClients
+		switch state.ETHClient.SelectedOption {
+		case config.ETHClient.Option.LocallyManaged:
+			if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Prysm {
+				nextPage = pid.FallbackClientsPrysm
+			} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.LightHouse {
+				nextPage = pid.FallbackClientsLighthouse
+			} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Teku {
+				nextPage = pid.FallbackClientsTeku
+			} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Nimbus {
+				nextPage = pid.FallbackClientsNimbus
+			} else {
+				nextPage = pid.FallbackClients
+			}
+		case config.ETHClient.Option.ExternallyManaged:
+			if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClient.Stage.Selection.Option.Prysm {
+				nextPage = pid.FallbackClientsPrysm
+			} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClient.Stage.Selection.Option.LightHouse {
+				nextPage = pid.FallbackClientsLighthouse
+			} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClient.Stage.Selection.Option.Teku {
+				nextPage = pid.FallbackClientsTeku
+			} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClient.Stage.Selection.Option.Nimbus {
+				nextPage = pid.FallbackClientsNimbus
+			} else {
+				nextPage = pid.FallbackClients
+			}
 		}
 	} else {
 		nextPage = pid.FallbackClients

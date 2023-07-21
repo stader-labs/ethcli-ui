@@ -157,7 +157,7 @@ func (p *ConsensusClientSelection) HandleEvents(event *tcell.EventKey) *tcell.Ev
 }
 
 func (p *ConsensusClientSelection) GetFirstElement() tview.Primitive {
-	fb := p.buttons[p.currentValue]
+	fb := p.buttons[state.ConsensusClient.SelectionSelectedOption]
 	log.Infof("%s GetFirstElement: [%s]", p.ID, fb.GetLabel())
 	return fb
 }
