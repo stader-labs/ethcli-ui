@@ -7,6 +7,7 @@ var PageID = struct {
 	ExecutionClientExternal                   string
 	ExecutionClientExternalSelection          string
 	ConsensusClientExternalSelectedLighthouse string
+	ConsensusClientExternalSelectedNimbus     string
 	ConsensusClientExternalSelectedPrysm      string
 	ConsensusClientExternalSelectedLodestar   string
 	ConsensusClientExternalSelectedTeku       string
@@ -32,6 +33,7 @@ var PageID = struct {
 	ExecutionClientExternal:          "execution_client_external",
 	ExecutionClientExternalSelection: "execution_client_external_selection",
 	ConsensusClientExternalSelectedLighthouse: "consensus_client_external_selected_lighthouse",
+	ConsensusClientExternalSelectedNimbus:     "consensus_client_external_selected_nimbus",
 	ConsensusClientExternalSelectedPrysm:      "consensus_client_external_selected_prysm",
 	ConsensusClientExternalSelectedTeku:       "consensus_client_external_selected_teku",
 	ConsensusClientExternalSelectedLodestar:   "consensus_client_external_selected_lodestar",

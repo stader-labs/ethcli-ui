@@ -51,6 +51,7 @@ Lodestar is the fifth open-source Ethereum consensus client. It is written in Ty
 			Options: []string{
 				"Teku",
 				"Lighthouse",
+				"Nimbus",
 				"Prysm",
 				"Lodestar",
 			},
@@ -66,6 +67,8 @@ Choose this option if you wish to use Lighthouse as your externally manager ETH 
 Choose this option if you wish to use Prysm as your externally manager ETH 2 - Consensus Client.`, descriptionSidebarWidth),
 				"Lodestar": utils.AddNewLines(`Lodestar
 Choose this option if you wish to use Lodestar as your externally manager ETH 2 - Consensus Client.`, descriptionSidebarWidth),
+				"Nimbus": utils.AddNewLines(`Nimbus
+Choose this option if you wish to use Nimbus as your externally manager ETH 2 - Consensus Client.`, descriptionSidebarWidth),
 			},
 			Children: makeExternalChildren(),
 		},
@@ -510,6 +513,12 @@ func makeConsensusExternalField(ccClient string) []FormFieldType {
 		commonsField = append(commonsField, makeDoppelgängerField(FieldKey.E2cc_em_doppelganger_detection_lighthouse))
 		commonsField = append(commonsField, makeContainerTagField(FieldKey.E2cc_em_container_tag_lighthouse))
 		commonsField = append(commonsField, makeAdditionValidatorClientField(FieldKey.E2cc_em_additional_client_flags_lighthouse))
+	case "Nimbus":
+		commonsField = append(commonsField, makeHTTPField(FieldKey.E2cc_em_http_nimbus))
+		commonsField = append(commonsField, makeCustomGraffitiField(FieldKey.E2cc_em_custom_graffiti_nimbus))
+		commonsField = append(commonsField, makeDoppelgängerField(FieldKey.E2cc_em_doppelganger_detection_nimbus))
+		commonsField = append(commonsField, makeContainerTagField(FieldKey.E2cc_em_container_tag_nimbus))
+		commonsField = append(commonsField, makeAdditionValidatorClientField(FieldKey.E2cc_em_additional_client_flags_nimbus))
 	case "Teku":
 		commonsField = append(commonsField, makeHTTPField(FieldKey.E2cc_em_http_teku))
 		commonsField = append(commonsField, makeCustomGraffitiField(FieldKey.E2cc_em_custom_graffiti_teku))
@@ -546,9 +555,11 @@ func makeExternalChildren() map[string][]FormFieldType {
 	locallyManagedPrysmFields := makeConsensusExternalField("Prysm")
 	locallyManagedTekuFields := makeConsensusExternalField("Teku")
 	locallyManagedLodestarFields := makeConsensusExternalField("Lodestar")
+	locallyManagedNimbusFields := makeConsensusExternalField("Nimbus")
 
 	return map[string][]FormFieldType{
 		"Lighthouse": locallyManagedLightHourseFields,
+		"Nimbus":     locallyManagedNimbusFields,
 		"Prysm":      locallyManagedPrysmFields,
 		"Teku":       locallyManagedTekuFields,
 		"Lodestar":   locallyManagedLodestarFields,

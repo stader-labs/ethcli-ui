@@ -23,6 +23,7 @@ func Setup(app *tview.Application) {
 	All[config.PageID.ExecutionClientExternal] = &ExecutionClientExternal{PageType: &PageType{}}
 	All[config.PageID.ExecutionClientExternalSelection] = &ExecutionClientExternalSelection{PageType: &PageType{}}
 	All[config.PageID.ConsensusClientExternalSelectedLighthouse] = &ConsensusClientExternalSelectedLighthouse{PageType: &PageType{}}
+	All[config.PageID.ConsensusClientExternalSelectedNimbus] = &ConsensusClientExternalSelectedNimbus{PageType: &PageType{}}
 	All[config.PageID.ConsensusClientExternalSelectedPrysm] = &ConsensusClientExternalSelectedPrysm{PageType: &PageType{}}
 	All[config.PageID.ConsensusClientExternalSelectedTeku] = &ConsensusClientExternalSelectedTeku{PageType: &PageType{}}
 	All[config.PageID.ConsensusClientExternalSelectedLodestar] = &ConsensusClientExternalSelectedLodestar{PageType: &PageType{}}

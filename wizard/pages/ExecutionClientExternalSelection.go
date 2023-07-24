@@ -62,6 +62,8 @@ func (p *ExecutionClientExternalSelection) onSumit(option string) {
 		ChangePage(config.PageID.ConsensusClientExternalSelectedPrysm)
 	} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Lodestar {
 		ChangePage(config.PageID.ConsensusClientExternalSelectedLodestar)
+	} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClientExternalSelection.Option.Nimbus {
+		ChangePage(config.PageID.ConsensusClientExternalSelectedNimbus)
 	}
 }
 
