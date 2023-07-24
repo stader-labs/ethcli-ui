@@ -24,9 +24,6 @@ func (p *ConsensusClientExternalSelectedLodestar) Page() tview.Primitive {
 		AddInputField("HTTP URL", state.ConsensusClientExternalSelectedLodestar.HTTPUrl, 0, nil, func(text string) {
 			state.ConsensusClientExternalSelectedLodestar.HTTPUrl = text
 		}).
-		AddInputField("JSON-RPC URL", state.ConsensusClientExternalSelectedLodestar.JSONRpcUrl, 0, nil, func(text string) {
-			state.ConsensusClientExternalSelectedLodestar.JSONRpcUrl = text
-		}).
 		AddButton("Next", func() {
 			p.onSumit()
 		})

@@ -85,11 +85,9 @@ var (
 	}
 
 	ConsensusClientExternalSelectedLodestar = struct {
-		HTTPUrl    string
-		JSONRpcUrl string
+		HTTPUrl string
 	}{
-		HTTPUrl:    "",
-		JSONRpcUrl: "",
+		HTTPUrl: "",
 	}
 
 	ConsensusClientExternalSelectedTeku = struct {

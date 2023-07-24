@@ -77,6 +77,10 @@ type ConsensusClientExternalSelectedLighthouseType struct {
 	HTTPUrl string `json:"httpUrl"`
 }
 
+type ConsensusClientExternalSelectedLodestarType struct {
+	HTTPUrl string `json:"httpUrl"`
+}
+
 type ConsensusClientExternalSelectedNimbusType struct {
 	HTTPUrl string `json:"httpUrl"`
 }
@@ -95,6 +99,7 @@ type ConsensusClientExternalType struct {
 	Nimbus     ConsensusClientExternalSelectedNimbusType     `json:"nimbus"`
 	Prysm      ConsensusClientExternalSelectedPrysmType      `json:"prysm"`
 	Teku       ConsensusClientExternalSelectedTekuType       `json:"teku"`
+	Lodestar   ConsensusClientExternalSelectedLodestarType   `json:"lodestar"`
 }
 
 type ConsensusClientSettingsType struct {
@@ -130,6 +135,7 @@ type FallbackClientsNimbusType struct {
 type FallbackClientsSettingsType struct {
 	SelectionOption string                        `json:"selectionOption"`
 	Lighthouse      FallbackClientsLighthouseType `json:"lighthouse"`
+	Lodestar        FallbackClientsLighthouseType `json:"lodestar"`
 	Prysm           FallbackClientsPrysmType      `json:"prysm"`
 	Teku            FallbackClientsTekuType       `json:"teku"`
 	Nimbus          FallbackClientsNimbusType     `json:"nimbus"`
@@ -183,6 +189,9 @@ func GetSettings() SettingsType {
 			External: ConsensusClientExternalType{
 				Lighthouse: ConsensusClientExternalSelectedLighthouseType{
 					HTTPUrl: state.ConsensusClientExternalSelectedLighthouse.HTTPUrl,
+				},
+				Lodestar: ConsensusClientExternalSelectedLodestarType{
+					HTTPUrl: state.ConsensusClientExternalSelectedLodestar.HTTPUrl,
 				},
 				Nimbus: ConsensusClientExternalSelectedNimbusType{
 					HTTPUrl: state.ConsensusClientExternalSelectedNimbus.HTTPUrl,
@@ -251,7 +260,7 @@ func SetSettings(settings SettingsType) {
 	state.ConsensusClientExternalSelectedPrysm.HTTPUrl = settings.ConsensusClient.External.Prysm.HTTPUrl
 	state.ConsensusClientExternalSelectedPrysm.JSONRpcUrl = settings.ConsensusClient.External.Prysm.JSONRpcUrl
 	state.ConsensusClientExternalSelectedTeku.HTTPUrl = settings.ConsensusClient.External.Teku.HTTPUrl
-
+	state.ConsensusClientExternalSelectedLodestar.HTTPUrl = settings.ConsensusClient.External.Lodestar.HTTPUrl
 	state.Monitoring.SelectedOption = settings.Monitoring
 
 	state.MEVBoost.SelectedOption = settings.MEVBoost
