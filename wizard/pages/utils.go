@@ -116,6 +116,11 @@ type FallbackClientsLighthouseType struct {
 	BeaconNodeHttpUrl  string `json:"beaconNodeHttpUrl"`
 }
 
+type FallbackClientsLodestarType struct {
+	ExecutionClientUrl string `json:"executionClientUrl"`
+	BeaconNodeHttpUrl  string `json:"beaconNodeHttpUrl"`
+}
+
 type FallbackClientsPrysmType struct {
 	ExecutionClientUrl    string `json:"executionClientUrl"`
 	BeaconNodeHttpUrl     string `json:"beaconNodeHttpUrl"`
@@ -135,7 +140,7 @@ type FallbackClientsNimbusType struct {
 type FallbackClientsSettingsType struct {
 	SelectionOption string                        `json:"selectionOption"`
 	Lighthouse      FallbackClientsLighthouseType `json:"lighthouse"`
-	Lodestar        FallbackClientsLighthouseType `json:"lodestar"`
+	Lodestar        FallbackClientsLodestarType   `json:"lodestar"`
 	Prysm           FallbackClientsPrysmType      `json:"prysm"`
 	Teku            FallbackClientsTekuType       `json:"teku"`
 	Nimbus          FallbackClientsNimbusType     `json:"nimbus"`
@@ -229,6 +234,10 @@ func GetSettings() SettingsType {
 				ExecutionClientUrl: state.FallbackClientsNimbus.ExecutionClientUrl,
 				BeaconNodeHttpUrl:  state.FallbackClientsNimbus.BeaconNodeHttpUrl,
 			},
+			Lodestar: FallbackClientsLodestarType{
+				ExecutionClientUrl: state.FallbackClientsLodestar.ExecutionClientUrl,
+				BeaconNodeHttpUrl:  state.FallbackClientsLodestar.BeaconNodeHttpUrl,
+			},
 		},
 	}
 
@@ -274,6 +283,9 @@ func SetSettings(settings SettingsType) {
 
 	state.FallbackClientsLighthouse.ExecutionClientUrl = settings.FallbackClients.Lighthouse.ExecutionClientUrl
 	state.FallbackClientsLighthouse.BeaconNodeHttpUrl = settings.FallbackClients.Lighthouse.BeaconNodeHttpUrl
+
+	state.FallbackClientsLodestar.ExecutionClientUrl = settings.FallbackClients.Lodestar.ExecutionClientUrl
+	state.FallbackClientsLodestar.BeaconNodeHttpUrl = settings.FallbackClients.Lodestar.BeaconNodeHttpUrl
 
 	state.FallbackClientsPrysm.ExecutionClientUrl = settings.FallbackClients.Prysm.ExecutionClientUrl
 	state.FallbackClientsPrysm.BeaconNodeHttpUrl = settings.FallbackClients.Prysm.BeaconNodeHttpUrl

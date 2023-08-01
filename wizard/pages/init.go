@@ -37,6 +37,7 @@ func Setup(app *tview.Application) {
 
 	All[config.PageID.FallbackClientsLighthouse] = &FallbackClientsLighthouse{PageType: &PageType{}}
 	All[config.PageID.FallbackClientsTeku] = &FallbackClientsTeku{PageType: &PageType{}}
+	All[config.PageID.FallbackClientsLodestar] = &FallbackClientsLodestar{PageType: &PageType{}}
 	All[config.PageID.Monitoring] = &Monitoring{PageType: &PageType{}}
 	All[config.PageID.MEVBoost] = &MEVBoost{PageType: &PageType{}}
 	All[config.PageID.MEVBoostLocal] = &MEVBoostLocal{PageType: &PageType{}}

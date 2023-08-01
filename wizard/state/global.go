@@ -110,6 +110,14 @@ var (
 		BeaconNodeHttpUrl:  "",
 	}
 
+	FallbackClientsLodestar = struct {
+		ExecutionClientUrl string
+		BeaconNodeHttpUrl  string
+	}{
+		ExecutionClientUrl: "",
+		BeaconNodeHttpUrl:  "",
+	}
+
 	FallbackClientsPrysm = struct {
 		ExecutionClientUrl    string
 		BeaconNodeHttpUrl     string
