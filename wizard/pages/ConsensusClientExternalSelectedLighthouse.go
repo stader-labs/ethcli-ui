@@ -21,9 +21,9 @@ type ConsensusClientExternalSelectedLighthouse struct {
 
 func (p *ConsensusClientExternalSelectedLighthouse) Page() tview.Primitive {
 	form := components.Form().
-		AddInputField("HTTP URL", state.ConsensusClientExternalSelectedLighthouse.HTTPUrl, 0, nil, func(text string) {
+		AddInputField("HTTP URL", state.ConsensusClientExternalSelectedLighthouse.HTTPUrl, 0, nil, trimWrap(func(text string) {
 			state.ConsensusClientExternalSelectedLighthouse.HTTPUrl = text
-		}).
+		})).
 		AddButton("Next", func() {
 			p.onSumit()
 		})

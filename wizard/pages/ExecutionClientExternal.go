@@ -12,6 +12,13 @@ import (
 	"github.com/rivo/tview"
 )
 
+func trimWrap(f func(text string)) func(text string) {
+	return func(text string) {
+		text = strings.TrimSpace(text)
+		f(text)
+	}
+}
+
 type ExecutionClientExternal struct {
 	*PageType
 	firstElement tview.Primitive
@@ -19,12 +26,12 @@ type ExecutionClientExternal struct {
 
 func (p *ExecutionClientExternal) Page() tview.Primitive {
 	form := components.Form().
-		AddInputField("HTTP-based RPC API", state.ExecutionClientExternal.HTTPBasedRpcApi, 0, nil, func(text string) {
+		AddInputField("HTTP-based RPC API", state.ExecutionClientExternal.HTTPBasedRpcApi, 0, nil, trimWrap(func(text string) {
 			state.ExecutionClientExternal.HTTPBasedRpcApi = text
-		}).
-		AddInputField("Websocket-based RPC API", state.ExecutionClientExternal.WebsocketBasedRpcApi, 0, nil, func(text string) {
+		})).
+		AddInputField("Websocket-based RPC API", state.ExecutionClientExternal.WebsocketBasedRpcApi, 0, nil, trimWrap(func(text string) {
 			state.ExecutionClientExternal.WebsocketBasedRpcApi = text
-		}).
+		})).
 		AddButton("Next", func() {
 			p.onSumit()
 		})

@@ -19,12 +19,12 @@ type FallbackClientsLighthouse struct {
 
 func (p *FallbackClientsLighthouse) Page() tview.Primitive {
 	form := components.Form().
-		AddInputField("Execution client URL", state.FallbackClientsLighthouse.ExecutionClientUrl, 0, nil, func(text string) {
+		AddInputField("Execution client URL", state.FallbackClientsLighthouse.ExecutionClientUrl, 0, nil, trimWrap(func(text string) {
 			state.FallbackClientsLighthouse.ExecutionClientUrl = text
-		}).
-		AddInputField("Beacon Node HTTP URL", state.FallbackClientsLighthouse.BeaconNodeHttpUrl, 0, nil, func(text string) {
+		})).
+		AddInputField("Beacon Node HTTP URL", state.FallbackClientsLighthouse.BeaconNodeHttpUrl, 0, nil, trimWrap(func(text string) {
 			state.FallbackClientsLighthouse.BeaconNodeHttpUrl = text
-		}).
+		})).
 		AddButton("NEXT", func() {
 			p.onSumit()
 		})

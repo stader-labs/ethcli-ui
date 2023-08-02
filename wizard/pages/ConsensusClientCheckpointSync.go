@@ -19,9 +19,9 @@ type ConsensusClientCheckpointSync struct {
 
 func (p *ConsensusClientCheckpointSync) Page() tview.Primitive {
 	form := components.Form().
-		AddInputField("Checkpoint URL", state.ConsensusClient.CheckpointUrl, 0, nil, func(text string) {
+		AddInputField("Checkpoint URL", state.ConsensusClient.CheckpointUrl, 0, nil, trimWrap(func(text string) {
 			state.ConsensusClient.CheckpointUrl = text
-		}).
+		})).
 		AddButton("Next", func() {
 			p.onSumit()
 		})

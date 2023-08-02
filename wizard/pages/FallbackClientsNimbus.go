@@ -19,12 +19,12 @@ type FallbackClientsNimbus struct {
 
 func (p *FallbackClientsNimbus) Page() tview.Primitive {
 	form := components.Form().
-		AddInputField("Execution client URL", state.FallbackClientsNimbus.ExecutionClientUrl, 0, nil, func(text string) {
+		AddInputField("Execution client URL", state.FallbackClientsNimbus.ExecutionClientUrl, 0, nil, trimWrap(func(text string) {
 			state.FallbackClientsNimbus.ExecutionClientUrl = text
-		}).
-		AddInputField("Beacon Node HTTP URL", state.FallbackClientsNimbus.BeaconNodeHttpUrl, 0, nil, func(text string) {
+		})).
+		AddInputField("Beacon Node HTTP URL", state.FallbackClientsNimbus.BeaconNodeHttpUrl, 0, nil, trimWrap(func(text string) {
 			state.FallbackClientsNimbus.BeaconNodeHttpUrl = text
-		}).
+		})).
 		AddButton("NEXT", func() {
 			p.onSumit()
 		})

@@ -21,11 +21,12 @@ func (p *ConsensusClientGraffiti) Page() tview.Primitive {
 	form := components.Form().
 		AddInputField("Add graffiti", state.ConsensusClient.Graffiti, 0,
 			func(textToCheck string, lastChar rune) bool {
+				textToCheck = strings.TrimSpace(textToCheck)
 				return len(textToCheck) <= 16
 			},
-			func(text string) {
+			trimWrap(func(text string) {
 				state.ConsensusClient.Graffiti = text
-			},
+			}),
 		).
 		AddButton("Next", func() {
 			p.onSumit()

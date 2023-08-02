@@ -21,12 +21,12 @@ type ConsensusClientExternalSelectedPrysm struct {
 
 func (p *ConsensusClientExternalSelectedPrysm) Page() tview.Primitive {
 	form := components.Form().
-		AddInputField("HTTP URL", state.ConsensusClientExternalSelectedPrysm.HTTPUrl, 0, nil, func(text string) {
+		AddInputField("HTTP URL", state.ConsensusClientExternalSelectedPrysm.HTTPUrl, 0, nil, trimWrap(func(text string) {
 			state.ConsensusClientExternalSelectedPrysm.HTTPUrl = text
-		}).
-		AddInputField("JSON-RPC URL", state.ConsensusClientExternalSelectedPrysm.JSONRpcUrl, 0, nil, func(text string) {
+		})).
+		AddInputField("JSON-RPC URL", state.ConsensusClientExternalSelectedPrysm.JSONRpcUrl, 0, nil, trimWrap(func(text string) {
 			state.ConsensusClientExternalSelectedPrysm.JSONRpcUrl = text
-		}).
+		})).
 		AddButton("Next", func() {
 			p.onSumit()
 		})
