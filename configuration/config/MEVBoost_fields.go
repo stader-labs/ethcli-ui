@@ -13,7 +13,7 @@ func init() {
 			Description: utils.AddNewLines(`Enable Unregulated (All MEV Types)
 
 Choose this option to activate relays that don't adhere to any sanctions lists and won't censor transactions. Unregulated (All MEV Types) permits for all forms of MEV, including sandwich attacks.
-Relays: Ultra Sound and bloXroute Max Profit`, descriptionSidebarWidth),
+Relays: Ultra Sound, bloXroute Max Profit and Aestus`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Enable Regulated (All MEV Types)",
@@ -114,6 +114,14 @@ Activate bloXroute Ethical relay which is not in accordance with regulations and
 			Description: utils.AddNewLines(`Enable Ultrasound
 
 Activate Ultra Sound Ethical relay which is not in accordance with regulations and permits sandwich attack`, descriptionSidebarWidth),
+		},
+		{
+			Label: "Enable Aestus",
+			Key:   FieldKey.Mev_boost_rm_enable_aestus,
+			Type:  "checkbox",
+			Description: utils.AddNewLines(`Enable Aestus
+
+The Aestus MEV-Boost Relay is an independent and non-censoring relay. It is committed to neutrality and the development of a healthy MEV-Boost ecosystem`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Port",

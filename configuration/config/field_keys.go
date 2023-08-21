@@ -166,6 +166,7 @@ type FieldKeyType = struct {
 	Mev_boost_rm_enable_eden_network         string
 	Mev_boost_rm_enable_bloXroute_ethical    string
 	Mev_boost_rm_enable_ultra_sound          string
+	Mev_boost_rm_enable_aestus               string
 	Mev_boost_rm_port                        string
 	Mev_boost_rm_expose_api_port             string
 	Mev_boost_rm_container_tag               string
