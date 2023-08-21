@@ -19,12 +19,12 @@ type FallbackClientsLodestar struct {
 
 func (p *FallbackClientsLodestar) Page() tview.Primitive {
 	form := components.Form().
-		AddInputField("Execution client URL", state.FallbackClientsLodestar.ExecutionClientUrl, 0, nil, func(text string) {
+		AddInputField("Execution client URL", state.FallbackClientsLodestar.ExecutionClientUrl, 0, nil, trimWrap(func(text string) {
 			state.FallbackClientsLodestar.ExecutionClientUrl = text
-		}).
-		AddInputField("Beacon Node HTTP URL", state.FallbackClientsLodestar.BeaconNodeHttpUrl, 0, nil, func(text string) {
+		})).
+		AddInputField("Beacon Node HTTP URL", state.FallbackClientsLodestar.BeaconNodeHttpUrl, 0, nil, trimWrap(func(text string) {
 			state.FallbackClientsLodestar.BeaconNodeHttpUrl = text
-		}).
+		})).
 		AddButton("NEXT", func() {
 			p.onSumit()
 		})
