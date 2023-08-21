@@ -26,9 +26,9 @@ func (p *MEVBoostExternal) Page() tview.Primitive {
 	p.descriptionTextView = tview.NewTextView()
 
 	form := components.Form().
-		AddInputField("MEV URL", state.MEVBoostExternal.MevUrl, 0, nil, func(text string) {
+		AddInputField("MEV URL", state.MEVBoostExternal.MevUrl, 0, nil, trimWrap(func(text string) {
 			state.MEVBoostExternal.MevUrl = text
-		}).
+		})).
 		AddButton("NEXT", func() {
 			p.onSumit()
 		})

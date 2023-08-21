@@ -21,9 +21,9 @@ type ConsensusClientExternalSelectedLodestar struct {
 
 func (p *ConsensusClientExternalSelectedLodestar) Page() tview.Primitive {
 	form := components.Form().
-		AddInputField("HTTP URL", state.ConsensusClientExternalSelectedLodestar.HTTPUrl, 0, nil, func(text string) {
+		AddInputField("HTTP URL", state.ConsensusClientExternalSelectedLodestar.HTTPUrl, 0, nil, trimWrap(func(text string) {
 			state.ConsensusClientExternalSelectedLodestar.HTTPUrl = text
-		}).
+		})).
 		AddButton("Next", func() {
 			p.onSumit()
 		})

@@ -21,9 +21,9 @@ type ConsensusClientExternalSelectedNimbus struct {
 
 func (p *ConsensusClientExternalSelectedNimbus) Page() tview.Primitive {
 	form := components.Form().
-		AddInputField("HTTP URL", state.ConsensusClientExternalSelectedNimbus.HTTPUrl, 0, nil, func(text string) {
+		AddInputField("HTTP URL", state.ConsensusClientExternalSelectedNimbus.HTTPUrl, 0, nil, trimWrap(func(text string) {
 			state.ConsensusClientExternalSelectedNimbus.HTTPUrl = text
-		}).
+		})).
 		AddButton("Next", func() {
 			p.onSumit()
 		})

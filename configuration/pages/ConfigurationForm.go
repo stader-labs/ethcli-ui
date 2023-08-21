@@ -2,6 +2,7 @@ package pages
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
@@ -84,6 +85,7 @@ func (p *ConfigurationForm) addFormItemEvents(fr fieldReturnType) {
 	case "text", "int":
 		fr.field.(*tview.InputField).
 			SetChangedFunc(func(text string) {
+				text = strings.TrimSpace(text)
 				state.Configuration[fr.info.Key] = text
 			}).
 			SetFocusFunc(func() {

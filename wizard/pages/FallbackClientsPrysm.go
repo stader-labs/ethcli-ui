@@ -19,15 +19,15 @@ type FallbackClientsPrysm struct {
 
 func (p *FallbackClientsPrysm) Page() tview.Primitive {
 	form := components.Form().
-		AddInputField("Execution client URL", state.FallbackClientsPrysm.ExecutionClientUrl, 0, nil, func(text string) {
+		AddInputField("Execution client URL", state.FallbackClientsPrysm.ExecutionClientUrl, 0, nil, trimWrap(func(text string) {
 			state.FallbackClientsPrysm.ExecutionClientUrl = text
-		}).
-		AddInputField("Beacon Node HTTP URL", state.FallbackClientsPrysm.BeaconNodeHttpUrl, 0, nil, func(text string) {
+		})).
+		AddInputField("Beacon Node HTTP URL", state.FallbackClientsPrysm.BeaconNodeHttpUrl, 0, nil, trimWrap(func(text string) {
 			state.FallbackClientsPrysm.BeaconNodeHttpUrl = text
-		}).
-		AddInputField("Beacon Node JSON-RPC URL", state.FallbackClientsPrysm.BeaconNodeJsonRpcpUrl, 0, nil, func(text string) {
+		})).
+		AddInputField("Beacon Node JSON-RPC URL", state.FallbackClientsPrysm.BeaconNodeJsonRpcpUrl, 0, nil, trimWrap(func(text string) {
 			state.FallbackClientsPrysm.BeaconNodeJsonRpcpUrl = text
-		}).
+		})).
 		AddButton("NEXT", func() {
 			p.onSumit()
 		})
