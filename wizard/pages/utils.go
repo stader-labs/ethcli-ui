@@ -77,6 +77,10 @@ type ConsensusClientExternalSelectedLighthouseType struct {
 	HTTPUrl string `json:"httpUrl"`
 }
 
+type ConsensusClientExternalSelectedLodestarType struct {
+	HTTPUrl string `json:"httpUrl"`
+}
+
 type ConsensusClientExternalSelectedNimbusType struct {
 	HTTPUrl string `json:"httpUrl"`
 }
@@ -95,6 +99,7 @@ type ConsensusClientExternalType struct {
 	Nimbus     ConsensusClientExternalSelectedNimbusType     `json:"nimbus"`
 	Prysm      ConsensusClientExternalSelectedPrysmType      `json:"prysm"`
 	Teku       ConsensusClientExternalSelectedTekuType       `json:"teku"`
+	Lodestar   ConsensusClientExternalSelectedLodestarType   `json:"lodestar"`
 }
 
 type ConsensusClientSettingsType struct {
@@ -107,6 +112,11 @@ type ConsensusClientSettingsType struct {
 }
 
 type FallbackClientsLighthouseType struct {
+	ExecutionClientUrl string `json:"executionClientUrl"`
+	BeaconNodeHttpUrl  string `json:"beaconNodeHttpUrl"`
+}
+
+type FallbackClientsLodestarType struct {
 	ExecutionClientUrl string `json:"executionClientUrl"`
 	BeaconNodeHttpUrl  string `json:"beaconNodeHttpUrl"`
 }
@@ -130,6 +140,7 @@ type FallbackClientsNimbusType struct {
 type FallbackClientsSettingsType struct {
 	SelectionOption string                        `json:"selectionOption"`
 	Lighthouse      FallbackClientsLighthouseType `json:"lighthouse"`
+	Lodestar        FallbackClientsLodestarType   `json:"lodestar"`
 	Prysm           FallbackClientsPrysmType      `json:"prysm"`
 	Teku            FallbackClientsTekuType       `json:"teku"`
 	Nimbus          FallbackClientsNimbusType     `json:"nimbus"`
@@ -184,6 +195,9 @@ func GetSettings() SettingsType {
 				Lighthouse: ConsensusClientExternalSelectedLighthouseType{
 					HTTPUrl: state.ConsensusClientExternalSelectedLighthouse.HTTPUrl,
 				},
+				Lodestar: ConsensusClientExternalSelectedLodestarType{
+					HTTPUrl: state.ConsensusClientExternalSelectedLodestar.HTTPUrl,
+				},
 				Nimbus: ConsensusClientExternalSelectedNimbusType{
 					HTTPUrl: state.ConsensusClientExternalSelectedNimbus.HTTPUrl,
 				},
@@ -220,6 +234,10 @@ func GetSettings() SettingsType {
 				ExecutionClientUrl: state.FallbackClientsNimbus.ExecutionClientUrl,
 				BeaconNodeHttpUrl:  state.FallbackClientsNimbus.BeaconNodeHttpUrl,
 			},
+			Lodestar: FallbackClientsLodestarType{
+				ExecutionClientUrl: state.FallbackClientsLodestar.ExecutionClientUrl,
+				BeaconNodeHttpUrl:  state.FallbackClientsLodestar.BeaconNodeHttpUrl,
+			},
 		},
 	}
 
@@ -251,7 +269,7 @@ func SetSettings(settings SettingsType) {
 	state.ConsensusClientExternalSelectedPrysm.HTTPUrl = settings.ConsensusClient.External.Prysm.HTTPUrl
 	state.ConsensusClientExternalSelectedPrysm.JSONRpcUrl = settings.ConsensusClient.External.Prysm.JSONRpcUrl
 	state.ConsensusClientExternalSelectedTeku.HTTPUrl = settings.ConsensusClient.External.Teku.HTTPUrl
-
+	state.ConsensusClientExternalSelectedLodestar.HTTPUrl = settings.ConsensusClient.External.Lodestar.HTTPUrl
 	state.Monitoring.SelectedOption = settings.Monitoring
 
 	state.MEVBoost.SelectedOption = settings.MEVBoost
@@ -265,6 +283,9 @@ func SetSettings(settings SettingsType) {
 
 	state.FallbackClientsLighthouse.ExecutionClientUrl = settings.FallbackClients.Lighthouse.ExecutionClientUrl
 	state.FallbackClientsLighthouse.BeaconNodeHttpUrl = settings.FallbackClients.Lighthouse.BeaconNodeHttpUrl
+
+	state.FallbackClientsLodestar.ExecutionClientUrl = settings.FallbackClients.Lodestar.ExecutionClientUrl
+	state.FallbackClientsLodestar.BeaconNodeHttpUrl = settings.FallbackClients.Lodestar.BeaconNodeHttpUrl
 
 	state.FallbackClientsPrysm.ExecutionClientUrl = settings.FallbackClients.Prysm.ExecutionClientUrl
 	state.FallbackClientsPrysm.BeaconNodeHttpUrl = settings.FallbackClients.Prysm.BeaconNodeHttpUrl

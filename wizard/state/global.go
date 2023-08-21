@@ -84,6 +84,12 @@ var (
 		JSONRpcUrl: "",
 	}
 
+	ConsensusClientExternalSelectedLodestar = struct {
+		HTTPUrl string
+	}{
+		HTTPUrl: "",
+	}
+
 	ConsensusClientExternalSelectedTeku = struct {
 		HTTPUrl string
 	}{
@@ -97,6 +103,14 @@ var (
 	}
 
 	FallbackClientsLighthouse = struct {
+		ExecutionClientUrl string
+		BeaconNodeHttpUrl  string
+	}{
+		ExecutionClientUrl: "",
+		BeaconNodeHttpUrl:  "",
+	}
+
+	FallbackClientsLodestar = struct {
 		ExecutionClientUrl string
 		BeaconNodeHttpUrl  string
 	}{

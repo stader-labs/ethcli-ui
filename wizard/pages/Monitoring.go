@@ -72,6 +72,8 @@ func (n *Monitoring) GoBack() {
 				nextPage = pid.FallbackClientsTeku
 			} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Nimbus {
 				nextPage = pid.FallbackClientsNimbus
+			} else if state.ConsensusClient.SelectionSelectedOption == config.ConsensusClient.Stage.Selection.Option.Lodestar {
+				nextPage = pid.FallbackClientsLodestar
 			} else {
 				nextPage = pid.FallbackClients
 			}
@@ -84,6 +86,8 @@ func (n *Monitoring) GoBack() {
 				nextPage = pid.FallbackClientsTeku
 			} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClient.Stage.Selection.Option.Nimbus {
 				nextPage = pid.FallbackClientsNimbus
+			} else if state.ConsensusClientExternalSelection.SelectedOption == config.ConsensusClient.Stage.Selection.Option.Lodestar {
+				nextPage = pid.FallbackClientsLodestar
 			} else {
 				nextPage = pid.FallbackClients
 			}

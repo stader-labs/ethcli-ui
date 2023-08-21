@@ -9,6 +9,7 @@ var PageID = struct {
 	ConsensusClientExternalSelectedLighthouse string
 	ConsensusClientExternalSelectedNimbus     string
 	ConsensusClientExternalSelectedPrysm      string
+	ConsensusClientExternalSelectedLodestar   string
 	ConsensusClientExternalSelectedTeku       string
 	ConsensusClientSelection                  string
 	ConsensusClientGraffiti                   string
@@ -17,6 +18,7 @@ var PageID = struct {
 	FallbackClients                           string
 	FallbackClientsPrysm                      string
 	FallbackClientsLighthouse                 string
+	FallbackClientsLodestar                   string
 	FallbackClientsTeku                       string
 	FallbackClientsNimbus                     string
 	Monitoring                                string
@@ -34,6 +36,7 @@ var PageID = struct {
 	ConsensusClientExternalSelectedNimbus:     "consensus_client_external_selected_nimbus",
 	ConsensusClientExternalSelectedPrysm:      "consensus_client_external_selected_prysm",
 	ConsensusClientExternalSelectedTeku:       "consensus_client_external_selected_teku",
+	ConsensusClientExternalSelectedLodestar:   "consensus_client_external_selected_lodestar",
 	ConsensusClientSelection:                  "consensus_client_selection",
 	ConsensusClientGraffiti:                   "consensus_client_graffiti",
 	ConsensusClientCheckpointSync:             "consensus_client_checkpoint_sync",
@@ -43,6 +46,7 @@ var PageID = struct {
 	FallbackClientsLighthouse:                 "fallback_clients_lighthouse",
 	FallbackClientsTeku:                       "fallback_clients_teku",
 	FallbackClientsNimbus:                     "fallback_clients_nimbus",
+	FallbackClientsLodestar:                   "fallback_clients_lodestar",
 	Monitoring:                                "monitoring",
 	MEVBoost:                                  "mev_boost",
 	MEVBoostLocal:                             "mev_boost_local",

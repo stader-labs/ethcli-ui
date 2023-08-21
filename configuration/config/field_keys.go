@@ -83,6 +83,7 @@ type FieldKeyType = struct {
 	E2cc_lc_max_peer_nimbus     string
 	E2cc_lc_max_peer_prysm      string
 	E2cc_lc_max_peer_teku       string
+	E2cc_lc_max_peer_lodestar   string
 
 	// ETH2ConsensusClient | Local Prysm
 	E2cc_lc_rpc_port_prysm                       string
@@ -129,6 +130,18 @@ type FieldKeyType = struct {
 	E2cc_em_json_rpc_prysm                     string
 	E2cc_em_http_lighthouse                    string
 	E2cc_em_http_nimbus                        string
+
+	// ETH2ConsensusClient | Local | Lodestar
+	E2cc_lc_container_tag_lodestar                string
+	E2cc_lc_additional_beacon_node_flags_lodestar string
+	E2cc_lc_additional_client_flags_lodestar      string
+
+	// ETH2ConsensusClient | External | Lodestar lodestar
+	E2cc_em_custom_graffiti_lodestar         string
+	E2cc_em_doppelganger_detection_lodestar  string
+	E2cc_em_container_tag_lodestar           string
+	E2cc_em_additional_client_flags_lodestar string
+	E2cc_em_http_lodestar                    string
 
 	// FallBackClients
 	Fc_use_fallback_clients string

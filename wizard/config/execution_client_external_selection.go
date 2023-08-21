@@ -4,6 +4,7 @@ type ConsensusClientExternalSelectionOption struct {
 	Lighthouse string
 	Prysm      string
 	Teku       string
+	Lodestar   string
 	Nimbus     string
 }
 
@@ -17,6 +18,7 @@ var ConsensusClientExternalSelection = struct {
 		Nimbus:     "nimbus",
 		Prysm:      "prysm",
 		Teku:       "teku",
+		Lodestar:   "lodestar",
 	},
 }
 
@@ -26,6 +28,7 @@ func init() {
 		ConsensusClientExternalSelection.Option.Nimbus,
 		ConsensusClientExternalSelection.Option.Prysm,
 		ConsensusClientExternalSelection.Option.Teku,
+		ConsensusClientExternalSelection.Option.Lodestar,
 	}
 
 	ConsensusClientExternalSelection.OptionLabels = map[string]string{
@@ -33,5 +36,6 @@ func init() {
 		ConsensusClientExternalSelection.Option.Nimbus:     "Nimbus",
 		ConsensusClientExternalSelection.Option.Prysm:      "Prysm",
 		ConsensusClientExternalSelection.Option.Teku:       "Teku",
+		ConsensusClientExternalSelection.Option.Lodestar:   "Lodestar",
 	}
 }
