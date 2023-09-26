@@ -6,14 +6,15 @@ func init() {
 	FieldKey := GetFieldKey()
 
 	metricsFields := []FormFieldType{
-		// 		{
-		// 			Label: "Enable Oracle DAO Metrics",
-		// 			Key:   FieldKey.Nm_enable_oracle_dao_metrics,
-		// 			Type:  "checkbox",
-		// 			Description: utils.AddNewLines(`Enable Oracle DAO Metrics
+		{
+			Label: "Expose Metrics Port",
+			Key:   FieldKey.Nm_expose_guardian_port,
+			Type:  "checkbox",
+			Description: utils.AddNewLines(`Enable Metrics
 
-		// Choose this option to activate Oracle DAO metric tracking, including balance submission participation and prices.`, descriptionSidebarWidth),
-		// 		},
+Please choose this option to expose Stader Node guardian.
+Default: True`, descriptionSidebarWidth),
+		},
 		{
 			Label: "Execution Client Metrics Port",
 			Key:   FieldKey.Nm_execution_client_metrics_port,
@@ -185,6 +186,15 @@ Default: True`, descriptionSidebarWidth),
 			Children: map[string][]FormFieldType{
 				"true": metricsFields,
 			},
+		},
+		{
+			Label: "Expose Metrics Port",
+			Key:   FieldKey.Nm_expose_guardian_port,
+			Type:  "checkbox",
+			Description: utils.AddNewLines(`Enable Metrics
+
+Please choose this option to expose Stader Node guardian.
+Default: True`, descriptionSidebarWidth),
 		},
 	}
 }
