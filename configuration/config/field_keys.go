@@ -187,6 +187,7 @@ type FieldKeyType = struct {
 
 	// Node Monitoring
 	Nm_enable_metrics                  string
+	Nm_expose_guardian_port            string
 	Nm_enable_oracle_dao_metrics       string
 	Nm_execution_client_metrics_port   string
 	Nm_beacon_node_metrics_port        string
