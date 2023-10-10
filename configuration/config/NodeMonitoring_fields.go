@@ -145,32 +145,6 @@ Please enter the label you wish to use on Docker Hub for the Promethus node expo
 
 Please enter other custom command line flags you might use in conjunction with Node Exporter to activate added settings that the Stader Node configuration overlooks.`, descriptionSidebarWidth),
 		},
-		// 		{
-		// 			Label: "Enable Beaconcha.in Node Metrics X",
-		// 			Key:   FieldKey.Nm_enable_beaconchain_node_metrics,
-		// 			Type:  "checkbox",
-		// 			Description: utils.AddNewLines(`Enable Beaconcha.in Node Metrics
-		// Choose this option to activate the Beaconcha.in node metrics integration for tracking your node's metrics from your mobile device via the Beaconcha.in App. To find out more about setting up an account and the application, head to https://beaconcha.in/mobile.`, descriptionSidebarWidth),
-		// 			Children: map[string][]FormFieldType{
-		// 				"true": {
-		// 					{
-		// 						Label: "Beaconcha.in API Key",
-		// 						Key:   FieldKey.Nm_beaconchain_api_key,
-		// 						Type:  "text",
-		// 						Description: utils.AddNewLines(`Beaconcha.in API Key
-		// Please enter the API key for your Beaconcha.in node metrics integration authorization, which can be found in your Beaconcha.in account settings.
-		// To find out more about accessing your account info, head to https://beaconcha.in/user/settings#api`, descriptionSidebarWidth),
-		// 					},
-		// 					{
-		// 						Label: "Node Metrics Machine Name",
-		// 						Key:   FieldKey.Nm_beaconchain_node_metrics_machine_name,
-		// 						Type:  "text",
-		// 						Description: utils.AddNewLines(`Node Metrics Machine Name
-		// Enter the Node Metrics Machine name which will be utilized to recognize your machine in the mobile app.`, descriptionSidebarWidth),
-		// 					},
-		// 				},
-		// 			},
-		// 		},
 	}
 
 	ConfigurationFields[Categories.Option.NodeMonitoring] = []FormFieldType{
@@ -185,16 +159,24 @@ Default: True`, descriptionSidebarWidth),
 
 			Children: map[string][]FormFieldType{
 				"true": metricsFields,
+				"false": {{
+					Label: "Expose Metrics Port",
+					Key:   FieldKey.Nm_expose_guardian_port,
+					Type:  "checkbox",
+					Description: utils.AddNewLines(`Enable Metrics
+		
+		Please choose this option to expose Stader Node guardian.
+		Default: True`, descriptionSidebarWidth),
+				}, {
+					Label: "Node Metrics Port",
+					Key:   FieldKey.Nm_node_metrics_port,
+					Type:  "int",
+					Description: utils.AddNewLines(`Node Metrics Port
+		
+					Enter the port your Node Container should use for the API.
+		Default: 9102`, descriptionSidebarWidth),
+				}},
 			},
-		},
-		{
-			Label: "Expose Metrics Port",
-			Key:   FieldKey.Nm_expose_guardian_port,
-			Type:  "checkbox",
-			Description: utils.AddNewLines(`Enable Metrics
-
-Please choose this option to expose Stader Node guardian.
-Default: True`, descriptionSidebarWidth),
 		},
 	}
 }
