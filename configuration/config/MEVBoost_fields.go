@@ -76,14 +76,6 @@ Activate Flashbot relay which is in accordance with regulations and permits sand
 Activate bloXroute Regulated relay which is in accordance with regulations and permits sandwich attack`, descriptionSidebarWidth),
 		},
 		{
-			Label: "Enable Blocknative",
-			Key:   FieldKey.Mev_boost_rm_enable_blocknative,
-			Type:  "checkbox",
-			Description: utils.AddNewLines(`Enable Blocknative
-
-Activate Blocknative relay which is in accordance with regulations and permits sandwich attack`, descriptionSidebarWidth),
-		},
-		{
 			Label: "Enable Eden",
 			Key:   FieldKey.Mev_boost_rm_enable_eden_network,
 			Type:  "checkbox",
@@ -98,14 +90,6 @@ Activate Eden Network relay which is in accordance with regulations and permits 
 			Description: utils.AddNewLines(`Enable bloXroute Max Profit
 
 		Activate bloxRoute Max Profit relay which is not in accordance with regulations and permits sandwich attack.`, descriptionSidebarWidth),
-		},
-		{
-			Label: "Enable bloXroute Ethical",
-			Key:   FieldKey.Mev_boost_rm_enable_bloXroute_ethical,
-			Type:  "checkbox",
-			Description: utils.AddNewLines(`Enable bloXroute Ethical
-
-Activate bloXroute Ethical relay which is not in accordance with regulations and does not permits sandwich attack`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Enable Ultrasound",
