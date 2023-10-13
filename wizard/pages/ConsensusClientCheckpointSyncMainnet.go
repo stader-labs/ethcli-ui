@@ -12,14 +12,15 @@ import (
 	"github.com/rivo/tview"
 )
 
-type ConsensusClientCheckpointSync struct {
+type ConsensusClientCheckpointSyncMainnet struct {
 	*PageType
 	firstElement tview.Primitive
 }
 
-func (p *ConsensusClientCheckpointSync) Page() tview.Primitive {
+func (p *ConsensusClientCheckpointSyncMainnet) Page() tview.Primitive {
 	form := components.Form().
-		AddInputField("Checkpoint URL", state.ConsensusClient.CheckpointUrl, 0, nil, trimWrap(func(text string) {
+		AddInputField("Checkpoint URL", state.ConsensusClient.CheckpointUrlMainnet, 0, nil, trimWrap(func(text string) {
+			state.ConsensusClient.CheckpointUrlMainnet = text
 			state.ConsensusClient.CheckpointUrl = text
 		})).
 		AddButton("Next", func() {
@@ -84,16 +85,17 @@ interested in, feel free to leave it blank.`
 		AddItem(components.Footer(p.App), 5, 1, false)
 }
 
-func (p *ConsensusClientCheckpointSync) onSumit() {
-	log.Infof("onSumit: [%s]", config.PageID.ConsensusClientCheckpointSync)
+func (p *ConsensusClientCheckpointSyncMainnet) onSumit() {
+	log.Infof("onSumit: [%s]", config.PageID.ConsensusClientCheckpointSyncMainnet)
+
 	ChangePage(config.PageID.ConsensusClientDopelgangerProtection)
 }
 
-func (p *ConsensusClientCheckpointSync) GoBack() {
+func (p *ConsensusClientCheckpointSyncMainnet) GoBack() {
 	ChangePage(config.PageID.ConsensusClientGraffiti)
 }
 
-func (p *ConsensusClientCheckpointSync) HandleEvents(event *tcell.EventKey) *tcell.EventKey {
+func (p *ConsensusClientCheckpointSyncMainnet) HandleEvents(event *tcell.EventKey) *tcell.EventKey {
 	var key = event.Key()
 
 	if key == tcell.KeyEsc {
@@ -103,7 +105,7 @@ func (p *ConsensusClientCheckpointSync) HandleEvents(event *tcell.EventKey) *tce
 	return event
 }
 
-func (p *ConsensusClientCheckpointSync) GetFirstElement() tview.Primitive {
+func (p *ConsensusClientCheckpointSyncMainnet) GetFirstElement() tview.Primitive {
 	fb := p.firstElement
 	log.Infof("%s GetFirstElement", p.ID)
 	return fb

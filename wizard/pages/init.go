@@ -29,7 +29,8 @@ func Setup(app *tview.Application) {
 	All[config.PageID.ConsensusClientExternalSelectedLodestar] = &ConsensusClientExternalSelectedLodestar{PageType: &PageType{}}
 	All[config.PageID.ConsensusClientSelection] = &ConsensusClientSelection{PageType: &PageType{}}
 	All[config.PageID.ConsensusClientGraffiti] = &ConsensusClientGraffiti{PageType: &PageType{}}
-	All[config.PageID.ConsensusClientCheckpointSync] = &ConsensusClientCheckpointSync{PageType: &PageType{}}
+	All[config.PageID.ConsensusClientCheckpointSyncMainnet] = &ConsensusClientCheckpointSyncMainnet{PageType: &PageType{}}
+	All[config.PageID.ConsensusClientCheckpointSyncPrater] = &ConsensusClientCheckpointSyncPrater{PageType: &PageType{}}
 	All[config.PageID.ConsensusClientDopelgangerProtection] = &ConsensusClientDopelgangerProtection{PageType: &PageType{}}
 	All[config.PageID.FallbackClients] = &FallbackClients{PageType: &PageType{}}
 	All[config.PageID.FallbackClientsPrysm] = &FallbackClientsPrysm{PageType: &PageType{}}

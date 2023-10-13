@@ -107,6 +107,8 @@ type ConsensusClientSettingsType struct {
 	ExternalSelection      string                      `json:"externalSelection"`
 	Graffit                string                      `json:"graffit"`
 	CheckpointUrl          string                      `json:"checkpointUrl"`
+	CheckpointUrlMainnet   string                      `json:"checkpointUrlMainnet"`
+	CheckpointUrlPrater    string                      `json:"checkpointUrlPrater"`
 	DoppelgangerProtection string                      `json:"doppelgangerProtection"`
 	External               ConsensusClientExternalType `json:"external"`
 }
@@ -172,7 +174,9 @@ type SettingsType struct {
 	FallbackClients          FallbackClientsSettingsType `json:"fallbackClients"`
 }
 
+// funcs
 func GetSettings() SettingsType {
+
 	settings := SettingsType{
 		// Confirmed:           state.Confirmed,
 		// OpenConfigurationUI: state.OpenConfigurationUI,
@@ -190,6 +194,8 @@ func GetSettings() SettingsType {
 			ExternalSelection:      state.ConsensusClientExternalSelection.SelectedOption,
 			Graffit:                state.ConsensusClient.Graffiti,
 			CheckpointUrl:          state.ConsensusClient.CheckpointUrl,
+			CheckpointUrlMainnet:   state.ConsensusClient.CheckpointUrlMainnet,
+			CheckpointUrlPrater:    state.ConsensusClient.CheckpointUrlPrater,
 			DoppelgangerProtection: state.ConsensusClient.DopelgangerProtectionSelectedOption,
 			External: ConsensusClientExternalType{
 				Lighthouse: ConsensusClientExternalSelectedLighthouseType{
@@ -260,7 +266,11 @@ func SetSettings(settings SettingsType) {
 
 	state.ConsensusClient.SelectionSelectedOption = settings.ConsensusClient.Selection
 	state.ConsensusClient.Graffiti = settings.ConsensusClient.Graffit
+
 	state.ConsensusClient.CheckpointUrl = settings.ConsensusClient.CheckpointUrl
+	state.ConsensusClient.CheckpointUrlMainnet = settings.ConsensusClient.CheckpointUrlMainnet
+	state.ConsensusClient.CheckpointUrlPrater = settings.ConsensusClient.CheckpointUrlPrater
+
 	state.ConsensusClient.DopelgangerProtectionSelectedOption = settings.ConsensusClient.DoppelgangerProtection
 
 	state.ConsensusClientExternalSelection.SelectedOption = settings.ConsensusClient.ExternalSelection
