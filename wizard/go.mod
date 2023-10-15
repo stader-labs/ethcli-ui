@@ -5,8 +5,7 @@ go 1.19
 require (
 	github.com/gdamore/tcell/v2 v2.6.0
 	github.com/pbnjay/memory v0.0.0-20210728143218-7b4eea64cf58
-	github.com/rivo/tview v0.0.0-20230406072732-e22ce9588bb4
-	github.com/rivo/tview v0.0.0-20230406072732-e22ce9588bb4
+	github.com/rivo/tview v0.0.0-20230325211341-281d14d896d7
 	go.uber.org/zap v1.24.0
 )
 
