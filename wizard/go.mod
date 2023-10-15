@@ -21,4 +21,4 @@ require (
 	golang.org/x/text v0.9.0 // indirect
 )
 
-replace github.com/rivo/tview => github.com/hamidraza/tview v1.0.0
+replace github.com/rivo/tview => github.com/hamidraza/tview v0.0.0-20230807170733-65291e1f2b0a

@@ -15,9 +15,9 @@ require (
 	github.com/rivo/uniseg v0.4.3 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
-	golang.org/x/sys v0.5.0 // indirect
-	golang.org/x/term v0.5.0 // indirect
-	golang.org/x/text v0.7.0 // indirect
+	golang.org/x/sys v0.7.0 // indirect
+	golang.org/x/term v0.7.0 // indirect
+	golang.org/x/text v0.9.0 // indirect
 )
 
-replace github.com/rivo/tview => github.com/hamidraza/tview v1.0.0
+replace github.com/rivo/tview => github.com/hamidraza/tview v0.0.0-20230807170733-65291e1f2b0a
