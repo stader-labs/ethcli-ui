@@ -22,7 +22,7 @@ Relays: Ultra Sound, bloXroute Max Profit and Aestus`, descriptionSidebarWidth),
 			Description: utils.AddNewLines(`Enable Regulated (All MEV Types)
 
 Choose this option to activate relays that adhere to government regulations such as OFAC sanctions. "Regulated (All MEV Types)" permits all forms of MEV, including sandwich attacks.
-Relays: Blocknative, Flashbots and Eden Network.`, descriptionSidebarWidth),
+Relays: BloXroute regulated, Flashbot and Eden Network`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Port",
