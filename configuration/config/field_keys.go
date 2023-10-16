@@ -192,7 +192,6 @@ type FieldKeyType = struct {
 	Nm_validator_client_metrics_port   string
 	Nm_node_metrics_port               string
 	Nm_exporter_metrics_port           string
-	Nm_guardian_oracle_port            string
 	Nm_grafana_port                    string
 	Nm_grafana_container_tag           string
 	Nm_prometheus_port                 string
