@@ -61,15 +61,6 @@ Enter the port your Node Exporter should use for the API.
 Default: 9103`, descriptionSidebarWidth),
 		},
 		{
-			Label: "Guardian Oracle Port",
-			Key:   FieldKey.Nm_guardian_oracle_port,
-			Type:  "int",
-			Description: utils.AddNewLines(`Guardian Oracle Port
-
-Enter the port your Guardian Oracle Container should use for the API.
-Default: 9104`, descriptionSidebarWidth),
-		},
-		{
 			Label: "Grafana Port",
 			Key:   FieldKey.Nm_grafana_port,
 			Type:  "int",
