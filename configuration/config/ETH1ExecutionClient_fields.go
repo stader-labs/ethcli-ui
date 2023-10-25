@@ -51,6 +51,17 @@ Default: False`, descriptionSidebarWidth),
 Enter the port number that the Execution Client will use for P2P communication with other blockchain nodes.
 Default: 30303`, descriptionSidebarWidth),
 		},
+		{
+			Label: "Enable Geth path-based state scheme",
+			Key:   FieldKey.E1ec_lm_geth_enable_pbsm,
+			Type:  "checkbox",
+			Description: utils.AddNewLines(`Enable Geth's path-based state  scheme.
+	With this enabled, you will no longer need to manually prune Geth; it will automatically prune its database in real-time.
+Enabling this will require you to remove and resync your Geth DB using
+<stader-cli service resync-eth1>.
+You will need a synced fallback node configured before doing this, or you will no longer be able to attest until it has finished resyncing!"
+Default: False`, descriptionSidebarWidth),
+		},
 		// 		{
 		// 			Label: "ETHStats Label",
 		// 			Key:   FieldKey.E1ec_lm_common_ethstats_label,

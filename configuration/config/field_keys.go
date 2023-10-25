@@ -40,6 +40,7 @@ type FieldKeyType = struct {
 	E1ec_lm_common_p2p_port        string
 	E1ec_lm_common_ethstats_label  string
 	E1ec_lm_common_ethstats_login  string
+	E1ec_lm_geth_enable_pbsm       string
 
 	// ETH1ExecutionClient/Locally Managed/Nethermind
 	E1ec_lm_nethermind_cache_size         string
