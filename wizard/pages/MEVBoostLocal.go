@@ -67,7 +67,7 @@ Relays: Ultra Sound, BloXroute Max Profit and Aestus`, 56))
 
 	regulatedTextView := tview.NewTextView().SetText(utils.AddNewLines(`Regulated
 Choose this option to activate relays that adhere to government regulations such as OFAC sanctions. "Regulated (All MEV Types)" permits all forms of MEV, including sandwich attacks.
-Relays: BloXroute regulated, Flashbot and Eden Network`, 56))
+Relays: BloXroute regulated, Flashbot, Agnostic and Eden Network`, 56))
 
 	regulatedTextViewHeight := 10
 
