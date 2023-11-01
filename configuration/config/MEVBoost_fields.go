@@ -22,7 +22,7 @@ Relays: Ultra Sound, bloXroute Max Profit and Aestus`, descriptionSidebarWidth),
 			Description: utils.AddNewLines(`Enable Regulated (All MEV Types)
 
 Choose this option to activate relays that adhere to government regulations such as OFAC sanctions. "Regulated (All MEV Types)" permits all forms of MEV, including sandwich attacks.
-Relays: BloXroute regulated, Flashbot and Eden Network`, descriptionSidebarWidth),
+Relays: BloXroute regulated, Flashbot, Agnostic and Eden Network`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Port",
@@ -106,6 +106,14 @@ Activate Ultra Sound Ethical relay which is not in accordance with regulations a
 			Description: utils.AddNewLines(`Enable Aestus
 
 The Aestus MEV-Boost Relay is an independent and non-censoring relay. It is committed to neutrality and the development of a healthy MEV-Boost ecosystem`, descriptionSidebarWidth),
+		},
+		{
+			Label: "Enable Agnostic",
+			Key:   FieldKey.Mev_boost_rm_enable_agnostic,
+			Type:  "checkbox",
+			Description: utils.AddNewLines(`Enable Agnostic
+
+Agnostic Relay is an open-source MEV Boost relay available to anyone, anywhere in the world, without prejudice or privilege. It is an ideal relay for block producers and block builders trying to provide neutral features. Agnostic Relay is powered by the know-how and experience of Gnosis communities and contributors.`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Port",

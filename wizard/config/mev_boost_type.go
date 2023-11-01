@@ -44,6 +44,6 @@ all forms of MEV,
 including sandwich
 attacks.
 
-Relays: BloXroute regulated, Flashbot and Eden Network`,
+Relays: BloXroute regulated, Flashbot, Agnostic and Eden Network`,
 	}
 }
