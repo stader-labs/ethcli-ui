@@ -522,6 +522,7 @@ func makeConsensusExternalField(ccClient string) []FormFieldType {
 	case "Teku":
 		commonsField = append(commonsField, makeHTTPField(FieldKey.E2cc_em_http_teku))
 		commonsField = append(commonsField, makeCustomGraffitiField(FieldKey.E2cc_em_custom_graffiti_teku))
+		commonsField = append(commonsField, makeDoppelgängerField(FieldKey.E2cc_em_doppelganger_detection_teku))
 		commonsField = append(commonsField, makeContainerTagField(FieldKey.E2cc_em_container_tag_teku))
 		commonsField = append(commonsField, makeAdditionValidatorClientField(FieldKey.E2cc_em_additional_client_flags_teku))
 	case "Lodestar":
