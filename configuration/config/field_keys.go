@@ -118,6 +118,7 @@ type FieldKeyType = struct {
 	E2cc_em_doppelganger_detection_lighthouse  string
 	E2cc_em_doppelganger_detection_nimbus      string
 	E2cc_em_doppelganger_detection_prysm       string
+	E2cc_em_doppelganger_detection_teku        string
 	E2cc_em_container_tag_prysm                string
 	E2cc_em_container_tag_lighthouse           string
 	E2cc_em_container_tag_nimbus               string
