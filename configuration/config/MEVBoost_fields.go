@@ -13,7 +13,7 @@ func init() {
 			Description: utils.AddNewLines(`Enable Unregulated (All MEV Types)
 
 Choose this option to activate relays that don't adhere to any sanctions lists and won't censor transactions. Unregulated (All MEV Types) permits for all forms of MEV, including sandwich attacks.
-Relays: Ultra Sound, bloXroute Max Profit and Aestus`, descriptionSidebarWidth),
+Relays: Ultra Sound and Aestus`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Enable Regulated (All MEV Types)",
@@ -22,7 +22,7 @@ Relays: Ultra Sound, bloXroute Max Profit and Aestus`, descriptionSidebarWidth),
 			Description: utils.AddNewLines(`Enable Regulated (All MEV Types)
 
 Choose this option to activate relays that adhere to government regulations such as OFAC sanctions. "Regulated (All MEV Types)" permits all forms of MEV, including sandwich attacks.
-Relays: BloXroute regulated, Flashbot, Agnostic and Eden Network`, descriptionSidebarWidth),
+Relays: BloXroute regulated, BloXroute Max Profit, Flashbot, Agnostic and Eden Network`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Port",
@@ -73,7 +73,20 @@ Activate Flashbot relay which is in accordance with regulations and permits sand
 			Key:   FieldKey.Mev_boost_rm_enable_bloXroute_regulated,
 			Type:  "checkbox",
 			Description: utils.AddNewLines(`Enable bloXroute Regulated
-Activate bloXroute Regulated relay which is in accordance with regulations and permits sandwich attack`, descriptionSidebarWidth),
+
+Activate bloXroute Regulated relay which is in accordance with regulations and permits sandwich attack. 
+
+All bloXroute relays will reject  block bids if they contain OFAC transactions.`, descriptionSidebarWidth),
+		},
+		{
+			Label: "Enable bloXroute Max Profit",
+			Key:   FieldKey.Mev_boost_rm_enable_bloXroute_max_profit,
+			Type:  "checkbox",
+			Description: utils.AddNewLines(`Enable bloXroute Max Profit
+
+Activate bloXroute Max Profit relay which is in accordance with regulations and permits sandwich attack. 
+
+All bloXroute relays will reject  block bids if they contain OFAC transactions.`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Enable Eden",
@@ -83,14 +96,7 @@ Activate bloXroute Regulated relay which is in accordance with regulations and p
 
 Activate Eden Network relay which is in accordance with regulations and permits sandwich attack`, descriptionSidebarWidth),
 		},
-		{
-			Label: "Enable bloXroute Max Profit",
-			Key:   FieldKey.Mev_boost_rm_enable_bloXroute_max_profit,
-			Type:  "checkbox",
-			Description: utils.AddNewLines(`Enable bloXroute Max Profit
 
-		Activate bloxRoute Max Profit relay which is not in accordance with regulations and permits sandwich attack.`, descriptionSidebarWidth),
-		},
 		{
 			Label: "Enable Ultrasound",
 			Key:   FieldKey.Mev_boost_rm_enable_ultra_sound,

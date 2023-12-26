@@ -60,14 +60,14 @@ Please note that it is mandatory for node operators to choose an MEV option`
 		AddItem(nil, 0, 1, false)
 
 	unregulatedTextView := tview.NewTextView().SetText(utils.AddNewLines(`Unregulated
-Choose this option to activate relays that don't adhere to any sanctions lists and won't censor transactions. Unregulated (All MEV Types) permits for all forms of MEV, including sandwich attacks (except bloxRoute Ethical) .
-Relays: Ultra Sound, BloXroute Max Profit and Aestus`, 56))
+Choose this option to activate relays that don't adhere to any sanctions lists and won't censor transactions. Unregulated (All MEV Types) permits for all forms of MEV, including sandwich attacks.
+Relays: Ultra Sound and Aestus`, 56))
 
 	unregulatedTextViewHeight := 10
 
 	regulatedTextView := tview.NewTextView().SetText(utils.AddNewLines(`Regulated
 Choose this option to activate relays that adhere to government regulations such as OFAC sanctions. "Regulated (All MEV Types)" permits all forms of MEV, including sandwich attacks.
-Relays: BloXroute regulated, Flashbot, Agnostic and Eden Network`, 56))
+Relays: BloXroute regulated, BloXroute Max Profit, Flashbot, Agnostic and Eden Network`, 56))
 
 	regulatedTextViewHeight := 10
 
