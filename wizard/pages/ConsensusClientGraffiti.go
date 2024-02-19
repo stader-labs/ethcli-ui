@@ -91,7 +91,12 @@ leave it blank.`
 
 func (p *ConsensusClientGraffiti) onSumit() {
 	log.Infof("onSumit: [%s]", config.PageID.ConsensusClientGraffiti)
-	ChangePage(config.PageID.ConsensusClientCheckpointSync)
+
+	if state.Network.SelectedOption == "mainnet" {
+		ChangePage(config.PageID.ConsensusClientCheckpointSyncMainnet)
+	} else {
+		ChangePage(config.PageID.ConsensusClientCheckpointSyncPrater)
+	}
 }
 
 func (p *ConsensusClientGraffiti) GoBack() {

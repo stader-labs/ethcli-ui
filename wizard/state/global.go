@@ -56,12 +56,16 @@ var (
 		DopelgangerProtectionSelectedOption string
 		Graffiti                            string
 		CheckpointUrl                       string
+		CheckpointUrlMainnet                string
+		CheckpointUrlPrater                 string
 	}{
 		SelectionSelectedOption:             config.ConsensusClient.Stage.Selection.Option.SystemRecommended,
 		SelectedStage:                       config.ConsensusClient.Stage.Selection.Name,
 		DopelgangerProtectionSelectedOption: config.ConsensusClient.Stage.DopelgangerProtection.Option.Yes,
 		Graffiti:                            "",
 		CheckpointUrl:                       "",
+		CheckpointUrlMainnet:                "",
+		CheckpointUrlPrater:                 "",
 	}
 
 	ConsensusClientExternalSelectedLighthouse = struct {

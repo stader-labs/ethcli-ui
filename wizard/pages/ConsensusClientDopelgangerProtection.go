@@ -71,7 +71,11 @@ func (p *ConsensusClientDopelgangerProtection) selectNextOption() {
 }
 
 func (p *ConsensusClientDopelgangerProtection) GoBack() {
-	ChangePage(config.PageID.ConsensusClientCheckpointSync)
+	if state.Network.SelectedOption == "mainnet" {
+		ChangePage(config.PageID.ConsensusClientCheckpointSyncMainnet)
+	} else {
+		ChangePage(config.PageID.ConsensusClientCheckpointSyncPrater)
+	}
 }
 
 func (p *ConsensusClientDopelgangerProtection) HandleEvents(event *tcell.EventKey) *tcell.EventKey {

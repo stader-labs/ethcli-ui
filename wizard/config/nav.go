@@ -13,7 +13,8 @@ var PageID = struct {
 	ConsensusClientExternalSelectedTeku       string
 	ConsensusClientSelection                  string
 	ConsensusClientGraffiti                   string
-	ConsensusClientCheckpointSync             string
+	ConsensusClientCheckpointSyncMainnet      string
+	ConsensusClientCheckpointSyncPrater       string
 	ConsensusClientDopelgangerProtection      string
 	FallbackClients                           string
 	FallbackClientsPrysm                      string
@@ -39,7 +40,8 @@ var PageID = struct {
 	ConsensusClientExternalSelectedLodestar:   "consensus_client_external_selected_lodestar",
 	ConsensusClientSelection:                  "consensus_client_selection",
 	ConsensusClientGraffiti:                   "consensus_client_graffiti",
-	ConsensusClientCheckpointSync:             "consensus_client_checkpoint_sync",
+	ConsensusClientCheckpointSyncMainnet:      "consensus_client_checkpoint_sync_mainnet",
+	ConsensusClientCheckpointSyncPrater:       "consensus_client_checkpoint_sync_prater",
 	ConsensusClientDopelgangerProtection:      "consensus_client_dopelganger_protection",
 	FallbackClients:                           "fallback_clients",
 	FallbackClientsPrysm:                      "fallback_clients_prysm",
