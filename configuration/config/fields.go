@@ -22,3 +22,9 @@ var ConfigurationFields = map[string][]FormFieldType{}
 func init() {
 
 }
+
+const (
+	EthereumMainnet = "Ethereum Mainnet"
+	GoerliTestnet   = "Goerli Testnet"
+	HoleskyTestnet  = "Holesky Testnet"
+)
