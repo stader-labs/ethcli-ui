@@ -25,6 +25,5 @@ func init() {
 
 const (
 	EthereumMainnet = "Ethereum Mainnet"
-	GoerliTestnet   = "Goerli Testnet"
 	HoleskyTestnet  = "Holesky Testnet"
 )

@@ -10,17 +10,9 @@ func init() {
 			Type:  "select",
 			Options: []string{
 				EthereumMainnet,
-				GoerliTestnet,
 				HoleskyTestnet,
 			},
 			OptionDescriptions: map[string]string{
-				GoerliTestnet: `Goerli
-
-Opt for Goerli test network for a secure
-and zero-cost environment environment to
-executing Stader Node operations. By
-choosing this network, you can create
-Demo validators using testnet ETH.`,
 				EthereumMainnet: `Ethereum Mainnet
 
 Opt for Ethereum primary network,
