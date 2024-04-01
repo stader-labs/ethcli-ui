@@ -21,7 +21,7 @@ var (
 	Network = struct {
 		SelectedOption string
 	}{
-		SelectedOption: config.Network.Option.GoerliTestnet,
+		SelectedOption: config.Network.Option.HoleskyTestnet,
 	}
 
 	ETHClient = struct {

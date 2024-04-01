@@ -9,23 +9,24 @@ func init() {
 			Key:   FieldKey.Sn_node_network,
 			Type:  "select",
 			Options: []string{
-				"Goerli Testnet",
-				"Ethereum Mainnet",
+				EthereumMainnet,
+				HoleskyTestnet,
 			},
 			OptionDescriptions: map[string]string{
-				"Goerli Testnet": `Goerli
-
-Opt for Goerli test network for a secure
-and zero-cost environment environment to
-executing Stader Node operations. By
-choosing this network, you can create
-Demo validators using testnet ETH.`,
-				"Ethereum Mainnet": `Ethereum Mainnet
+				EthereumMainnet: `Ethereum Mainnet
 
 Opt for Ethereum primary network,
 employing real ETH to perform real
 transactions and to create genuine
 validators on the network.`,
+				HoleskyTestnet: `Holešky
+
+Opt for  Holešky (Holešovice) test network,
+which is the next generation of long-lived
+testnets for Ethereum. It uses free fake
+ETH to make fake
+validators.
+`,
 			},
 			Description: `Node Network
 
