@@ -33,7 +33,7 @@ Types) permits for all
 forms of MEV, including
 sandwich attacks.
 
-Relays: Ultra Sound and Aestus`,
+Relays: Ultra Sound, Titan (unregulated) and Aestus`,
 		MEVBoostLocal.Option.Regulated: `Choose this option to
 activate relays that
 adhere to government
@@ -44,6 +44,6 @@ all forms of MEV,
 including sandwich
 attacks.
 
-Relays: BloXroute regulated, BloXroute Max Profit, Flashbot, Agnostic and Eden Network`,
+Relays: BloXroute regulated, BloXroute Max Profit, Flashbot, Agnostic, Titan (regulated) and Eden Network`,
 	}
 }

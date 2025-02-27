@@ -13,7 +13,7 @@ func init() {
 			Description: utils.AddNewLines(`Enable Unregulated (All MEV Types)
 
 Choose this option to activate relays that don't adhere to any sanctions lists and won't censor transactions. Unregulated (All MEV Types) permits for all forms of MEV, including sandwich attacks.
-Relays: Ultra Sound and Aestus`, descriptionSidebarWidth),
+Relays: Ultra Sound, Titan (unregulated) and Aestus`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Enable Regulated (All MEV Types)",
@@ -22,7 +22,7 @@ Relays: Ultra Sound and Aestus`, descriptionSidebarWidth),
 			Description: utils.AddNewLines(`Enable Regulated (All MEV Types)
 
 Choose this option to activate relays that adhere to government regulations such as OFAC sanctions. "Regulated (All MEV Types)" permits all forms of MEV, including sandwich attacks.
-Relays: BloXroute regulated, BloXroute Max Profit, Flashbot, Agnostic and Eden Network`, descriptionSidebarWidth),
+Relays: BloXroute regulated, BloXroute Max Profit, Flashbot, Agnostic, Titan (regulated) and Eden Network`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Port",
@@ -120,6 +120,22 @@ The Aestus MEV-Boost Relay is an independent and non-censoring relay. It is comm
 			Description: utils.AddNewLines(`Enable Agnostic
 
 Agnostic Relay is an open-source MEV Boost relay available to anyone, anywhere in the world, without prejudice or privilege. It is an ideal relay for block producers and block builders trying to provide neutral features. Agnostic Relay is powered by the know-how and experience of Gnosis communities and contributors.`, descriptionSidebarWidth),
+		},
+		{
+			Label: "Enable Titan (regulated)",
+			Key:   FieldKey.Mev_boost_rm_enable_titan_regulated,
+			Type:  "checkbox",
+			Description: utils.AddNewLines(`Enable Titan (regulated)
+
+The Titan Relay is a high-performance, censorship-resistant relay supporting both regulated and unregulated MEV. It prioritizes efficiency, neutrality, and validator rewards while complying with regulations based on the selected mode.`, descriptionSidebarWidth),
+		},
+		{
+			Label: "Enable Titan (unregulated)",
+			Key:   FieldKey.Mev_boost_rm_enable_titan_unRegulated,
+			Type:  "checkbox",
+			Description: utils.AddNewLines(`Enable Titan (unregulated)
+
+The Titan Relay is a high-performance, censorship-resistant relay supporting both regulated and unregulated MEV. It prioritizes efficiency, neutrality, and validator rewards while complying with regulations based on the selected mode.`, descriptionSidebarWidth),
 		},
 		{
 			Label: "Port",
