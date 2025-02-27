@@ -176,6 +176,8 @@ type FieldKeyType = struct {
 	// MEV Boost / Relay Mode
 	Mev_boost_rm_enable_flashbots            string
 	Mev_boost_rm_enable_agnostic             string
+	Mev_boost_rm_enable_titan_regulated      string
+	Mev_boost_rm_enable_titan_unRegulated    string
 	Mev_boost_rm_enable_bloXroute_regulated  string
 	Mev_boost_rm_enable_bloXroute_max_profit string
 	Mev_boost_rm_enable_eden_network         string
