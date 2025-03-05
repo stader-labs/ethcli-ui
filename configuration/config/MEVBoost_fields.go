@@ -122,18 +122,18 @@ The Aestus MEV-Boost Relay is an independent and non-censoring relay. It is comm
 Agnostic Relay is an open-source MEV Boost relay available to anyone, anywhere in the world, without prejudice or privilege. It is an ideal relay for block producers and block builders trying to provide neutral features. Agnostic Relay is powered by the know-how and experience of Gnosis communities and contributors.`, descriptionSidebarWidth),
 		},
 		{
-			Label: "Enable Titan (regulated)",
+			Label: "Enable Titan Regional (regulated)",
 			Key:   FieldKey.Mev_boost_rm_enable_titan_regulated,
 			Type:  "checkbox",
-			Description: utils.AddNewLines(`Enable Titan (regulated)
+			Description: utils.AddNewLines(`Enable Titan Regional (regulated)
 
 The Titan Relay is a high-performance, censorship-resistant relay supporting both regulated and unregulated MEV. It prioritizes efficiency, neutrality, and validator rewards while complying with regulations based on the selected mode.`, descriptionSidebarWidth),
 		},
 		{
-			Label: "Enable Titan (unregulated)",
+			Label: "Enable Titan Global (unregulated)",
 			Key:   FieldKey.Mev_boost_rm_enable_titan_unRegulated,
 			Type:  "checkbox",
-			Description: utils.AddNewLines(`Enable Titan (unregulated)
+			Description: utils.AddNewLines(`Enable Titan Global (unregulated)
 
 The Titan Relay is a high-performance, censorship-resistant relay supporting both regulated and unregulated MEV. It prioritizes efficiency, neutrality, and validator rewards while complying with regulations based on the selected mode.`, descriptionSidebarWidth),
 		},
